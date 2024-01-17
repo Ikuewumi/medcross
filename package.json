@@ -1,0 +1,21 @@
+{
+  "name": "medcross",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "dev": "npx @11ty/eleventy --serve"
+  },
+  "keywords": [],
+  "author": "Ayobami Ikuewumi",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11tyrocks/eleventy-plugin-sass-lightningcss": "^1.1.0",
+    "vitest": "^1.2.0"
+  },
+  "dependencies": {
+    "nanostores": "^0.9.5"
+  }
+}
