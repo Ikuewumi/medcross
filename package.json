@@ -5,17 +5,24 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest",
-    "dev": "npx @11ty/eleventy --serve"
+    "dev": "npx @11ty/eleventy --serve --quiet --incremental",
+    "build": "npx @11ty/eleventy",
+    "lint": "tsc --noEmit --pretty -p ./jsconfig.json",
+    "clean": "rm -rf _site && rm -rf .11ty-vite"
   },
   "keywords": [],
   "author": "Ayobami Ikuewumi",
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-plugin-vite": "^4.0.0",
     "@11tyrocks/eleventy-plugin-sass-lightningcss": "^1.1.0",
+    "sass": "^1.70.0",
+    "typescript": "^5.3.3",
     "vitest": "^1.2.0"
   },
   "dependencies": {
+    "@11ty/is-land": "^4.0.0",
     "nanostores": "^0.9.5"
   }
 }

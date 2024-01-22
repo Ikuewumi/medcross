@@ -1,3 +1,0 @@
-# Puddle Han!
-
-Aight' bet!

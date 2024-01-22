@@ -1,5 +1,16 @@
-const eleventySass = require("@11tyrocks/eleventy-plugin-sass-lightningcss");
+const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
 
 module.exports = (eleventyConfig) => {
-    eleventyConfig.addPlugin(eleventySass);
+    eleventyConfig.addPlugin(EleventyVitePlugin);
+
+    eleventyConfig.addPassthroughCopy({ 
+        src:  '/'
+    });
+
+
+    return {
+        dir: {
+            input: "src"
+        }
+    }
 };

@@ -1,9 +1,16 @@
 /**
+ * @typedef Coordinate - The coordinates of a particular cell in the format [x, y]
+ * @type {number[]}
+ * @property {number} x - The x-coordinate
+ * @property {number} y - The y-coordinate
+ */
+
+/**
  * @typedef Word - Object Representation of a word in the crossword
  * @type {object}
  * @property {string} word - The word
- * @property {number[]} start - The x, y starting coordinates of the word
- * @property {number[]} end - The x, y ending coordinates of the word
+ * @property {Coordinate} start - The x, y starting coordinates of the word
+ * @property {Coordinate} end - The x, y ending coordinates of the word
  * @property {string} [meaning] - The definition of the word
  */
 
@@ -17,16 +24,18 @@
  * @type {string[][]}
  */
 
-/**
- * @typedef Coordinates - The coordinates of a particular cell in the format [x, y]
- * @type {[number, number]}
- */
+
 
 
 /**
  * Creates a CrossWord
  */
 class CrossWord {
+    #words;
+    #array;
+    #answers
+
+
     /**
      * 
      * @param {number} size The size of the multidimestional array
@@ -35,16 +44,29 @@ class CrossWord {
     constructor(
         size,
         words = []
-    ) {
-        /**@type {number} */
+    ) {       
+        /**
+         * @public
+         * @type {number}
+         */ 
         this.size = size
+        this.#words = words
+        this.#array = CrossWord.generateMatrixFromWords(this.#words, this.size) 
+        this.#answers = CrossWord.getArray(size);
+    }
 
-        /**@type {Word[]} */
-        this.words = words
 
 
-        // this.array = 
+    get answers() {
+        return this.#answers
+    }
 
+
+    /**
+     * @param {Matrix} matrix - the "user's" answers' in the class  
+     */
+    set answers(matrix) {
+        this.#answers = matrix
     }
 
 
@@ -59,7 +81,6 @@ class CrossWord {
         if (!(typeof size === 'number' && size > 1)) throw Error("The size must be a positive integer (x > 1)")
         return Array.from({ length: size }, () => Array.from({ length: size }, _ => ""))
     }
-
 
     /**
      * @static
@@ -76,9 +97,10 @@ class CrossWord {
             throw Error("Invalid word direction. The word must be either horizontal (y-axis) or vertical (x-axis).")
         }
 
-        return +(isY)
-    }
+        const direction = isY ? 1 : 0
 
+        return direction
+    }
 
     /**
      * @static
@@ -96,7 +118,6 @@ class CrossWord {
         if (!(lengthValid && isString)) throw Error("Invalid word length. The word length must be greater than 1 and match the specified direction.")
 
     }
-
 
     /**
      * @static
@@ -140,17 +161,16 @@ class CrossWord {
 
     }
 
-
-
     /**
      * @static
      * Extract the word from a matrix given the coordinates, and direction
      * @param {Matrix} matrix - Matrix of characters
-     * @param {number[]} coordinates - The starting point of the word
+     * @param {Coordinate} coordinates - The starting point of the word
      * @param {Direction} direction
      * @returns {Word}
      */
     static extractWord(matrix, coordinates, direction) {
+        //@todo - optimize this function
 
         let currentX = coordinates[0]
         let currentY = coordinates[1]
@@ -169,8 +189,12 @@ class CrossWord {
         // let accessX = direction >  
         function logic() {
             let a = false 
-            if (direction === 0) { a = (currentY === matrix.length) || (matrix[currentX][currentY+1] > '') } 
-            else { a = (currentX === matrix.length) || (matrix[currentX+1][currentY] > '') }
+            if (direction === 0 || !matrix) {
+                a = (currentY === matrix.length - 1) || (matrix?.at(currentX)?.at(currentY) > '') 
+            } 
+            else { 
+                a = (currentX === matrix.length - 1) || (matrix?.at(currentX)?.at(currentY) > '') 
+            }
 
             return a
         }
@@ -179,18 +203,19 @@ class CrossWord {
 
 
         while(logic()) {
-            console.log(word)
+
             word.end = [currentX, currentY]
             word.word += matrix[currentX][currentY]
 
+
+
             if (direction === 0) {
-                currentX++;
-            } else {
                 currentY++;
+            } else {
+                currentX++;
             }
         }
 
-        console.log(word)
 
 
         return word
@@ -198,9 +223,6 @@ class CrossWord {
 
 
     }
-
-
-
 
     /**
      * @static
@@ -214,13 +236,26 @@ class CrossWord {
          */
         const words = [];
 
-        console.log(matrix)
 
         matrix.forEach((row, x) => {
             row.forEach((cell, y) => {
-                const isStartofXWord = (y === 0 ? true : matrix[x][y-1] <= '') && (matrix[x][y+1] > '') 
-                const isStartofYWord = (x === 0 ? true : matrix[x-1][y] <= '') && (matrix[x+1][y] > '') 
-                console.log({x, y, isStartofXWord, isStartofYWord})
+                if (cell <= "") return;
+
+                const isStartofXWord = 
+                    (y === 0 && matrix[x][y+1] > "") ? true :
+                    (matrix[x][y-1] && matrix[x][y-1] > "") ? false : 
+                    (x > matrix[x].length - 1) ? false :
+                    (matrix[x][y+1] > "");  
+
+        
+
+                const isStartofYWord = 
+                    (x=== 0 && matrix[x+1][y] > "") ? true :
+                    (matrix[x-1] && matrix[x-1][y] > "") ? false : 
+                    (y > matrix.length - 1) ? false :
+                    (matrix[x+1][y] > "");
+
+
 
 
                 if (isStartofXWord) {
@@ -236,15 +271,6 @@ class CrossWord {
 
         return words
     }
-
-
-
-
-
-
-
-
-
 
 }
 
@@ -263,15 +289,34 @@ const words = [
     { word: "oil", start: [2, 2], end: [4, 2] },
     { word: "ice", start: [3, 2], end: [3, 4] },
     { word: "riley", start: [0, 4], end: [4, 4] },
-
 ]
 
 const matrix = [
-    ['A', 'Y', 'E'],
+    ['A', 'Y', ''],
     ['R', 'O', 'Y'],
     ['M', '', 'E']
 ]
+
+const m2 = [ 
+    [ 'a', 's', 't', 'e', 'r' ],
+    [ 'r', '', '', '', 'i' ],
+    [ 't', 'o', 'o', '', 'l' ],
+    [ '', '', 'i', 'c', 'e' ],
+    [ '', '', 'l', '', 'y' ] 
+]
+
+
 const a = CrossWord.generateMatrixFromWords(words, 5)
 const b = CrossWord.generateWordsFromMatrix(matrix)
+const c = CrossWord.generateWordsFromMatrix(m2)
+
 
 console.table(a)
+console.table(b)
+console.table(c)
+
+
+const c1 = new CrossWord(5, words)
+
+console.log(c1)
+

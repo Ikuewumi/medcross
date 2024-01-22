@@ -1,0 +1,176 @@
+header#user {
+    --logo-size: 40px;
+    padding: 1.25rem;
+    grid-column: right;
+    background: var(--clr-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // border-bottom-left-radius: 1rem;
+    --shadow-color: 203deg 8% 27%;
+
+    // --shadow-color: var(--clr-grey-400);
+    box-shadow: var(--shadow-elevation-inverse-low);
+}
+
+header#user strong {
+    display: flex;
+    gap: 0.2rem;
+    align-items: center;
+    font-size: var(--step-3);
+    letter-spacing: -1.5px;
+    font-weight: 600;
+}
+
+// Logo CSS
+header#user figure {
+    --offset: 1.45rem;
+
+    display: grid;
+    grid-template-columns: [logo-start] 1fr [logo-end];
+    grid-template-rows: [logo-start] 1fr [logo-end];
+
+    svg {
+        width: var(--logo-size);
+        grid-area: logo;
+        margin-block-start: calc(var(--factor, 0.2) * var(--offset));
+        margin-inline-start: calc(var(--factor, 0.2) * var(--offset));
+        fill: var(--clr, var(--clr-grey-400));
+
+        &:nth-child(1) {
+            --factor: 0.1;
+            --clr: var(--clr-primary)
+        }
+
+        &:nth-child(2) {
+            --factor: 0.15;
+            --clr: var(--clr-secondary-light)
+        }
+
+        &:nth-child(3) {
+            --factor: 0.25;
+            --clr: var(--clr-accent)
+        }
+
+
+    }
+}
+
+
+#theme-toggle {
+    --icon-size: 25px;
+    --bg: var(--clr-background);
+    --clr: var(--clr-accent);
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-inline-start: auto;
+    border-radius: 0.4rem;
+    background: var(--bg);
+    transition: background 100ms;
+
+    &:hover {
+        --bg: var(--clr-accent);
+        --clr: var(--clr-background);
+    }
+
+
+    svg {
+        inline-size: var(--icon-size);
+        stroke: var(--clr);
+    }
+        
+}
+
+
+
+
+
+
+header#user nav button {
+    --height: 25px;
+    --clr: var(--clr-grey-400);
+
+    cursor: pointer;
+    height: var(--height);
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    background: none;
+    border: none;
+    grid-area: button;
+
+    
+    span[aria-hidden=true] {
+        height: 4px;
+        width: 100%;
+        border-radius: 100vmax;
+        background: var(--clr);
+        transform-origin: right;
+        transition: transform 200ms ease-out;
+    }
+
+    span[aria-hidden=true]:nth-child(3) {
+        width: 70%;
+    }
+
+
+    &:hover {
+        span[aria-hidden=true]:nth-child(2) {
+            transform: rotate(-45deg) scaleX(1.27);
+        }
+        span[aria-hidden=true]:nth-child(3) {
+            transform: scaleX(0);
+        }
+        span[aria-hidden=true]:nth-child(4) {
+            transform: rotate(45deg) scaleX(1.27);
+        }
+    }
+    
+    @include mq {
+        display: none;
+    }
+}
+
+
+
+header#user nav {
+    align-items: center;
+
+    &, ul {
+        display: flex;
+    }
+
+    ul {
+        list-style: none;
+        flex-direction: column;
+        gap: 0.75rem;
+        display: none;
+    }
+
+
+    a {
+        text-decoration: none;
+        color: var(--clr-grey-500);
+        font-weight: 600;
+    }
+
+
+    a[aria-current=page] {
+        color: var(--clr-grey-400);
+        font-weight: 700;
+        text-decoration: underline;
+        text-decoration-thickness: 5px;
+    }
+
+
+    @include mq {
+        ul {
+            flex-direction: row;
+            display: flex;
+        }
+    }
+
+}
