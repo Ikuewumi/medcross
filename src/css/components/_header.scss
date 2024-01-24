@@ -129,7 +129,7 @@ header#user nav button {
         }
     }
     
-    @include mq {
+    @media(min-width:768px) {
         display: none;
     }
 }
@@ -166,7 +166,7 @@ header#user nav {
     }
 
 
-    @include mq {
+    @media(min-width:768px) {
         ul {
             flex-direction: row;
             display: flex;

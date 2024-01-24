@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest",
-    "dev": "npx @11ty/eleventy --serve --quiet --incremental",
+    "dev": "npx @11ty/eleventy --serve",
     "build": "npx @11ty/eleventy",
     "lint": "tsc --noEmit --pretty -p ./jsconfig.json",
     "clean": "rm -rf _site && rm -rf .11ty-vite"
@@ -15,8 +15,9 @@
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
-    "@11ty/eleventy-plugin-vite": "^4.0.0",
+    "@11ty/eleventy-plugin-webc": "^0.11.2",
     "@11tyrocks/eleventy-plugin-sass-lightningcss": "^1.1.0",
+    "flamethrower-router": "^0.0.0-meme.12",
     "sass": "^1.70.0",
     "typescript": "^5.3.3",
     "vitest": "^1.2.0"

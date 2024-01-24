@@ -105,12 +105,18 @@ figure {
 cross-parent {
     --size: 4;
     --width: 40px;
-    background: var(--clr-grey-700);
-    display: grid;
+    background: var(--clr-grey-600);
+    border: 2px solid var(--clr-grey-400);
+    box-shadow: var(--shadow-elevation-medium);
+    display: none;
     gap: 1px;
     grid-template-columns: repeat(var(--size), var(--width));
     grid-template-rows: repeat(var(--size), var(--width));
     margin-block: auto;
+
+    @media(min-width:768px) {
+        display: grid;
+    }
 }
 
 cross-cell {
@@ -124,12 +130,6 @@ cross-cell {
     
     &:empty {
         background: var(--clr-grey-400);
-
-
-        &+& {
-            // border-color: var(--clr-grey-400);
-        }
-
     }
 }
 

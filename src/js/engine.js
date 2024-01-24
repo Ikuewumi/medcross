@@ -1,4 +1,4 @@
-/**
+ /**
  * @typedef Coordinate - The coordinates of a particular cell in the format [x, y]
  * @type {number[]}
  * @property {number} x - The x-coordinate

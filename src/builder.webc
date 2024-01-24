@@ -1,5 +1,5 @@
 ---
-layout: 'base.njk'
+layout: 'base.webc'
 title: Build Layout
 ---
 
@@ -66,12 +66,10 @@ title: Build Layout
             <cross-cell></cross-cell>
             <cross-cell></cross-cell>
             <cross-cell>S</cross-cell>
-            <cross-cell></cross-cell>
+            <cross-cell>I</cross-cell>
         </cross-parent>
     </figure>
 
 </section>
 
 
-
-<!-- <script type="module" src="/js/builder.js"></script> -->
