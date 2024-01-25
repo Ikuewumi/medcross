@@ -1,9 +1,0 @@
----
-layout: "base.webc"
-title: HomePage
----
-
-<h1>WebC is HTML</h1>
-<p>Webc is <abbr title="Single File Components">SFC</abbr></p>
-
-
