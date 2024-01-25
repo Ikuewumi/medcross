@@ -1,0 +1,63 @@
+<dialog class="word">
+    <h2>Word at <code>0,3</code></h2>
+
+
+    <form>
+        <div class="field">
+            <label for="direction">Direction</label>
+            <select name="direction" id="direction">
+                <option value="x">x</option>
+                <option value="y">y</option>
+            </select>
+        </div>
+
+
+
+        <div class="field">
+            <label for="edit-word">Enter the word</label>
+            <input type="text" id="edit-word" placeholder="aster">
+        </div>
+
+        <div class="button-bar">
+            <button type="button">Close</button>
+            <button type="submit">Enter</button>
+        </div>
+    </form>
+
+
+    <small>This window can also be closed by clicking outisde the modal</small>
+
+</dialog>
+
+<style webc:scoped="builder-dialog-word">
+    :host {
+        display: contents;
+    }
+
+    dialog {
+        --_gap: 1.45rem;
+        --_padding: 0.75rem 1rem;
+    }
+
+    .field {
+        align-items: center;
+    }
+
+    .button-bar {
+        margin-top: 0.75rem;
+        justify-self: flex-end;
+    }
+
+    button {
+        --_bg: var(--clr-grey-800);
+        --_clr: var(--clr-grey-400);
+        --_padding: 0.5rem 1.5rem;
+    }
+
+    
+    button:nth-child(2) {
+        --_bg: var(--clr-grey-400);
+        --_clr: var(--clr-grey-800);
+    }
+
+</style>

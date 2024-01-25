@@ -1,0 +1,23 @@
+<div></div>
+
+<style webc:scoped="cross-cell">
+    :host {
+        display: contents;
+    }
+
+
+
+div {
+    background: var(--clr-grey-800);
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    font-size: var(--step-2);
+    font-weight: 600;
+
+}
+div:empty {
+    background: var(--clr-grey-400);
+}
+</style>

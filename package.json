@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest",
-    "dev": "npx @11ty/eleventy --serve",
+    "clean": "rm -rf _site",
+    "predev": "npm run clean",
+    "dev": "npx @11ty/eleventy --serve --watch --port=8081",
+    "prebuild": "npm run clean && npm run lint && npm run test",
     "build": "npx @11ty/eleventy",
-    "lint": "tsc --noEmit --pretty -p ./jsconfig.json",
-    "clean": "rm -rf _site && rm -rf .11ty-vite"
+    "lint": "tsc --noEmit --pretty -p ./jsconfig.json"
   },
   "keywords": [],
   "author": "Ayobami Ikuewumi",

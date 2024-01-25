@@ -10,8 +10,8 @@
         <span>medcross</span>
     </strong>
 
-
     <nav>
+
         <button>
             <span class="sr-only">Toggle Menu</span>
             <span aria-hidden="true"></span>
@@ -26,17 +26,18 @@
             <li><a href="#">downloads</a></li>
             <li><a href="#">about</a></li>
         </ul>
-
     </nav>
+
+
 </header>
 
 
+<style webc:scoped="site-header">
+:host {
+    display: contents;
+}
 
-<style webc:keep>
 
-    :host {
-        display: contents;
-    }
     header {
     --logo-size: 40px;
     padding: 1.25rem;
@@ -48,7 +49,7 @@
     --shadow-color: 203deg 8% 27%;
 
     box-shadow: var(--shadow-elevation-inverse-low);
-}
+    }
 
 header strong {
     display: flex;
@@ -66,62 +67,18 @@ header figure {
     grid-template-columns: [logo-start] 1fr [logo-end];
     grid-template-rows: [logo-start] 1fr [logo-end];
 
-
 }
-
-header svg {
-        width: var(--logo-size);
-        grid-area: logo;
-        margin-block-start: calc(var(--factor, 0.2) * var(--offset));
-        margin-inline-start: calc(var(--factor, 0.2) * var(--offset));
-        fill: var(--clr, var(--clr-grey-400));
-
-        
-        
-    }
-    header svg:nth-child(1) {
-        --factor: 0.1;
-        --clr: var(--clr-primary)
-    }
-
-    header svg:nth-child(2) {
-        --factor: 0.15;
-        --clr: var(--clr-secondary-light)
-    }
-
-    header svg:nth-child(3) {
-        --factor: 0.25;
-        --clr: var(--clr-accent)
-    }
-
-
-#theme-toggle {
-    --icon-size: 25px;
-    --bg: var(--clr-background);
-    --clr: var(--clr-accent);
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    margin-inline-start: auto;
-    border-radius: 0.4rem;
-    background: var(--bg);
-    transition: background 100ms;
-
-   
-        
+header figure svg {
+    width: var(--logo-size);
+    grid-area: logo;
+    fill: var(--clr, var(--clr-grey-400));
 }
 
 
-#theme-toggle:hover {
-        --bg: var(--clr-accent);
-        --clr: var(--clr-background);
-    }
 
 
-    #theme-toggle svg {
-        inline-size: var(--icon-size);
-        stroke: var(--clr);
-    }
+
+
 
 
 
@@ -142,7 +99,13 @@ header nav button {
     border: none;
     grid-area: button;
 
+
     
+}
+@media(min-width:768px) {
+    header nav button {
+        display: none;
+    }
 }
 
 header nav button span[aria-hidden=true] {
@@ -159,27 +122,21 @@ header nav button span[aria-hidden=true]:nth-child(3) {
 }
 
 
-header nav button:hover {
-    span[aria-hidden=true]:nth-child(2) {
-        transform: rotate(-45deg) scaleX(1.27);
-    }
-    span[aria-hidden=true]:nth-child(3) {
-        transform: scaleX(0);
-    }
-    span[aria-hidden=true]:nth-child(4) {
-        transform: rotate(45deg) scaleX(1.27);
-    }
+header nav button:hover span[aria-hidden=true]:nth-child(2) {
+    transform: rotate(-45deg) scaleX(1.27);
 }
-
-@media(min-width:768px) {
-    header nav button {
-        display: none;
-    }
+header nav button:hover span[aria-hidden=true]:nth-child(3) {
+    transform: scaleX(0);
+}
+header nav button:hover span[aria-hidden=true]:nth-child(4) {
+    transform: rotate(45deg) scaleX(1.27);
 }
 
 
 header nav {
-    align-items: center;   
+    align-items: center;
+
+    
 }
 header nav, header nav ul {
     display: flex;

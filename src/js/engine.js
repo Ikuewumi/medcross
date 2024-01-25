@@ -1,4 +1,4 @@
- /**
+/**
  * @typedef Coordinate - The coordinates of a particular cell in the format [x, y]
  * @type {number[]}
  * @property {number} x - The x-coordinate
@@ -37,21 +37,21 @@ class CrossWord {
 
 
     /**
-     * 
+     *
      * @param {number} size The size of the multidimestional array
-     * @param {Word[]} words 
+     * @param {Word[]} words
      */
     constructor(
         size,
         words = []
-    ) {       
+    ) {
         /**
          * @public
          * @type {number}
-         */ 
+         */
         this.size = size
         this.#words = words
-        this.#array = CrossWord.generateMatrixFromWords(this.#words, this.size) 
+        this.#array = CrossWord.generateMatrixFromWords(this.#words, this.size)
         this.#answers = CrossWord.getArray(size);
     }
 
@@ -63,7 +63,7 @@ class CrossWord {
 
 
     /**
-     * @param {Matrix} matrix - the "user's" answers' in the class  
+     * @param {Matrix} matrix - the "user's" answers' in the class
      */
     set answers(matrix) {
         this.#answers = matrix
@@ -106,7 +106,7 @@ class CrossWord {
      * @static
      * Check if a word is valid
      * @param {Word} word
-     * @throws Will throw an error if the word is invalid 
+     * @throws Will throw an error if the word is invalid
      * @returns {void}
      */
     static validateWord(word) {
@@ -122,9 +122,9 @@ class CrossWord {
     /**
      * @static
      * Convert the crossword to an matrix format
-     * @param {Word[]} words 
+     * @param {Word[]} words
      * @param {number} size
-     * @returns {Matrix} The crossword in matrix form 
+     * @returns {Matrix} The crossword in matrix form
      */
     static generateMatrixFromWords(words, size) {
         const array = CrossWord.getArray(size)
@@ -151,7 +151,7 @@ class CrossWord {
                 } else {
                     currentX++;
                 }
-            
+
             });
 
 
@@ -176,7 +176,7 @@ class CrossWord {
         let currentY = coordinates[1]
 
 
-        
+
         /**
          * @type {Word} - The empty object for the word
          */
@@ -186,14 +186,14 @@ class CrossWord {
             end: [currentX, currentY]
         }
 
-        // let accessX = direction >  
+        // let accessX = direction >
         function logic() {
-            let a = false 
+            let a = false
             if (direction === 0 || !matrix) {
-                a = (currentY === matrix.length - 1) || (matrix?.at(currentX)?.at(currentY) > '') 
-            } 
-            else { 
-                a = (currentX === matrix.length - 1) || (matrix?.at(currentX)?.at(currentY) > '') 
+                a = (currentY === matrix.length - 1) || (matrix?.at(currentX)?.at(currentY) > '')
+            }
+            else {
+                a = (currentX === matrix.length - 1) || (matrix?.at(currentX)?.at(currentY) > '')
             }
 
             return a
@@ -226,7 +226,7 @@ class CrossWord {
 
     /**
      * @static
-     * Generate the words of a crossword from a matrix 
+     * Generate the words of a crossword from a matrix
      * @param {Matrix} matrix - The multidimensional array
      * @returns {Word[]} The words in the array
      */
@@ -241,17 +241,17 @@ class CrossWord {
             row.forEach((cell, y) => {
                 if (cell <= "") return;
 
-                const isStartofXWord = 
+                const isStartofXWord =
                     (y === 0 && matrix[x][y+1] > "") ? true :
-                    (matrix[x][y-1] && matrix[x][y-1] > "") ? false : 
+                    (matrix[x][y-1] && matrix[x][y-1] > "") ? false :
                     (x > matrix[x].length - 1) ? false :
-                    (matrix[x][y+1] > "");  
+                    (matrix[x][y+1] > "");
 
-        
 
-                const isStartofYWord = 
+
+                const isStartofYWord =
                     (x=== 0 && matrix[x+1][y] > "") ? true :
-                    (matrix[x-1] && matrix[x-1][y] > "") ? false : 
+                    (matrix[x-1] && matrix[x-1][y] > "") ? false :
                     (y > matrix.length - 1) ? false :
                     (matrix[x+1][y] > "");
 
@@ -260,13 +260,13 @@ class CrossWord {
 
                 if (isStartofXWord) {
                     words.push( CrossWord.extractWord(matrix, [x, y], 0) )
-                } 
-            
-                if(isStartofYWord) {
-                    words.push( CrossWord.extractWord(matrix, [x, y], 1) )    
                 }
 
-            }) 
+                if(isStartofYWord) {
+                    words.push( CrossWord.extractWord(matrix, [x, y], 1) )
+                }
+
+            })
         })
 
         return words
@@ -297,12 +297,12 @@ const matrix = [
     ['M', '', 'E']
 ]
 
-const m2 = [ 
+const m2 = [
     [ 'a', 's', 't', 'e', 'r' ],
     [ 'r', '', '', '', 'i' ],
     [ 't', 'o', 'o', '', 'l' ],
     [ '', '', 'i', 'c', 'e' ],
-    [ '', '', 'l', '', 'y' ] 
+    [ '', '', 'l', '', 'y' ]
 ]
 
 
@@ -319,4 +319,3 @@ console.table(c)
 const c1 = new CrossWord(5, words)
 
 console.log(c1)
-

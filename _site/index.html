@@ -2,236 +2,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet">
-    <title>Home Page</title>
-    <style></style>
+    <title>HomePage</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <script src="/js/startup.js"></script>
+    <style>.site-skip{display:contents}.site-skip a{padding:0.5rem 0.95rem;text-decoration:none;background:var(--clr-white);box-shadow:var(--shadow-elevation-inverse-low);color:var(--clr-grey-400);position:fixed;inset:-100vmax auto auto -100vmax}.site-skip a:focus{inset:0 auto auto 0}
+.site-header{display:contents}.site-header header{--logo-size: 40px;padding:1.25rem;grid-column:right;background:var(--clr-white);display:flex;justify-content:space-between;align-items:center;--shadow-color: 203deg 8% 27%;box-shadow:var(--shadow-elevation-inverse-low)}.site-header header strong{display:flex;gap:0.2rem;align-items:center;font-size:var(--step-3);letter-spacing:-1.5px;font-weight:600}.site-header header figure{--offset: 1.45rem;display:grid;grid-template-columns:[logo-start]1fr[logo-end];grid-template-rows:[logo-start]1fr[logo-end]}.site-header header figure svg{width:var(--logo-size);grid-area:logo;fill:var(--clr, var(--clr-grey-400))}.site-header header nav button{--height: 25px;--clr: var(--clr-grey-400);cursor:pointer;height:var(--height);aspect-ratio:1;display:flex;flex-direction:column;justify-content:space-between;align-items:end;background:none;border:none;grid-area:button}@media (min-width:768px){.site-header header nav button{display:none}}.site-header header nav button span[aria-hidden=true]{height:4px;width:100%;border-radius:100vmax;background:var(--clr);transform-origin:right;transition:transform 200ms ease-out}.site-header header nav button span[aria-hidden=true]:nth-child(3){width:70%}.site-header header nav button:hover span[aria-hidden=true]:nth-child(2){transform:rotate(-45deg) scaleX(1.27)}.site-header header nav button:hover span[aria-hidden=true]:nth-child(3){transform:scaleX(0)}.site-header header nav button:hover span[aria-hidden=true]:nth-child(4){transform:rotate(45deg) scaleX(1.27)}.site-header header nav{align-items:center}.site-header header nav,.site-header header nav ul{display:flex}.site-header header nav ul{list-style:none;flex-direction:column;gap:0.75rem;display:none}.site-header header nav a{text-decoration:none;color:var(--clr-grey-500);font-weight:600}.site-header header nav a[aria-current=page]{color:var(--clr-grey-400);font-weight:700;text-decoration:underline;text-decoration-thickness:5px}@media (min-width:768px){.site-header header nav ul{flex-direction:row;display:flex}}</style>
+    <script></script>
 </head>
-
 <body>
 
-    <site-header></site-header>
+    <site-skip class="site-skip"><a id="skip" href="#main-content">Skip To Content</a>
 
 
-    <main><h1>Home Page</h1>
-<p>INdex of Home Page</p>
+
+
+
+</site-skip>
+    <site-header class="site-header"><header>
+    <strong>
+        <figure title="Logo">
+            <svg viewBox="0 0 24 24">
+                <use href="#logo"></use>
+            </svg>
+            <figcaption class="sr-only">Logo</figcaption>
+        </figure>
+
+        <span>medcross</span>
+    </strong>
+
+    <nav>
+
+        <button>
+            <span class="sr-only">Toggle Menu</span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
+
+        <ul>
+            <li><a aria-current="page" href="#">home</a></li>
+            <li><a href="#">archive</a></li>
+            <li><a href="#">series</a></li>
+            <li><a href="#">downloads</a></li>
+            <li><a href="#">about</a></li>
+        </ul>
+    </nav>
+
+
+</header>
+
+
+
+</site-header>
+    <main id="main-content"><h1>WebC is HTML</h1>
+<p>Webc is <abbr title="Single File Components">SFC</abbr></p>
+
+
 </main>
-
- 
     <svg style="display: none">
-    <symbol viewBox="0 0 24 24" id="logo">
-        <path d="M10 16v4h4v-4zm-2-2v-4H4v4zm2 0h4v-4h-4zm6 0h4v-4h-4zm0-6h4V4h-4zm-8 8H4q-.825 0-1.412-.587T2 14v-4q0-.825.588-1.412T4 8h10V4q0-.825.588-1.412T16 2h4q.825 0 1.413.588T22 4v10q0 .825-.587 1.413T20 16h-4v4q0 .825-.587 1.413T14 22h-4q-.825 0-1.412-.587T8 20z">
-        </path>
-    </symbol>
+    <symbol viewBox="0 0 24 24" id="logo"><path d="M10 16v4h4v-4zm-2-2v-4H4v4zm2 0h4v-4h-4zm6 0h4v-4h-4zm0-6h4V4h-4zm-8 8H4q-.825 0-1.412-.587T2 14v-4q0-.825.588-1.412T4 8h10V4q0-.825.588-1.412T16 2h4q.825 0 1.413.588T22 4v10q0 .825-.587 1.413T20 16h-4v4q0 .825-.587 1.413T14 22h-4q-.825 0-1.412-.587T8 20z"></path></symbol>
+    <symbol viewBox="0 0 24 24" id="brush"><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 19.9V16h3a2 2 0 0 0 2-2v-2H5v2c0 1.1.9 2 2 2h3v3.9a2 2 0 1 0 4 0M6 12V2h12v10M14 2v4m-4-4v2"></path></symbol>
+    <symbol viewBox="0 0 24 24" id="archive"><path d="m12 18l4-4l-1.4-1.4l-1.6 1.6V10h-2v4.2l-1.6-1.6L8 14zm-7 3q-.825 0-1.412-.587T3 19V6.525q0-.35.113-.675t.337-.6L4.7 3.725q.275-.35.687-.538T6.25 3h11.5q.45 0 .863.188t.687.537l1.25 1.525q.225.275.338.6t.112.675V19q0 .825-.587 1.413T19 21zm.4-15h13.2l-.85-1H6.25z"></path></symbol>
+    <symbol viewBox="0 0 24 24" id="download"><path d="M6.5 20q-2.275 0-3.887-1.575T1 14.575q0-1.95 1.175-3.475T5.25 9.15q.575-2.025 2.138-3.4T11 4.075v8.075L9.4 10.6L8 12l4 4l4-4l-1.4-1.4l-1.6 1.55V4.075q2.575.35 4.288 2.313T19 11q1.725.2 2.863 1.488T23 15.5q0 1.875-1.312 3.188T18.5 20z"></path></symbol>
+    <symbol viewBox="0 0 24 24" id="edit"><path fill="currentColor" d="M5 19h1.425L16.2 9.225L14.775 7.8L5 17.575zm-2 2v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15q.4 0 .775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM19 6.4L17.6 5zm-3.525 2.125l-.7-.725L16.2 9.225z"></path></symbol>
+    <symbol viewBox="0 0 24 24" id="close"><path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></symbol>
+    <symbol viewBox="0 0 24 24" id="arrow-down"><path fill="currentColor" d="m12 15.4l-6-6L7.4 8l4.6 4.6L16.6 8L18 9.4z"></path></symbol>
 
-    <symbol viewBox="0 0 24 24" id="brush">
-        <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 19.9V16h3a2 2 0 0 0 2-2v-2H5v2c0 1.1.9 2 2 2h3v3.9a2 2 0 1 0 4 0M6 12V2h12v10M14 2v4m-4-4v2">
-        </path>
-    </symbol>
-
-    <symbol viewBox="0 0 24 24" id="archive">
-        <path d="m12 18l4-4l-1.4-1.4l-1.6 1.6V10h-2v4.2l-1.6-1.6L8 14zm-7 3q-.825 0-1.412-.587T3 19V6.525q0-.35.113-.675t.337-.6L4.7 3.725q.275-.35.687-.538T6.25 3h11.5q.45 0 .863.188t.687.537l1.25 1.525q.225.275.338.6t.112.675V19q0 .825-.587 1.413T19 21zm.4-15h13.2l-.85-1H6.25z">
-        </path>
-    </symbol>
-
-    <symbol viewBox="0 0 24 24" id="download">
-        <path d="M6.5 20q-2.275 0-3.887-1.575T1 14.575q0-1.95 1.175-3.475T5.25 9.15q.575-2.025 2.138-3.4T11 4.075v8.075L9.4 10.6L8 12l4 4l4-4l-1.4-1.4l-1.6 1.55V4.075q2.575.35 4.288 2.313T19 11q1.725.2 2.863 1.488T23 15.5q0 1.875-1.312 3.188T18.5 20z">
-        </path>
-    </symbol>
-
-    <symbol viewBox="0 0 24 24" id="edit">
-        <path fill="currentColor" d="M5 19h1.425L16.2 9.225L14.775 7.8L5 17.575zm-2 2v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15q.4 0 .775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM19 6.4L17.6 5zm-3.525 2.125l-.7-.725L16.2 9.225z">
-        </path>
-    </symbol>
-
-    <symbol viewBox="0 0 24 24" id="close">
-        <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
-    </symbol>
 </svg>
 
+    
 
 
 
 
-
-
-
-<style>
-    :root {
-        --clr-black: hsl(0, 0%, 0%);
-        --clr-white: hsl(0, 0%, 100%);
-        --clr-grey-100: hsl(203, 8%, 9%);
-        --clr-grey-200: hsl(203, 8%, 11%);
-        --clr-grey-300: hsl(203, 8%, 19%);
-        --clr-grey-400: hsl(203, 8%, 27%);
-        --clr-grey-500: hsl(206, 8%, 60%);
-        --clr-grey-600: hsl(206, 8%, 70%);
-        --clr-grey-700: hsl(206, 8%, 80%);
-        --clr-grey-800: hsl(206, 8%, 93%);
-        --clr-grey-900: hsl(206, 8%, 99%);
-
-
-
-        --step--2: clamp(0.6075rem, 0.5962rem + 0.0565vw, 0.64rem);
-        --step--1: clamp(0.7294rem, 0.7048rem + 0.1228vw, 0.8rem);
-        --step-0: clamp(0.875rem, 0.8315rem + 0.2174vw, 1rem);
-        --step-1: clamp(1.05rem, 0.9804rem + 0.3478vw, 1.25rem);
-        --step-2: clamp(1.26rem, 1.1548rem + 0.5261vw, 1.5625rem);
-        --step-3: clamp(1.05rem, 1.3584rem + 0.7674vw, 1.9531rem);
-        --step-4: clamp(1.8144rem, 1.5963rem + 1.0902vw, 2.4413rem);
-        --step-5: clamp(2.1775rem, 1.8734rem + 1.5207vw, 3.0519rem);
-
-        font-family: 'Manrope';
-        font-size: 16px;
-        font-synthesis: none;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-
-        --shadow-color: 203deg 8% 27%;
-
-
-        --shadow-elevation-low:
-            0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
-            0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
-            1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
-        --shadow-elevation-medium:
-            0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
-            0.8px 1.6px 2px -0.8px hsl(var(--shadow-color) / 0.36),
-            2.1px 4.1px 5.2px -1.7px hsl(var(--shadow-color) / 0.36),
-            5px 10px 12.6px -2.5px hsl(var(--shadow-color) / 0.36);
-        --shadow-elevation-high:
-            0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
-            1.5px 2.9px 3.7px -0.4px hsl(var(--shadow-color) / 0.34),
-            2.7px 5.4px 6.8px -0.7px hsl(var(--shadow-color) / 0.34),
-            4.5px 8.9px 11.2px -1.1px hsl(var(--shadow-color) / 0.34),
-            7.1px 14.3px 18px -1.4px hsl(var(--shadow-color) / 0.34),
-            11.2px 22.3px 28.1px -1.8px hsl(var(--shadow-color) / 0.34),
-            17px 33.9px 42.7px -2.1px hsl(var(--shadow-color) / 0.34),
-            25px 50px 62.9px -2.5px hsl(var(--shadow-color) / 0.34);
-
-        --shadow-elevation-inverse-low:
-            -0.4px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
-            -0.6px 0.8px 1.1px -1.2px hsl(var(--shadow-color) / 0.34),
-            -1.6px 1.9px 2.8px -2.5px hsl(var(--shadow-color) / 0.34);
-        --shadow-elevation-inverse-medium:
-            -0.4px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
-            -1.3px 1.6px 2.3px -0.8px hsl(var(--shadow-color) / 0.36),
-            -3.2px 4px 5.8px -1.7px hsl(var(--shadow-color) / 0.36),
-            -7.8px 9.7px 14px -2.5px hsl(var(--shadow-color) / 0.36);
-        --shadow-elevation-inverse-high:
-            -0.4px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
-            -2.3px 2.8px 4.1px -0.4px hsl(var(--shadow-color) / 0.34),
-            -4.3px 5.3px 7.7px -0.7px hsl(var(--shadow-color) / 0.34),
-            -7px 8.6px 12.5px -1.1px hsl(var(--shadow-color) / 0.34),
-            -11.2px 13.8px 20px -1.4px hsl(var(--shadow-color) / 0.34),
-            -17.4px 21.6px 31.2px -1.8px hsl(var(--shadow-color) / 0.34),
-            -26.5px 32.8px 47.4px -2.1px hsl(var(--shadow-color) / 0.34),
-            -39px 48.3px 69.8px -2.5px hsl(var(--shadow-color) / 0.34);
-    }
-
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        height: fit-content;
-        font: inherit;
-    }
-
-
-
-    /* a11y */
-    .sr-only {
-        border: 0 !important;
-        clip: rect(1px, 1px, 1px, 1px) !important;
-        /* 1 */
-        -webkit-clip-path: inset(50%) !important;
-        clip-path: inset(50%) !important;
-        /* 2 */
-        height: 1px !important;
-        margin: -1px !important;
-        overflow: hidden !important;
-        padding: 0 !important;
-        position: absolute !important;
-        width: 1px !important;
-        white-space: nowrap !important;
-    }
-
-    img,
-    picture {
-        max-width: 100%;
-        display: block;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        line-height: 0.9;
-    }
-
-    h1 {
-        letter-spacing: -1px;
-        line-height: 1;
-        font-weight: 600;
-        font-size: var(--step-4);
-    }
-
-    h2 {
-        font-size: var(--step-3);
-        font-weight: 600;
-    }
-
-    button {
-        cursor: pointer;
-        color: inherit;
-    }
-
-    button:disabled {
-        cursor: not-allowed;
-        color: var(--clr-grey-700);
-    }
-
-    body {
-        --offset: 1.25rem;
-        padding-bottom: 2rem;
-        background-color: var(--clr-grey-800);
-        color: var(--clr-grey-400);
-        line-height: 1.5;
-        font-weight: 500;
-
-
-        display: grid;
-        gap: 1rem 0;
-        grid-template-columns:
-            [full-start left-start] minmax(var(--offset), 1fr) [content-start right-start] minmax(auto, 60rem) [content-end left-end] minmax(var(--offset), 1fr) [full-end right-end];
-
-
-
-    }
-
-
-    body>* {
-        grid-column: content;
-    }
-
-    ::selection {
-        background: var(--clr-grey-200);
-        color: var(--clr-white)
-    }
-
-    input[type=number]::-webkit-inner-spin-button {
-        display: none;
-    }
-
-    input[type=number] {
-        appearance: none;
-    }
-</style></body>
+</body>
 </html>

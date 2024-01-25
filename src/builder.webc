@@ -1,16 +1,14 @@
 ---
 layout: 'base.webc'
-title: Build Layout
+title: Crossword Builder
 ---
-
-
 
 <h1 class="sr-only">Create A CrossWord</h1>
 
 <section class="cross-builder">
 
     <button title="edit">
-        <span class="sr-only">Edit Info</span>
+        <span class="sr-only">Edit nfo</span>
         <svg viewBox="0 0 24 24">
             <use href="#edit"></use>
         </svg>
@@ -18,58 +16,96 @@ title: Build Layout
 
 
 
-    <dialog id="modal">
-        <h2>Edit Crossword Information</h2>
+    <builder-dialog-info></builder-dialog-info>
+    <builder-dialog-word></builder-dialog-word>
 
 
-        <form>
-            <div class="field">
-                <label for="size">Enter the size of the crossword</label>
-                <input type="number" id="size" inputmode="numeric" pattern="[0-9]" max="20" min="3" value="3" required>
-            </div>
-            <div class="field">
-                <label for="json">Enter the Array, (you can leave this blank)</label>
-                <textarea name="json" id="json" placeholder="['']"></textarea>
-            </div>
-
-            <button type="submit" title="close">Close</button>
-        </form>
-
-
-        <div>
-        </div>
-
-        <!-- <button title="close">
-            <span class="sr-only">Close</span>
-            <svg viewBox="0 0 24 24">
-                <use href="#close"></use>
-            </svg>
-        </button> -->
-    </dialog>
 
 
 
     <figure>
-        <cross-parent>
-            <cross-cell>A</cross-cell>
-            <cross-cell>Y</cross-cell>
-            <cross-cell></cross-cell>
-            <cross-cell></cross-cell>
-            <cross-cell>R</cross-cell>
-            <cross-cell>O</cross-cell>
-            <cross-cell>Y</cross-cell>
-            <cross-cell></cross-cell>
-            <cross-cell>M</cross-cell>
-            <cross-cell></cross-cell>
-            <cross-cell>E</cross-cell>
-            <cross-cell></cross-cell>
-            <cross-cell></cross-cell>
-            <cross-cell></cross-cell>
-            <cross-cell>S</cross-cell>
-            <cross-cell>I</cross-cell>
-        </cross-parent>
+        <cross-builder>
+        </cross-builder>
     </figure>
 
 </section>
 
+<style>
+.cross-builder {
+    background: var(--clr-white);
+    box-shadow: var(--shadow-elevation-low);
+    min-height: min(30vh, 200px);
+    position: relative;
+    display: grid;
+    place-items: center;
+}
 
+
+.cross-builder > button[title=edit] {
+        --size: 30px;
+        --clr: var(--clr-grey-700);
+        --bg: transparent;
+        --border: 2px solid var(--clr-grey-700);
+        --padding: 0.2rem;
+        border-top-style: none;
+        border-right-style: none;
+        position: absolute;
+        inset: 0 0 auto auto;
+        transition: 200ms color ease-in;
+
+    }
+    .cross-builder > button[title=edit] > svg {
+        aspect-ratio: 1;
+        width: var(--size);
+        fill: currentColor;
+    }
+
+    .cross-builder > button[title=edit]:hover, .cross-builder > button[title=edit]:focus {
+        --clr: var(--clr-grey-400);
+    }
+
+
+
+
+
+    
+
+
+
+
+
+    .cross-builder figure {
+    width: fit-content;
+    margin-inline: auto;
+
+}
+
+
+
+
+cross-parent {
+    --size: 4;
+    --width: 40px;
+    background: var(--clr-grey-700);
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(var(--size), var(--width));
+    grid-template-rows: repeat(var(--size), var(--width));
+    margin-block: auto;
+}
+
+cross-cell {
+    background: var(--clr-grey-800);
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    font-size: var(--step-2);
+    font-weight: 600;
+
+}
+cross-cell:empty {
+    background: var(--clr-grey-400);
+}
+
+</style>
