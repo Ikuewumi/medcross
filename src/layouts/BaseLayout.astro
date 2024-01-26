@@ -1,0 +1,24 @@
+---
+import SkipLink from "../components/SkipLink.astro";
+import BaseHeader from "../components/BaseHeader.astro";
+import Assets from "../components/Assets.astro";
+import "../styles/main.scss"
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <SkipLink />
+    <BaseHeader />
+    <main id="main">
+        <slot>
+    </main>
+    <Assets />
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "medcross",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [],
+  "author": "Ayobami Ikuewumi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ikuewumi/medcross.git"
+  },
+  "description": "",
+  "dependencies": {
+    "@astrojs/svelte": "^5.0.3",
+    "astro": "^4.2.4",
+    "flamethrower-router": "^0.0.0-meme.12",
+    "sass": "^1.70.0",
+    "svelte": "^4.2.9"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
