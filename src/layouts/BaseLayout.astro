@@ -2,7 +2,11 @@
 import SkipLink from "../components/SkipLink.astro";
 import BaseHeader from "../components/BaseHeader.astro";
 import Assets from "../components/Assets.astro";
+import Toast from "../components/utilities/Toast.svelte";
+import Router from "../components/utilities/Router.svelte";
 import "../styles/main.scss"
+
+const { title } = Astro.props.frontmatter || Astro.props 
 
 ---
 
@@ -11,7 +15,10 @@ import "../styles/main.scss"
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <title>{ title }</title>
 </head>
 <body>
     <SkipLink />
@@ -20,5 +27,8 @@ import "../styles/main.scss"
         <slot>
     </main>
     <Assets />
+    <Toast client:load />
+
+    <Router client:only>
 </body>
 </html>

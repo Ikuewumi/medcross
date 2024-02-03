@@ -1,0 +1,10 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import GermanMode from "../components/german/GermanMode.svelte";
+const { title, data } = Astro.props.frontmatter || Astro.props 
+
+---
+
+<BaseLayout title={title}>
+    <GermanMode data={data} client:visible />
+</BaseLayout>

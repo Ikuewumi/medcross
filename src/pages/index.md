@@ -1,5 +1,6 @@
 ---
 layout: ../layouts/BaseLayout.astro
+title: Home Page
 ---
 
 # Vegeta And Theatrics

@@ -20,11 +20,10 @@
         </button>
 
         <ul>
-            <li><a aria-current="page" href="#">home</a></li>
-            <li><a href="#">archive</a></li>
-            <li><a href="#">series</a></li>
-            <li><a href="#">downloads</a></li>
-            <li><a href="#">about</a></li>
+            <li><a aria-current="page" href="/">home</a></li>
+            <li><a href="/">archive</a></li>
+            <li><a href="/">series</a></li>
+            <li><a href="/">about</a></li>
         </ul>
     </nav>
 
@@ -33,15 +32,21 @@
 <style lang="scss">
 header {
     --logo-size: 40px;
-    padding: 1.25rem;
+    padding: 0.95rem;
     grid-column: right;
-    background: var(--clr-white);
     display: flex;
+    background: var(--clr-white);
     justify-content: space-between;
     align-items: center;
-    --shadow-color: 203deg 8% 27%;
+    border-bottom-left-radius: var(--radius);
+    
+    
+    @media (min-width: 768px) {
+        --logo-size: 40px;
+        display: flex;
+        padding: 1.25rem;
+    }
 
-    box-shadow: var(--shadow-elevation-inverse-low);
 }
 
 header strong {
@@ -51,6 +56,16 @@ header strong {
     font-size: var(--step-3);
     letter-spacing: -1.5px;
     font-weight: 600;
+    
+
+}
+
+header strong span {
+    display: none;
+
+    @media (min-width: 768px) {
+        display: flex;        
+    }
 }
 
 // Logo CSS
@@ -123,9 +138,9 @@ nav button {
     --clr: var(--clr-grey-400);
 
     cursor: pointer;
-    height: var(--height);
+    width: var(--height);
     aspect-ratio: 1;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     align-items: end;

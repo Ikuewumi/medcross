@@ -11,12 +11,18 @@
     --clr-grey-800: hsl(206, 8%, 93%);
     --clr-grey-900: hsl(206, 8%, 99%);
 
+
+    
+
+    --radius: 0.4rem;
+
+
     /* Background Gradient Stuff */
     --s: 84px;
     /* control the size*/
-    --c1: #f2f2f2;
-    --c2: #cdcbcc5c;
-    --c3: #99999938;
+    --c1: #f2f2f22b;
+    --c2: #cdcbcc24;
+    --c3: #99999915;
 
     --_g: 0 120deg, #0000 0;
 
@@ -32,7 +38,7 @@
     --step-5: clamp(2.1775rem, 1.8734rem + 1.5207vw, 3.0519rem);
 
     font-family: 'Manrope';
-    font-size: 16px;
+    font-size: 15px;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -164,6 +170,7 @@ body {
 
 
     color: var(--clr-grey-400);
+    overflow-x: hidden;
     line-height: 1.5;
     font-weight: 500;
 
@@ -175,14 +182,32 @@ body {
 
 }
 
+main {
+    display: contents;
+}
 
-body>* {
+body>main>* {
     grid-column: content;
 }
 
 ::selection {
     background: var(--clr-grey-200);
     color: var(--clr-white)
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background: var(--clr-grey-600);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--clr-grey-600);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--clr-grey-400);
+    border-radius: 5vmax;
 }
 
 input[type=number]::-webkit-inner-spin-button {
@@ -194,7 +219,6 @@ select {
     appearance: none;
 }
 
-/* select: */
 
 input,
 select,
@@ -208,7 +232,9 @@ textarea {
 
 textarea {
     resize: vertical;
-    min-height: var(--height, min(40vh, 100px))
+    min-height: var(--height, min(40vh, 100px));
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
 }
 
 form .field {
@@ -216,6 +242,7 @@ form .field {
     display: flex;
     flex-wrap: wrap;
     gap: var(--_gap);
+    align-items: center;
 }
 
 form {
@@ -224,7 +251,7 @@ form {
     gap: var(--_gap);
 }
 
-form .button-bar {
+.button-bar {
     --_gap: var(--gap, 0.75rem);
     display: flex;
     flex-wrap: wrap;
@@ -232,24 +259,20 @@ form .button-bar {
 }
 
 
-dialog {
+[role=dialog] {
     --_gap: var(--gap, 0.75rem);
     --_width: var(--width, min(calc(100vw - 2.5rem), 30rem));
     --_padding: var(--padding, 0.5rem 1rem);
 
     display: none;
+    display: grid;
     gap: var(--_gap);
-    position: fixed;
-    inset: 5vh auto auto 50%;
     width: var(--_width);
     margin-inline: auto;
     padding: var(--_padding);
     border: none;
-    transform: translateX(-50%);
-    box-shadow:
-        0 0 0 200vmax hsl(203 8% 27% / 0.6),
-        var(--shadow-elevation-low);
-        
+    box-shadow: var(--shadow-elevation-low);
+
 }
 
 dialog[open] {
