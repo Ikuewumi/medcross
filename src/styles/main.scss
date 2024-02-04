@@ -145,12 +145,12 @@ h2 {
 
 button {
     cursor: pointer;
-    color: inherit;
+    color: var(--_clr, inherit);
 }
 
 button:disabled {
     cursor: not-allowed;
-    color: var(--clr-grey-700);
+    --_clr: var(--clr-grey-700);
 }
 
 body {

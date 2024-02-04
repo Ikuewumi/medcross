@@ -1,3 +1,4 @@
+
 export type Coordinate = [number, number]
 export type Direction = 1 | 0
 export type Matrix = string[][]
@@ -91,6 +92,7 @@ export class CrossWord {
 
   static generateMatrixFromWords(words:Word[], size:number):Matrix {
       const array = CrossWord.getArray(size)
+      
 
       words.forEach(word => {
           CrossWord.validateWord(word)
@@ -263,7 +265,7 @@ export class CrossWord {
    * @param size 
    * @returns {Coordinate} The coordinates
    */
-  static calcCoordinates(i: number, size: number):Coordinate  {
+  static calcCoordinates(i:number, size:number):Coordinate  {
     const x_ = Math.floor(i / size);
     const x = x_;
     const y = i - x * size;
@@ -271,15 +273,19 @@ export class CrossWord {
     return [x, y];
     };
 
+    static calcIndexFromCoordinates(coords: Coordinate, size: number): number {
+        return (coords[0] * size) + coords[1]
+    }
+
 
     /**
      * it is assumed that the crossword is valid, and the entered word is valid and included in the crossword 
      * @param cross Crossword
      * @param word Word 
      */  
-  static generateWordPattern(cross: Cross, word: Word) {
+  static generateWordPattern(cross:Cross, word:Word) {
     const matrix = CrossWord.generateMatrixFromWords(cross.words, cross.size)
-    const isYWord:Direction = (word.start[0] === word.end[0] && word.end[1] > word.start[1]) ? 0 : 1
+    const isYWord:Direction = CrossWord.getDirection(word)
 
     let currentX = word.start[0];
     let currentY = word.start[1];
@@ -300,6 +306,55 @@ export class CrossWord {
 
     return pattern
     
+  }
+
+  static getAllCoordinatesForWord(word:Word): Coordinate[] {
+    const coordinates = []
+    const direction:Direction = CrossWord.getDirection(word)
+
+    let currentX = word.start[0]
+    let currentY = word.start[1]
+
+    let loopCondition = () => (direction === 1) ? currentX <= word.end[0] : currentY <= word.end[1];
+
+
+    while(loopCondition()) {
+            coordinates.push([currentX, currentY])
+    
+            if (direction) currentX++;
+            else currentY++;
+    }
+    
+    return coordinates
+  }
+
+  static getEnabledCoordinates(cross:Cross, userAnswers:Word[]):Coordinate[] {
+    const enabled: number[] = []
+    
+    cross.words.forEach(word => {
+        enabled.push(...CrossWord.getAllCoordinatesForWord(word).map(c_ => (c_[0] * cross.size) + c_[1]))
+    })
+
+
+    const enabledSet = new Set(enabled)
+    const enabledCells = Array.from(enabledSet).map(i => {
+        return CrossWord.calcCoordinates(i, cross.size)
+    }).filter(coord => {
+        const isInUserAnswers = userAnswers?.length > 0 ? CrossWord.getWordsInCoordinates(CrossWord.generateMatrixFromWords(userAnswers, cross.size), coord).length : 0
+        return (!isInUserAnswers)
+    })  
+    
+    return enabledCells
+  }
+
+
+  static getNextValidCoordinates(cross:Cross, userAnswers:Word[], currentWord:Word, coordinate: Coordinate):Coordinate {
+    const enabledCells = CrossWord.getEnabledCoordinates(cross, userAnswers);
+    
+    const direction = CrossWord.getDirection(currentWord);
+
+
+    return [0, 0]
   }
 
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { CrossWord, type Cross, type Coordinate, type Direction as Dir, type Word } from "../../composables/engine";
+    import { CrossWord as C, type Cross, type Coordinate, type Direction as Dir, type Word } from "../../composables/engine";
     import CrossCell from "../utilities/CrossCell.svelte";
     import DirectionButton from "../utilities/DirectionButton.svelte";
 
@@ -16,21 +16,131 @@
         ]
     }
 
-    let matrix = CrossWord.generateMatrixFromWords(data.words, data.size);
+    let userMatrix = C.getArray(data.size);
     let direction: Dir = 0;
-    let currentWord:Word;
-    let coords: Coordinate;
     let userAnswers: Word[];
+    
+    const getCurrentWord = (coordinates:Coordinate, data:Cross):Word => {
 
-    const toggleDirection = () => { direction = direction ? 0 : 1; } 
+        let currentWord: Word;
+
+        const words = C.getWordsInCoordinates(
+            C.generateMatrixFromWords(data.words, data.size),
+            coordinates
+        ).map(word => {
+            const meaning = data.words.find(word_ => 
+                word_.word === word.word &&
+                C.calcIndexFromCoordinates(word_.start, data.size) === C.calcIndexFromCoordinates(word.start, data.size)
+            ).meaning ?? ''
+            return { ...word, meaning }
+        })
+
+
+        if (!words.length) {throw Error('cannot click on an invalid cordinate')}
+
+        
+        else if (words.length === 1) { 
+            direction = C.getDirection(words[0])
+            currentWord = words[0]; 
+        } 
+        else if (words.length === 2) {
+            currentWord = words.find(word => C.getDirection(word) === direction)
+        }
+
+
+        const meaning = data.words.find(word_ => word_.word === currentWord.word).meaning ?? ''
+
+
+        return {
+            ...currentWord, 
+            meaning
+        }
+
+    }
+    
+    $: userAnswers = C.generateWordsFromMatrix(userMatrix)?.filter(word => {
+        const wordinCross = data.words.find(w_ =>w_.word === word.word)
+        if (!wordinCross) return false;
+        const sameCoordinates = 
+            C.calcIndexFromCoordinates(word.start, data.size) === C.calcIndexFromCoordinates(wordinCross.start, data.size);
+
+        return sameCoordinates
+    })
+
+    
+    let enabledPaths = C.getEnabledCoordinates(data, userAnswers);
+    let coords: Coordinate = enabledPaths[0];
+    let currentWord = getCurrentWord(coords, data);
+    $: selectedCoordinates = C.getAllCoordinatesForWord(currentWord).map(e => C.calcIndexFromCoordinates(e, data.size));
+    let progress = 0
+    $: {
+        progress = Math.floor((userAnswers.length / data.words.length) * 100)
+    }
+
+    $: {
+        if (coords || direction) { currentWord = getCurrentWord(coords, data)}
+    }
+
+    $: {
+        enabledPaths = C.getEnabledCoordinates(data, userAnswers)
+    }
+
+
+
+
+    const coordinateIsDisabled = (i: number, enabledPaths: Coordinate[]):boolean => {
+        const paths = enabledPaths.map(e => C.calcIndexFromCoordinates(e, data.size));
+        return !paths.includes(i)
+    }
+
+
+
+
+    
+    const clickCell = (coord_: Coordinate) => {
+        coords = coord_
+    }
+
+    const toggleDirection = () => {
+        direction = direction ? 0 : 1;
+    };
+
+
+    const enterKey =(key:string) => {
+        if (!coords) return;
+        userMatrix[coords[0]][coords[1]] = key.toUpperCase().trim().slice(0, 1);
+        // Trick to make Svelte rerender the matrix component
+        userMatrix = userMatrix;
+
+
+        // Move the pointer to the next cell based off direction
+        const newCoords = C.calculateEndFromStart(
+            coords,
+            "sa",
+            direction,
+        );
+        const newCoordsValid = C.validateCoordinates(newCoords, data.size);
+
+        const newCoordsAllowed = 
+            enabledPaths.map(e => C.calcIndexFromCoordinates(e, data.size))
+                .includes(C.calcIndexFromCoordinates(newCoords, data.size))
+
+        if (newCoords && newCoordsAllowed) {
+            coords = newCoords
+        }
+
+    }
+
     const handleDblClick = (e: MouseEvent) => {
         const el = e.target! as HTMLButtonElement;
 
         if (el.tagName !== "BUTTON") return;
         if (!("coordinates" in el.dataset)) return;
 
-        toggleDirection();
+        const words = C.getWordsInCoordinates(C.generateMatrixFromWords(data.words, data.size), coords)
+        if (words.length > 1) toggleDirection();
     };
+
     const handleClick = (e: MouseEvent) => {
         const el = e.target! as HTMLButtonElement;
 
@@ -41,8 +151,24 @@
             .split(",")
             .map((x) => +x)! as Coordinate;
 
-        // clickCell(coords_);
+        clickCell(coords_);
     };
+
+    const handleInput = (e:KeyboardEvent) => {
+        const isOneLetter = e.key.length === 1;
+        const isCtrl = e.ctrlKey
+        const isRepeated = e.repeat;
+        const isArrowKey = ["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","Backspace"].includes(e.key);
+
+        if (isRepeated) return
+
+        if (isOneLetter && !isCtrl) {
+            enterKey(e.key)
+        }
+    }
+
+
+    
 
 
 </script>
@@ -50,48 +176,48 @@
 
 
 
-<section id="crossword-page">
-    {#if data.words.length}
+<section id="C-page">
+    {#if data.words.length && currentWord}
         <figure class="figure">
             <!-- svelte-ignore a11y-no-static-element-interactions -->
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div
-                on:dblclick={handleDblClick}
+                on:dblclick={handleDblClick} on:click={handleClick} on:keydown={handleInput}
                 id="cross-classic"
                 style="--size:{data.size}"
             >
-                {#each matrix.flat() as cell, i (i)}
+                {#each userMatrix.flat() as cell, i (i)}
                     <CrossCell
                         isEmpty={cell === ""}
-                        disabled={cell === ""}
-                        isFocused={
-                            CrossWord.calcCoordinates(i, data.size)[0] === coords?.at(0) &&
-                            CrossWord.calcCoordinates(i, data.size)[1] === coords?.at(1)
-                        }
-                        coordinates={CrossWord.calcCoordinates(i, data.size)}
+                        disabled={coordinateIsDisabled(i, enabledPaths)}
+                        isFocused={C.calcIndexFromCoordinates(coords, data.size) === i}
+                        coordinates={C.calcCoordinates(i, data.size)}
+                        selected={selectedCoordinates.includes(i)}
                     >
+                    {cell}
                     </CrossCell>
                 {/each}
             </div>
         </figure>
 
 
-        <article class="clue">
-            <p>a tube that carries urine from the kidneys to the bladder</p>
+
+        <article class="clue" style="--percent: {progress}%">
+            <p>{currentWord.meaning}</p>
         </article>
     {/if}
 
 
 
-    <DirectionButton dir={direction} on:click={toggleDirection} />
+    <DirectionButton dir={direction} />
 </section>
 
 
 <style lang="scss">
-    #crossword-page {
+    #C-page {
         display: grid;
         gap: 1rem;
         grid-column: full;
-        margin-top: 1rem;
 
         @media (min-width: 768px) {
             grid-column: content;
@@ -116,9 +242,28 @@
 
 
     figure.figure+article.clue {
-        font-size: var(--step-1);
+        --percent: 20%;
+        position: relative;
         padding: 1.5rem 1rem;
+        border: 2px solid rgba(16, 194, 16, 0.788);
+        // border: 2px solid var(--clr-grey-400);
+        overflow-x: hidden;
+        font-size: var(--step-1);
         text-align: center;
+        isolation: isolate;
+
+
+        &:before {
+            content: '';
+            background: rgba(0, 128, 0, 0.233);
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            transform: scaleX(var(--percent));
+            transform-origin: top left;
+            transition: 400ms ease-out transform;
+
+        }
 
     }
 
@@ -138,5 +283,9 @@
         width: fit-content;
         margin-inline: auto;
         background: var(--clr-grey-700);
+    
+
+    
     }
+
 </style>

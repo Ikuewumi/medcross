@@ -5,12 +5,14 @@
     export let isFocused: boolean = false;
     export let coordinates = [0, 0]
     export let disabled = false;
+    export let selected = false;
+    export let isBuilder = false;
 
     let el: HTMLButtonElement;
 
     $: {
         if(isFocused) {
-            el.focus();
+            el?.focus();
         }
     }
 
@@ -23,15 +25,18 @@
 
 <button
     bind:this={el}
-    class:empty="{isEmpty}"
+    class:empty={isEmpty}
+    class:selected={selected}
+    class:builder={isBuilder}
     data-coordinates={coordinates}
     disabled={disabled}
+    title="Letter at {coordinates}"
 >
     <slot></slot>
 </button>
 
 <style lang="scss">
-    button {
+    button[data-coordinates] {
         --_padding: 0;
         --_bg: var(--clr-grey-800);
         --_clr: var(--clr-grey-400);
@@ -47,12 +52,42 @@
         &:focus {
             outline: 2px dotted var(--clr-grey-900);
             outline-offset: -6px;
-            --_bg: hsl(54, 100%, 50%, 0.6);
         }
 
+        &:disabled {
+            --_bg: rgb(48, 168, 48);
+            --_clr: var(--clr-white);
+        }
 
-        &.empty {
+        &.empty:disabled, &.builder.empty {
             --_bg: var(--clr-grey-400);
+            --_clr: transparent;
         }
+
+        &.builder:focus{
+            --_bg: hsla(56, 94%, 49%, 0.863);
+        }
+
+
+        &:enabled {
+            --_bg: var(--clr-grey-800);
+            --_clr: var(--clr-grey-400);
+
+
+            &:focus {
+                // --_bg: hsl(120, 65%, 41%);
+            }
+            
+            
+            &.selected {
+                --_bg: hsla(173, 80%, 23%, 0.863);
+                --_clr: var(--clr-white);
+            }
+        }
+
+
+
+
+
     }
 </style>

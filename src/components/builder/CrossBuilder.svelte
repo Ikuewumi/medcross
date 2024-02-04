@@ -1,6 +1,6 @@
 <script lang="ts">
     import {
-        CrossWord,
+        CrossWord as C,
         type Coordinate,
         type Word,
         type Direction as Dir,
@@ -16,12 +16,12 @@
     let coords: Coordinate;
 
     let size = 3;
-    let matrix = CrossWord.getArray(size);
+    let matrix = C.getArray(size);
     let words: Word[];
 
     $: {
         try {
-            words = CrossWord.generateWordsFromMatrix(matrix)
+            words = C.generateWordsFromMatrix(matrix)
         } catch(e) {
             words = words
         }
@@ -29,7 +29,7 @@
 
     const openInfoModal = () => { infoOpen = true; };
     const handleInfo = () => { infoOpen = false; };
-    const changeSize = () => { matrix = CrossWord.getArray(size); };
+    const changeSize = () => { matrix = C.getArray(size); };
     const clickCell = (coord: Coordinate) => { coords = coord;  };
     const openCluesModal = () => { cluesOpen = true }
     const closeCluesModal = () => {cluesOpen = false}
@@ -68,12 +68,12 @@
         matrix = matrix;
 
         // Move the pointer to the next word based off direction
-        const newCoords = CrossWord.calculateEndFromStart(
+        const newCoords = C.calculateEndFromStart(
             coords,
             "sa",
             direction,
         );
-        const newCoordsValid = CrossWord.validateCoordinates(newCoords, size);
+        const newCoordsValid = C.validateCoordinates(newCoords, size);
 
         if (newCoordsValid) {
             coords = newCoords;
@@ -109,39 +109,39 @@
         if (isArrowKey && !isCtrl) {
             switch (e.key) {
                 case "ArrowDown":
-                    const cdown = CrossWord.calculateEndFromStart(
+                    const cdown = C.calculateEndFromStart(
                         coords,
                         "sa",
                         1,
                     );
-                    if (CrossWord.validateCoordinates(cdown, size))
+                    if (C.validateCoordinates(cdown, size))
                         coords = cdown;
                     break;
                 case "ArrowRight":
-                    const cright = CrossWord.calculateEndFromStart(
+                    const cright = C.calculateEndFromStart(
                         coords,
                         "sa",
                         0,
                     );
-                    if (CrossWord.validateCoordinates(cright, size))
+                    if (C.validateCoordinates(cright, size))
                         coords = cright;
                     break;
                 case "ArrowLeft":
-                    const cleft = CrossWord.calculateStartFromEnd(
+                    const cleft = C.calculateStartFromEnd(
                         coords,
                         "sa",
                         0,
                     );
-                    if (CrossWord.validateCoordinates(cleft, size))
+                    if (C.validateCoordinates(cleft, size))
                         coords = cleft;
                     break;
                 case "ArrowUp":
-                    const cup = CrossWord.calculateStartFromEnd(
+                    const cup = C.calculateStartFromEnd(
                         coords,
                         "sa",
                         1,
                     );
-                    if (CrossWord.validateCoordinates(cup, size)) coords = cup;
+                    if (C.validateCoordinates(cup, size)) coords = cup;
                     break;
                 case "Backspace":
                     enterWord(" ");
@@ -207,9 +207,10 @@
             {#each matrix.flat() as cell, i (i)}
                 <CrossCell
                     isEmpty={cell <= ""}
-                    isFocused={CrossWord.calcCoordinates(i, size)[0] === coords?.at(0) &&
-                        CrossWord.calcCoordinates(i, size)[1] === coords?.at(1)}
-                    coordinates={CrossWord.calcCoordinates(i, size)}
+                    isFocused={C.calcCoordinates(i, size)[0] === coords?.at(0) &&
+                        C.calcCoordinates(i, size)[1] === coords?.at(1)}
+                    coordinates={C.calcCoordinates(i, size)}
+                    isBuilder={true}
                 >
                     {cell}
                 </CrossCell>
@@ -224,11 +225,11 @@
             </svg>
             <span class="sr-only">Edit Size</span>
         </button>
-        <button title="Copy JSON for Crossword" on:click={openCluesModal}>
+        <button title="Copy JSON for C" on:click={openCluesModal}>
             <svg viewBox="0 0 24 24">
                 <use href="#copy"></use>
             </svg>
-            <span class="sr-only">Copy Crossword</span>
+            <span class="sr-only">Copy C</span>
         </button>
     </div>
 </section>
