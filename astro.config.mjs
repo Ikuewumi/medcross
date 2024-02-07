@@ -13,6 +13,7 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,html,css}']
       }
+
     })
   ]
 });
