@@ -11,7 +11,7 @@ export default defineConfig({
       /* your pwa options */
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,html,css}']
+        globPatterns: ['**\/*.{js,html,css}']
       }
 
     })
