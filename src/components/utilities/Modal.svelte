@@ -36,7 +36,9 @@ div[role=presentation] {
     background: var(--clr-grey-900);
     margin-top: 5vh;
     max-height: 90vh;
+    border-radius: var(--radius);
     overflow-y: auto;
+    // box-shadow: var(--shadow-elevation-high);
 }
 
 

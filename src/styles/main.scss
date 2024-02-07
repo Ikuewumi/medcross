@@ -33,7 +33,7 @@
     --step-0: clamp(0.875rem, 0.8315rem + 0.2174vw, 1rem);
     --step-1: clamp(1.05rem, 0.9804rem + 0.3478vw, 1.25rem);
     --step-2: clamp(1.26rem, 1.1548rem + 0.5261vw, 1.5625rem);
-    --step-3: clamp(1.05rem, 1.3584rem + 0.7674vw, 1.9531rem);
+    --step-3: clamp(1.5rem, 1.4584rem + 0.9674vw, 2.1531rem);
     --step-4: clamp(1.8144rem, 1.5963rem + 1.0902vw, 2.4413rem);
     --step-5: clamp(2.1775rem, 1.8734rem + 1.5207vw, 3.0519rem);
 
@@ -86,6 +86,18 @@
         -17.4px 21.6px 31.2px -1.8px hsl(var(--shadow-color) / 0.34),
         -26.5px 32.8px 47.4px -2.1px hsl(var(--shadow-color) / 0.34),
         -39px 48.3px 69.8px -2.5px hsl(var(--shadow-color) / 0.34);
+
+
+
+    --body-bg-image: 
+        conic-gradient(from 0deg at calc(500%/6) calc(100%/3), var(--c3) var(--_g)),
+        conic-gradient(from -120deg at calc(100%/6) calc(100%/3), var(--c2) var(--_g)),
+        conic-gradient(from 120deg at calc(100%/3) calc(500%/6), var(--c1) var(--_g)),
+        conic-gradient(from 120deg at calc(200%/3) calc(500%/6), var(--c1) var(--_g)),
+        conic-gradient(from -180deg at calc(100%/3) 50%, var(--c2) 60deg, var(--c1) var(--_g)),
+        conic-gradient(from 60deg at calc(200%/3) 50%, var(--c1) 60deg, var(--c3) var(--_g)),
+        conic-gradient(from -60deg at 50% calc(100%/3), var(--c1) 120deg, var(--c2) 0 240deg, var(--c3) 0);
+    --body-bg-size: calc(var(--s)*1.732) var(--s);
 }
 
 
@@ -118,8 +130,13 @@
 
 img,
 picture {
-    max-width: 100%;
     display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    height: auto;
+    shape-margin: 1rem;
+    font-style: italic;
 }
 
 h1,
@@ -135,12 +152,17 @@ h1 {
     letter-spacing: -1px;
     line-height: 1;
     font-weight: 600;
-    font-size: var(--step-4);
+    font-size: var(--step-5);
 }
 
 h2 {
     font-size: var(--step-3);
     font-weight: 600;
+}
+
+p {
+    font-size: var(--step-1);
+    line-height: 1.6;
 }
 
 button {
@@ -157,17 +179,8 @@ body {
     --offset: 1.25rem;
     padding-bottom: 2rem;
     background-color: var(--clr-grey-800);
-
-    background-image:
-        conic-gradient(from 0deg at calc(500%/6) calc(100%/3), var(--c3) var(--_g)),
-        conic-gradient(from -120deg at calc(100%/6) calc(100%/3), var(--c2) var(--_g)),
-        conic-gradient(from 120deg at calc(100%/3) calc(500%/6), var(--c1) var(--_g)),
-        conic-gradient(from 120deg at calc(200%/3) calc(500%/6), var(--c1) var(--_g)),
-        conic-gradient(from -180deg at calc(100%/3) 50%, var(--c2) 60deg, var(--c1) var(--_g)),
-        conic-gradient(from 60deg at calc(200%/3) 50%, var(--c1) 60deg, var(--c3) var(--_g)),
-        conic-gradient(from -60deg at 50% calc(100%/3), var(--c1) 120deg, var(--c2) 0 240deg, var(--c3) 0);
-    background-size: calc(var(--s)*1.732) var(--s);
-
+    background-image: var(--body-bg-image);
+    background-size: var(--body-bg-size);
 
     color: var(--clr-grey-400);
     overflow-x: hidden;
@@ -175,11 +188,20 @@ body {
     font-weight: 500;
 
 
+}
+
+body, body .grid-setup {
+        
     display: grid;
     gap: 1rem 0;
     grid-template-columns:
-        [full-start left-start] minmax(var(--offset), 1fr) [content-start right-start] minmax(auto, 60rem) [content-end left-end] minmax(var(--offset), 1fr) [full-end right-end];
+    [full-start left-start] minmax(var(--offset), 1fr) [content-start right-start] minmax(auto, 80ch) [content-end left-end] minmax(var(--offset), 1fr) [full-end right-end];
+    
+}
 
+
+.grid-setup > * {
+    grid-column: content;
 }
 
 main {
@@ -304,3 +326,21 @@ small {
 }
 
 
+blockquote {
+    --_padding: var(--padding, 0.75rem 1rem);
+    --_bg: var(--bg, var(--clr-grey-800));
+    --_clr: var(--clr, var(--clr-grey-400));
+    --_border: 3px solid var(--clr-grey-400);
+
+    display: grid;
+    background: var(--_bg);
+    border: none;
+    border-left: var(--_border);
+    padding: var(--_padding);
+    color: var(--_clr);
+}
+
+
+strong {
+    font-weight: bold;
+}

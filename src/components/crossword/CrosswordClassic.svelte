@@ -2,6 +2,7 @@
     import { CrossWord as C, type Cross, type Coordinate, type Direction as Dir, type Word } from "../../composables/engine";
     import CrossCell from "../utilities/CrossCell.svelte";
     import DirectionButton from "../utilities/DirectionButton.svelte";
+    import "../../composables/db";
 
     export let data:Cross = {
         size: 9,
@@ -165,6 +166,15 @@
         if (isOneLetter && !isCtrl) {
             enterKey(e.key)
         }
+
+        if (isArrowKey && !isCtrl) {
+            switch(e.key) {
+                case 'Backspace':
+                default:
+                    enterKey('')
+                    break;
+            }
+        }
     }
 
 
@@ -244,13 +254,15 @@
     figure.figure+article.clue {
         --percent: 20%;
         position: relative;
+        overflow-x: hidden;
+        margin-inline: auto;
         padding: 1.5rem 1rem;
         border: 2px solid rgba(16, 194, 16, 0.788);
-        // border: 2px solid var(--clr-grey-400);
-        overflow-x: hidden;
+        width: min(100%, 100vw - 3rem);
         font-size: var(--step-1);
         text-align: center;
         isolation: isolate;
+
 
 
         &:before {
@@ -266,9 +278,6 @@
         }
 
     }
-
-
-
 
 
     #cross-classic {

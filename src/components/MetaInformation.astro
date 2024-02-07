@@ -1,0 +1,23 @@
+---
+
+interface Props {
+    description: string,
+    image: string,
+    title: string,
+    content: 'article' | 'website',
+
+}
+
+const {description, image, title, content } = Astro.props as Props
+
+const img = image.startsWith('/') ? `${Astro.url.origin}${image}` : `${image}` 
+
+
+---
+
+<meta name="description" content={description}>
+<meta property="og:description" content={description}>
+<meta property="og:title" content={title}>
+<meta property="og:content" content={content || 'website'}>
+<meta property="og:url" content={`${Astro.url.origin}${Astro.url.pathname}`}>
+<meta property="og:image" content={`${img}`}>

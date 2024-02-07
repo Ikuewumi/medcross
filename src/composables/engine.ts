@@ -22,6 +22,15 @@ export interface Cross {
 
 
 
+export interface CrossFull extends Cross {
+    title: string,
+    description: string,
+    image: string,
+    author: string,
+    category: string[],
+    date?: any
+} 
+
 
 
 export class CrossWord {

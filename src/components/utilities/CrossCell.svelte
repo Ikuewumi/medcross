@@ -36,7 +36,7 @@
 </button>
 
 <style lang="scss">
-    button[data-coordinates] {
+    button {
         --_padding: 0;
         --_bg: var(--clr-grey-800);
         --_clr: var(--clr-grey-400);
@@ -64,19 +64,21 @@
             --_clr: transparent;
         }
 
-        &.builder:focus{
-            --_bg: hsla(56, 94%, 49%, 0.863);
+        &.builder{
+            &:focus {
+                --_bg: hsla(56, 94%, 49%, 0.863);
+            }
+
+            &.empty:focus {
+                --_bg: var(--clr-grey-400);
+                outline-color: var(--clr-white);
+            }
         }
 
 
         &:enabled {
             --_bg: var(--clr-grey-800);
             --_clr: var(--clr-grey-400);
-
-
-            &:focus {
-                // --_bg: hsl(120, 65%, 41%);
-            }
             
             
             &.selected {

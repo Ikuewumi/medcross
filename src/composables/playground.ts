@@ -1,7 +1,30 @@
 /**
  * Playground File for testing computations via bun or quokka.js
 */
-import { CrossWord, type Cross, type Word } from "./engine";
+import { CrossWord, type Cross, type CrossFull, type Word } from "./engine";
+
+
+
+export const possibleDataFormat:CrossFull = {
+    size: 8,
+    words: [
+        { "word": "AORTA", "start": [0, 0], "end": [4, 0], "meaning": "The largest artery in the body" },
+        { "word": "OS", "start": [0, 4], "end": [0, 5], "meaning": "an opening of the cervix" },
+        { "word": "SPLEEN", "start": [0, 5], "end": [5, 5], "meaning": "the biological blood blank" },
+        { "word": "CRANIUM", "start": [1, 2], "end": [7, 2], "meaning": "protective skeleton for the brain" },
+        { "word": "TRACHEA", "start": [3, 0], "end": [3, 6], "meaning": "larynx, _______, bronchi" },
+        { "word": "RIB", "start": [5, 1], "end": [5, 3], "meaning": "a bone that surrounds the lungs" },
+        { "word": "LYMPH", "start": [7, 0], "end": [7, 4], "meaning": "carries fats into the blood stream" }
+    ],
+    author: "Ayobami",
+    title: "Anatomy Galore",
+    description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere neque, excepturi consequuntur omnis magnam labore non. Nulla quod odit consequuntur?",
+    image: "/images/cross.png",
+    category: ["anatomy"],
+    date: Date.now()
+
+
+}
 
 
 const data_: Cross = {
