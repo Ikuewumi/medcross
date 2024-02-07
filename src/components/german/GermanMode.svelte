@@ -16,7 +16,7 @@
 
 
             return (isAnswered === -1)
-        }).sort(_ => Math.random() - 0.5);
+        });
         return arr
     }
 

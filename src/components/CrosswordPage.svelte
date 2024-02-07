@@ -1,5 +1,6 @@
 <script lang="ts">
-    import type { CrossFull } from "../composables/engine";
+    import type { SvelteComponent } from "svelte";
+    import type { Cross, CrossFull, Word } from "../composables/engine";
     import { decodeString } from "../composables/text";
     import CustomSelect from "./utilities/CustomSelect.svelte";
     import Modal from "./utilities/Modal.svelte";
@@ -10,29 +11,36 @@
     export let enc = "";
     let data: CrossFull;
     let confirmModal = false;
-    const modes = ['trivia', 'classic'] as const;
-    type GameMode = typeof modes[number];
-    let selectedMode: GameMode = 'trivia';
+    const modes = ["trivia", "classic"] as const;
+    type GameMode = (typeof modes)[number];
+    let selectedMode: GameMode = "trivia";
+    let SvelteComponent;
 
+
+    /**
+     * Load a svelte component
+     */
+    const loadComponent = () => {
+        SvelteComponent = selectedMode === "trivia" ? import('../components/german/GermanMode.svelte') : import('../components/crossword/CrosswordClassic.svelte');
+    }
     $: {
         data = JSON.parse(decodeString(enc));
         console.log(data);
     }
-
-
 </script>
 
+
+
+
+
 {#if data.words.length > 1 && data.size > 1}
-    <button class="play" on:click={() => confirmModal = true}>
+    <button class="play" on:click={() => (confirmModal = true)}>
         <svg viewBox="0 0 24 24"><use href="#play"></use></svg>
         <span>Play</span>
     </button>
 
-
-
-
-        <Modal open={confirmModal} title="Play Mode">
-        <form on:submit|preventDefault >
+    <Modal open={confirmModal} title="Play Mode">
+        <form on:submit|preventDefault>
             <div class="field">
                 <label for="gameMode">Choose The Game Mode</label>
                 <select name="mode" id="gameMode" bind:value={selectedMode}>
@@ -41,19 +49,20 @@
                     {/each}
                 </select>
                 <blockquote>
-                    {#if selectedMode === 'trivia'}
-                    <strong>Trivia Trail: </strong> 
-                    Unleash your inner quizmaster! Solve word clues and uncover trivia tidbits in this unique crossword twist.
+                    {#if selectedMode === "trivia"}
+                        <strong>Trivia Trail: </strong>
+                        Unleash your inner quizmaster! Solve word clues and uncover
+                        trivia tidbits in this unique crossword twist.
                     {:else}
-                    <strong>Classic Crossword: </strong> 
-                    Timeless wordplay awaits! Solve clues, fill the grid, and embrace the traditional joy of crosswords.
+                        <strong>Classic Crossword: </strong>
+                        Timeless wordplay awaits! Solve clues, fill the grid, and
+                        embrace the traditional joy of crosswords.
                     {/if}
                 </blockquote>
             </div>
 
-
             <div class="button-bar">
-                <button title="Close" on:click={()=>confirmModal=false}>Close</button>
+                <button title="Close" on:click={() => (confirmModal = false)}>Close</button>
                 <button title="Start">Start</button>
             </div>
         </form>
@@ -70,7 +79,6 @@
         --_bg: var(--clr-grey-900);
         --_clr: var(--clr-grey-400);
 
-
         grid-column: content;
         border-radius: var(--radius);
         margin-inline-start: auto;
@@ -82,7 +90,7 @@
         outline-color: currentColor;
         outline-offset: 4px;
         transition: 300ms ease-out box-shadow;
-        
+
         &:hover {
             --_bg: var(--clr-grey-400);
             --_clr: var(--clr-grey-900);
@@ -107,13 +115,11 @@
         gap: 1.5rem;
     }
 
-
     blockquote {
         margin-top: 0.25rem;
-        border-radius:calc(var(--radius) / 2);
+        border-radius: calc(var(--radius) / 2);
         gap: 0.25rem;
     }
-
 
     .field {
         display: grid;
@@ -123,7 +129,6 @@
     select {
         appearance: auto;
     }
-
 
     .button-bar {
         margin-top: 0.5rem;
@@ -139,19 +144,14 @@
             font-weight: 700;
             box-shadow: 0 0 4px -1px var(--clr-grey-400);
 
-
-
-            &[title^=Close] {
+            &[title^="Close"] {
                 --_bg: transparent;
                 --_clr: var(--clr-grey-400);
-                // --_border: 2px solid currentColor;
             }
-            
-            
-            &[title^=Start] {
+
+            &[title^="Start"] {
                 --_bg: var(--clr-grey-400);
                 --_clr: var(--clr-grey-800);
-                // --_border: 2px solid currentColor;
             }
         }
     }
