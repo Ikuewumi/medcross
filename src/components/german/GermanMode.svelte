@@ -1,7 +1,14 @@
 <script lang="ts">
+    import { createEventDispatcher } from "svelte";
     import { type Cross, CrossWord, type Word } from "../../composables/engine";
     import {sleep} from "../../composables/utilities";
     export let data:Cross;
+    export let userAnswers:Word[] = [];
+
+
+    const evt = createEventDispatcher();
+
+
 
     const computeQuestions = (data: Cross, userAnswers: Word[]) => {
         const arr = data.words.filter(word_ => {
@@ -22,7 +29,6 @@
 
     let currentIndex = 0;
     let currentWord:Word;
-    let userAnswers:Word[] = [];
     let computedQuestions:Word[] = computeQuestions(data, userAnswers);
     let progress = 0;
     let input = '';
@@ -55,7 +61,7 @@
         if (input.toUpperCase() !== currentWord.word.toUpperCase()) return
 
 
-        userAnswers = [...userAnswers, currentWord]
+        evt('add-answer', [...userAnswers, currentWord])
 
         input = ''
         sleep(0).then(() => el?.focus())
@@ -213,7 +219,7 @@
 
         input {
             border-radius: var(--radius);
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
 
             &[data-error=true],
             &[data-error=true]:focus, 

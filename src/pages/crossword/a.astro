@@ -74,20 +74,20 @@ const data: CrossFull = {
         />
     </Fragment>
 
-    <section class="grid-setup">
-        <figure class="image earlybird">
+    <section class="grid-setup" id="crossword-page">
+        <figure class="image earlybird" data-page="crossword" data-game-element="false">
             <img src={data.image} alt={data.title}  />
         </figure>
         
-        <ul class="categories">
+        <ul class="categories" data-page="crossword" data-game-element="false">
             {data.category.map(category => {
                 return (<li>#{category}</li>)
             })}
         </ul>
         
-        <h1>{data.title}</h1>
+        <h1 data-page="crossword" data-game-element="false">{data.title}</h1>
 
-        <article class="author">
+        <article class="author" data-page="crossword" data-game-element="false">
             <figure class="author-image earlybird">
                 <img src={data.image} alt={data.author}>
             </figure>
@@ -95,7 +95,7 @@ const data: CrossFull = {
             <p>By <strong>{data.author}</p>
         </article>
 
-        <p>{data.description}</p>
+        <p data-page="crossword" data-game-element="false">{data.description}</p>
 
 
 

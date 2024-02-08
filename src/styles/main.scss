@@ -344,3 +344,17 @@ blockquote {
 strong {
     font-weight: bold;
 }
+
+
+
+#crossword-page.ongoing #play-btn,
+#crossword-page.ongoing > ul,
+#crossword-page.ongoing > h1,
+#crossword-page.ongoing > article,
+#crossword-page.ongoing > p, 
+#crossword-page.ongoing > figure,
+header.ongoing {
+    display: none;
+}
+
+

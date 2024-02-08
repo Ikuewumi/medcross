@@ -1,32 +1,48 @@
 <script lang="ts">
-    import type { SvelteComponent } from "svelte";
-    import type { Cross, CrossFull, Word } from "../composables/engine";
+    import type { CrossFull, Word } from "../composables/engine";
     import { decodeString } from "../composables/text";
-    import CustomSelect from "./utilities/CustomSelect.svelte";
     import Modal from "./utilities/Modal.svelte";
+    import {gameOngoing} from "../composables/store";
+    import GameBar from "./utilities/GameBar.svelte";
+    import GermanMode from "../components/german/GermanMode.svelte";
+    import CrosswordClassic from "./crossword/CrosswordClassic.svelte";
 
     /**
      * The User Data as an encoded string
      */
     export let enc = "";
     let data: CrossFull;
+    let userAnswers = [];
     let confirmModal = false;
     const modes = ["trivia", "classic"] as const;
     type GameMode = (typeof modes)[number];
     let selectedMode: GameMode = "trivia";
-    let SvelteComponent;
+
+    const openConfirmModal = () => confirmModal = true;
+    const closeConfirmModal = () => confirmModal = false;
 
 
-    /**
-     * Load a svelte component
-     */
-    const loadComponent = () => {
-        SvelteComponent = selectedMode === "trivia" ? import('../components/german/GermanMode.svelte') : import('../components/crossword/CrosswordClassic.svelte');
+
+    $: { data = JSON.parse(decodeString(enc)); }
+
+
+
+
+    const startGame = () => {
+        closeConfirmModal()
+        $gameOngoing = true
     }
-    $: {
-        data = JSON.parse(decodeString(enc));
-        console.log(data);
+
+
+    const endGame = () => {
+        $gameOngoing = false
     }
+
+
+    const changeUserAnswers = (e: CustomEvent<Word[]>) => {
+        userAnswers = e.detail
+    }
+
 </script>
 
 
@@ -34,7 +50,7 @@
 
 
 {#if data.words.length > 1 && data.size > 1}
-    <button class="play" on:click={() => (confirmModal = true)}>
+    <button class="play" on:click={openConfirmModal} id="play-btn">
         <svg viewBox="0 0 24 24"><use href="#play"></use></svg>
         <span>Play</span>
     </button>
@@ -62,11 +78,36 @@
             </div>
 
             <div class="button-bar">
-                <button title="Close" on:click={() => (confirmModal = false)}>Close</button>
-                <button title="Start">Start</button>
+                <button title="Close" on:click={closeConfirmModal}>Close</button>
+                <button title="Start" on:click={startGame}>Start</button>
             </div>
         </form>
     </Modal>
+
+
+
+
+    {#if $gameOngoing}
+        <GameBar on:close-game={endGame}>
+
+            {#if selectedMode === 'trivia'}
+
+                <GermanMode data={{
+                    size: data.size,
+                    words: data.words
+                }} userAnswers={userAnswers} on:add-answer={changeUserAnswers} />
+
+            {:else if selectedMode === 'classic'}
+
+                <CrosswordClassic data={{
+                    size: data.size,
+                    words: data.words
+                }} userAnswers={userAnswers} on:add-answer={changeUserAnswers} />
+
+            {/if}
+
+        </GameBar>
+    {/if}
 {/if}
 
 <style lang="scss">

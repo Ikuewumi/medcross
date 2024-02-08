@@ -2,7 +2,7 @@
     import { CrossWord as C, type Cross, type Coordinate, type Direction as Dir, type Word } from "../../composables/engine";
     import CrossCell from "../utilities/CrossCell.svelte";
     import DirectionButton from "../utilities/DirectionButton.svelte";
-    import "../../composables/db";
+    import { createEventDispatcher } from "svelte";
 
     export let data:Cross = {
         size: 9,
@@ -17,9 +17,11 @@
         ]
     }
 
+    const evt = createEventDispatcher()
+
     let userMatrix = C.getArray(data.size);
     let direction: Dir = 0;
-    let userAnswers: Word[];
+    export let userAnswers: Word[];
     
     const getCurrentWord = (coordinates:Coordinate, data:Cross):Word => {
 
@@ -58,32 +60,33 @@
         }
 
     }
-    
-    $: userAnswers = C.generateWordsFromMatrix(userMatrix)?.filter(word => {
-        const wordinCross = data.words.find(w_ =>w_.word === word.word)
-        if (!wordinCross) return false;
-        const sameCoordinates = 
-            C.calcIndexFromCoordinates(word.start, data.size) === C.calcIndexFromCoordinates(wordinCross.start, data.size);
-
-        return sameCoordinates
-    })
 
     
     let enabledPaths = C.getEnabledCoordinates(data, userAnswers);
     let coords: Coordinate = enabledPaths[0];
     let currentWord = getCurrentWord(coords, data);
+    let progress = 0;
     $: selectedCoordinates = C.getAllCoordinatesForWord(currentWord).map(e => C.calcIndexFromCoordinates(e, data.size));
-    let progress = 0
-    $: {
-        progress = Math.floor((userAnswers.length / data.words.length) * 100)
-    }
+
+    $: { progress = Math.floor((userAnswers.length / data.words.length) * 100) }
+    $: { if (coords || direction) { currentWord = getCurrentWord(coords, data)} }
+    $: { enabledPaths = C.getEnabledCoordinates(data, userAnswers) }
 
     $: {
-        if (coords || direction) { currentWord = getCurrentWord(coords, data)}
-    }
+        if (userMatrix) {
+            console.log('hidden mist')
+            const userAnswers_ = C.generateWordsFromMatrix(userMatrix)?.filter(word => {
+                const wordinCross = data.words.find(w_ =>w_.word === word.word)
+                if (!wordinCross) return false;
+                const sameCoordinates = 
+                    C.calcIndexFromCoordinates(word.start, data.size) === C.calcIndexFromCoordinates(wordinCross.start, data.size);
 
-    $: {
-        enabledPaths = C.getEnabledCoordinates(data, userAnswers)
+                return sameCoordinates
+            })
+
+
+            evt('add-answer', userAnswers_)
+        }
     }
 
 
