@@ -40,7 +40,7 @@
         })
 
 
-        if (!words.length) {throw Error('cannot click on an invalid cordinate')}
+        if (!words.length) return data.words[0]
 
         
         else if (words.length === 1) { 
@@ -63,8 +63,8 @@
     }
 
     
-    let enabledPaths = C.getEnabledCoordinates(data, userAnswers);
-    let coords: Coordinate = enabledPaths[0];
+    let enabledPaths = [];
+    let coords: Coordinate = enabledPaths[0] ?? [data.words[0].start];
     $currentWord = getCurrentWord(coords, data);
     let progress = 0;
     $: selectedCoordinates = C.getAllCoordinatesForWord($currentWord).map(e => C.calcIndexFromCoordinates(e, data.size));
@@ -83,6 +83,9 @@
 
                 return sameCoordinates
             })
+
+
+            console.log(userAnswers_)
 
 
             evt('add-answer', userAnswers_)

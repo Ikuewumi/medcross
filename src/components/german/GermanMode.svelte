@@ -113,8 +113,9 @@
         <form on:submit|preventDefault>
             <span title="Letter count of the word">{$currentWord.word.length - input.length}</span>
             <div class="field">
-                <label for="word">{$currentWord.meaning}</label>
+                <label for="trivia-word">{$currentWord.meaning}</label>
                 <input 
+                    id="#trivia-word"
                     bind:this={el}
                     bind:value={input}
                     on:input={checkWord}
