@@ -9,7 +9,7 @@ interface Props {
 }
 
 const {description, image, title, content } = Astro.props as Props
-const url = process.env.ORIGIN
+const url = process.env.ORIGIN ?? 'https://medcross.netlify.app';
 
 const img = image.startsWith('/') ? `${url}${image}` : `${image}` 
 
