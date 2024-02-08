@@ -9,8 +9,9 @@ interface Props {
 }
 
 const {description, image, title, content } = Astro.props as Props
+const url = process.env.ORIGIN
 
-const img = image.startsWith('/') ? `${Astro.url.origin}${image}` : `${image}` 
+const img = image.startsWith('/') ? `${url}${image}` : `${image}` 
 
 
 ---
@@ -19,5 +20,5 @@ const img = image.startsWith('/') ? `${Astro.url.origin}${image}` : `${image}`
 <meta property="og:description" content={description}>
 <meta property="og:title" content={title}>
 <meta property="og:content" content={content || 'website'}>
-<meta property="og:url" content={`${Astro.url.origin}${Astro.url.pathname}`}>
+<meta property="og:url" content={`${url}${Astro.url.pathname}`}>
 <meta property="og:image" content={`${img}`}>
