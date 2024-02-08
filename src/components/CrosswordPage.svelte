@@ -9,6 +9,21 @@
     import { enterMsg } from "../composables/toast";
     import { sleep } from "../composables/utilities";
 
+
+
+    const ids= ['#crossword-page', 'header'] ;
+
+    gameOngoing.subscribe(state => {
+        ids.map(id=>{
+            const el = document.querySelector(id);
+            if (state) { el?.classList.add('ongoing') } 
+            else { el?.classList.remove('ongoing') }
+        })
+    })
+
+
+
+
     /**
      * The User Data as an encoded string
      */

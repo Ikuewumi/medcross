@@ -103,21 +103,6 @@ const data: CrossFull = {
     </section>
 
 
-
-    <script type="module">
-        import { gameOngoing } from "../../composables/store";
-        const ids= ['#crossword-page', 'header'] ;
-
-        gameOngoing.subscribe(state => {
-            ids.map(id=>{
-                const el = document.querySelector(id);
-                if (state) { el?.classList.add('ongoing') } 
-                else { el?.classList.remove('ongoing') }
-            })
-        })
-    </script>
-
-
 </BaseLayout>
 
 <style lang="scss">
