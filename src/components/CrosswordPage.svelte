@@ -47,6 +47,7 @@
 
 
     const revealWord = async () => {
+        if (userAnswers.length === data.words.length) return enterMsg(`game completed`, `failure`)
         if ($coinCount < costs.revealWord) return enterMsg(`coins are not sufficient`, `failure`)
         const coin = $coinCount - costs.revealWord
         if (coin < 0) return enterMsg(`coins are not sufficient`, `failure`), 
