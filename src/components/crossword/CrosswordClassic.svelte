@@ -3,6 +3,7 @@
     import CrossCell from "../utilities/CrossCell.svelte";
     import DirectionButton from "../utilities/DirectionButton.svelte";
     import { createEventDispatcher } from "svelte";
+    import {currentWord} from "../../composables/store"
 
     export let data:Cross = {
         size: 9,
@@ -16,12 +17,12 @@
             { "word": "DURA", "start": [5, 6], "end": [8, 6], "meaning": "outermost layer of the spinal meninges" }
         ]
     }
+    export let userAnswers: Word[] = [];
 
     const evt = createEventDispatcher()
 
-    let userMatrix = C.getArray(data.size);
+    let userMatrix = C.generateMatrixFromWords(userAnswers, data.size);
     let direction: Dir = 0;
-    export let userAnswers: Word[];
     
     const getCurrentWord = (coordinates:Coordinate, data:Cross):Word => {
 
@@ -64,17 +65,16 @@
     
     let enabledPaths = C.getEnabledCoordinates(data, userAnswers);
     let coords: Coordinate = enabledPaths[0];
-    let currentWord = getCurrentWord(coords, data);
+    $currentWord = getCurrentWord(coords, data);
     let progress = 0;
-    $: selectedCoordinates = C.getAllCoordinatesForWord(currentWord).map(e => C.calcIndexFromCoordinates(e, data.size));
+    $: selectedCoordinates = C.getAllCoordinatesForWord($currentWord).map(e => C.calcIndexFromCoordinates(e, data.size));
 
     $: { progress = Math.floor((userAnswers.length / data.words.length) * 100) }
-    $: { if (coords || direction) { currentWord = getCurrentWord(coords, data)} }
+    $: { if (coords || direction) { $currentWord = getCurrentWord(coords, data)} }
     $: { enabledPaths = C.getEnabledCoordinates(data, userAnswers) }
 
     $: {
         if (userMatrix) {
-            console.log('hidden mist')
             const userAnswers_ = C.generateWordsFromMatrix(userMatrix)?.filter(word => {
                 const wordinCross = data.words.find(w_ =>w_.word === word.word)
                 if (!wordinCross) return false;
@@ -190,7 +190,7 @@
 
 
 <section id="C-page">
-    {#if data.words.length && currentWord}
+    {#if data.words.length && $currentWord}
         <figure class="figure">
             <!-- svelte-ignore a11y-no-static-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -216,7 +216,7 @@
 
 
         <article class="clue" style="--percent: {progress}%">
-            <p>{currentWord.meaning}</p>
+            <p>{$currentWord.meaning}</p>
         </article>
     {/if}
 

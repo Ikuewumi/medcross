@@ -18,12 +18,13 @@
   "description": "",
   "dependencies": {
     "@astrojs/svelte": "^5.0.3",
+    "@vite-pwa/astro": "^0.2.0",
     "astro": "^4.2.4",
     "flamethrower-router": "^0.0.0-meme.12",
+    "idb": "^8.0.0",
     "nanostores": "^0.9.5",
     "sass": "^1.70.0",
     "svelte": "^4.2.9",
-    "@vite-pwa/astro": "^0.2.0",
     "typescript": "^5.3.3"
   }
 }

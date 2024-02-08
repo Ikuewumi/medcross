@@ -8,13 +8,15 @@ export const message = writable({
 })
 
 
-export const enterMsg = (msg:string, type:MessageType = 'info') => {
-    let timeOutId:number;
+export const enterMsg = (msg:string, type:MessageType = 'info', time=3000, sticks=false) => {
+    let timeOutId:NodeJS.Timeout;
     message.set({ msg, type })    
     
-    timeOutId = setTimeout(() => {
-        message.set({ msg: '', type })
-        clearTimeout(timeOutId)
-    }, 3000)
+    if (!sticks) {
+        timeOutId = setTimeout(() => {
+            message.set({ msg: '', type })
+            clearTimeout(timeOutId)
+        }, time)
+    }
 
 }

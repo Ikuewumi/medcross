@@ -1,18 +1,20 @@
 <script lang="ts">
-    import type { CrossFull, Word } from "../composables/engine";
+    import { CrossWord as C, type CrossFull, type Word } from "../composables/engine";
     import { decodeString } from "../composables/text";
     import Modal from "./utilities/Modal.svelte";
-    import {gameOngoing} from "../composables/store";
+    import {coinCount, costs, currentWord, gameOngoing} from "../composables/store";
     import GameBar from "./utilities/GameBar.svelte";
     import GermanMode from "../components/german/GermanMode.svelte";
     import CrosswordClassic from "./crossword/CrosswordClassic.svelte";
+    import { enterMsg } from "../composables/toast";
+    import { sleep } from "../composables/utilities";
 
     /**
      * The User Data as an encoded string
      */
     export let enc = "";
     let data: CrossFull;
-    let userAnswers = [];
+    let userAnswers:Word[] = [];
     let confirmModal = false;
     const modes = ["trivia", "classic"] as const;
     type GameMode = (typeof modes)[number];
@@ -41,6 +43,20 @@
 
     const changeUserAnswers = (e: CustomEvent<Word[]>) => {
         userAnswers = e.detail
+    }
+
+
+    const revealWord = async () => {
+        if ($coinCount < costs.revealWord) return enterMsg(`coins are not sufficient`, `failure`)
+        const coin = $coinCount - costs.revealWord
+        if (coin < 0) return enterMsg(`coins are not sufficient`, `failure`), 
+    
+        console.log(coin)
+
+        $coinCount = coin
+        await sleep(0);
+        console.log($coinCount)
+        enterMsg(`${$currentWord.word} has been revealed for ${costs.revealWord} coins`, `success`, 4000)
     }
 
 </script>
@@ -88,7 +104,7 @@
 
 
     {#if $gameOngoing}
-        <GameBar on:close-game={endGame}>
+        <GameBar on:close-game={endGame} on:reveal-word={revealWord}>
 
             {#if selectedMode === 'trivia'}
 

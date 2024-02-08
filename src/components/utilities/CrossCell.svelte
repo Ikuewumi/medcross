@@ -30,6 +30,7 @@
     class:builder={isBuilder}
     data-coordinates={coordinates}
     disabled={disabled}
+    tabindex="-1"
     title="Letter at {coordinates}"
 >
     <slot></slot>

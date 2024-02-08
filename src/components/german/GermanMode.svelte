@@ -2,6 +2,7 @@
     import { createEventDispatcher } from "svelte";
     import { type Cross, CrossWord, type Word } from "../../composables/engine";
     import {sleep} from "../../composables/utilities";
+    import { currentWord } from "../../composables/store";
     export let data:Cross;
     export let userAnswers:Word[] = [];
 
@@ -28,7 +29,6 @@
     }
 
     let currentIndex = 0;
-    let currentWord:Word;
     let computedQuestions:Word[] = computeQuestions(data, userAnswers);
     let progress = 0;
     let input = '';
@@ -37,11 +37,12 @@
 
    
 
-    $: { currentWord = computedQuestions?.at(currentIndex) }
+    $: { $currentWord = computedQuestions?.at(currentIndex) }
     $: { progress = userAnswers ? (userAnswers.length / data.words.length) * 100 : 0 }
     $: {
-        if (currentWord) {
-            pattern = CrossWord.generateWordPattern( {size: data.size, words: userAnswers}, currentWord)?.toLowerCase()
+        if ($currentWord) {
+            pattern = CrossWord.generateWordPattern( {size: data.size, words: userAnswers}, $currentWord)?.toLowerCase();
+            // emitCurrentWord()
         } 
     }
 
@@ -55,13 +56,19 @@
 
 
 
+    const emitCurrentWord = () => {
+        evt('change-current', computedQuestions?.at(currentIndex))
+    }
+
+
+
 
     let checkWord = () => {
         if (!input.trim()) return
-        if (input.toUpperCase() !== currentWord.word.toUpperCase()) return
+        if (input.toUpperCase() !== $currentWord.word.toUpperCase()) return
 
 
-        evt('add-answer', [...userAnswers, currentWord])
+        evt('add-answer', [...userAnswers, $currentWord])
 
         input = ''
         sleep(0).then(() => el?.focus())
@@ -102,21 +109,21 @@
 <section>
     <label for="german-progress" class="sr-only">The Progress of the Crossword</label>
     <progress aria-busy={progress > 0 && progress < 100} id="german-progress" value={progress} max="100"></progress>
-    {#if currentWord?.word}
+    {#if $currentWord?.word}
         <form on:submit|preventDefault>
-            <span title="Letter count of the word">{currentWord.word.length}</span>
+            <span title="Letter count of the word">{$currentWord.word.length - input.length}</span>
             <div class="field">
-                <label for="word">{currentWord.meaning}</label>
+                <label for="word">{$currentWord.meaning}</label>
                 <input 
                     bind:this={el}
                     bind:value={input}
                     on:input={checkWord}
                     type="text"
                     placeholder={pattern}
-                    maxlength={currentWord.word.length}
-                    data-success={input.toLowerCase() === currentWord.word.toLowerCase()}
-                    disabled={input.toLowerCase() === currentWord.word.toLowerCase()}
-                    data-error={input.length > 0 && input.length !== currentWord.word.length}
+                    maxlength={$currentWord.word.length}
+                    data-success={input.toLowerCase() === $currentWord.word.toLowerCase()}
+                    disabled={input.toLowerCase() === $currentWord.word.toLowerCase()}
+                    data-error={input.length > 0 && input.length !== $currentWord.word.length}
                 />
             </div>
         </form>

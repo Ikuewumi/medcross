@@ -1,11 +1,18 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
+    import { coinCount, costs } from "../../composables/store";
 
 
     const evt = createEventDispatcher()
 
     const closeGame = () => {
         evt('close-game')
+    }
+
+
+
+    const emitReveal = () => {
+        evt('reveal-word')
     }
 
 
@@ -20,9 +27,9 @@
             </button>
             
             
-            <button title="Coins">
+            <button title="Coins" disabled={$coinCount<costs.revealWord} on:click={emitReveal}>
                 <svg viewBox="0 0 24 24"><use href="#coins"></use></svg>
-                <span>240</span>
+                <span>{$coinCount}</span>
             </button>
         </div>
     </div>
@@ -85,9 +92,15 @@
             font-weight: 700;
             transition: 300ms ease;
 
-            &:hover {
+            &:hover:enabled {
                 --_bg: var(--clr-grey-400);
                 --_clr: var(--clr-grey-900);
+            }
+
+
+            &:disabled {
+                --_bg: var(--clr-grey-800);
+                --_clr: var(--clr-grey-600);
             }
         }
     }
