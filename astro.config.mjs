@@ -6,6 +6,7 @@ import AstroPWA from "@vite-pwa/astro";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://medcross.netlify.app",
   integrations: [
     svelte(),
     AstroPWA({
@@ -17,5 +18,5 @@ export default defineConfig({
       }
 
     })
-  ],
+  ]
 });
