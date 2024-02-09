@@ -3,7 +3,6 @@
     import { type Cross, CrossWord, type Word } from "../../composables/engine";
     import {sleep} from "../../composables/utilities";
     import { currentWord } from "../../composables/store";
-    import GameEnded from "../utilities/GameEnded.svelte";
     export let data:Cross;
     export let userAnswers:Word[] = [];
 
@@ -38,7 +37,7 @@
 
    
 
-    $: { $currentWord = computedQuestions?.at(currentIndex) }
+    $: { $currentWord = computedQuestions?.at(currentIndex)! }
     $: { progress = userAnswers ? (userAnswers.length / data.words.length) * 100 : 0 }
     $: {
         if ($currentWord) {
