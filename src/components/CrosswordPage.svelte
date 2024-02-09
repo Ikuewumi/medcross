@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { CrossWord as C, type CrossFull, type Word } from "../composables/engine";
+    import { CrossWord as C, type Cross, type CrossFull, type Word } from "../composables/engine";
     import { decodeString } from "../composables/text";
     import Modal from "./utilities/Modal.svelte";
     import {coinCount, costs, currentWord, gameOngoing} from "../composables/store";
@@ -8,6 +8,7 @@
     import CrosswordClassic from "./crossword/CrosswordClassic.svelte";
     import { enterMsg } from "../composables/toast";
     import { sleep } from "../composables/utilities";
+    import GameEnded from "./utilities/GameEnded.svelte";
 
 
 
@@ -28,8 +29,9 @@
      * The User Data as an encoded string
      */
     export let enc = "";
-    let data: CrossFull;
+    let data: Cross;
     let userAnswers:Word[] = [];
+    let gameEndedModal = false;
     let confirmModal = false;
     const modes = ["trivia", "classic"] as const;
     type GameMode = (typeof modes)[number];
@@ -41,6 +43,11 @@
 
 
     $: { data = JSON.parse(decodeString(enc)); }
+
+
+    $: {
+gameEndedModal = (userAnswers.length === data.words.length)
+    }
 
 
 
@@ -137,6 +144,11 @@
                 }} userAnswers={userAnswers} on:add-answer={changeUserAnswers} />
 
             {/if}
+
+
+            <GameEnded coinGain={4} wordCount={userAnswers.length} open={gameEndedModal} />
+
+
 
         </GameBar>
     {/if}

@@ -26,12 +26,17 @@
         --icon-size: 30px;
         --_padding: 0.5rem 0.75rem;
         --_gap: 0.5rem;
-        display: flex;
+        display: none;
         position: fixed;
         inset: auto auto 10vh 0;
         border-bottom-right-radius: var(--radius);
         border-top-right-radius: var(--radius);
         box-shadow: 0 0 4px 0px var(--clr-grey-700);
+        
+        
+        @media (min-width: 768px) {
+            display: flex;
+        }
         
 
     }

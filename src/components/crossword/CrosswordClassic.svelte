@@ -40,9 +40,9 @@
         })
 
 
-        if (!words.length) return data.words[0]
-
-        
+        if (!words.length) {
+            currentWord = data.words[0]
+        }
         else if (words.length === 1) { 
             direction = C.getDirection(words[0])
             currentWord = words[0]; 

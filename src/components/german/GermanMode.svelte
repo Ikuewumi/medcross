@@ -3,6 +3,7 @@
     import { type Cross, CrossWord, type Word } from "../../composables/engine";
     import {sleep} from "../../composables/utilities";
     import { currentWord } from "../../composables/store";
+    import GameEnded from "../utilities/GameEnded.svelte";
     export let data:Cross;
     export let userAnswers:Word[] = [];
 
@@ -133,14 +134,6 @@
             <button on:click={navigate.bind(this, 0)} title="Previous">Prev</button>
             <button on:click={navigate.bind(this, 1)} title="Next">Next</button>
         </div>
-    {:else if computedQuestions.length === 0 && userAnswers.length > 0}
-        <article class="done">
-            <svg viewBox="0 0 24 24"><use href="#check-filled"></use></svg>
-            <h2>COMPLETED!</h2>
-            <p>Done in <time>03:49</time></p>
-        </article>
-
-        <button>Continue</button>
     {/if}
 </section>
 
@@ -272,31 +265,5 @@
 
 
 
-    article.done {
-        --icon-size: 50px;
-        display: flex;
-        gap: 1rem;
-        flex-direction: column;
-        place-items: center;
-        padding-block: 2rem 2.5rem;
-        padding-inline: 0.5rem;
 
-        svg {
-            width: var(--icon-size);
-            aspect-ratio: 1;
-        }
-    }
-
-    article.done + button {
-        display: flex;
-        justify-content: center;
-        background: var(--clr-grey-400);
-        color: var(--clr-grey-900);
-        width: 100%;
-        padding: 1rem 0.75rem;
-        outline-offset: -6px;
-        font-size: var(--step-2);
-        text-align: center;
-        box-shadow: var(--shadow-elevation-medium);
-    }
 </style>
