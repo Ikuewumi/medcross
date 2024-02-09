@@ -19,6 +19,7 @@ const author = await getEntry(entry.data.author)
   description={entry.data.description ?? ''}
   image={entry.data.image}
   author={author.data.name}
+  authorImage={author.data.image}
   categories={entry.data.categories}
   date={entry.data.date}
   size={entry.data.size}
