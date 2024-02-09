@@ -10,7 +10,7 @@ export default defineConfig({
     AstroPWA({
       /* your pwa options */
       registerType: 'autoUpdate',
-      injectRegister: 'auto',
+      injectRegister: 'script',
       workbox: {
         globPatterns: ['**\/*.{js,css}']
       }
