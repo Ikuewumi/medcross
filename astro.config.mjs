@@ -9,7 +9,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '/fonts': resolve('./public/fonts')
+        '$fonts': resolve('./public/fonts')
       }
     }
   },
