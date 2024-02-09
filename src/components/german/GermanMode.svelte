@@ -116,7 +116,7 @@
             <div class="field">
                 <label for="trivia-word">{$currentWord.meaning}</label>
                 <input 
-                    id="#trivia-word"
+                    id="trivia-word"
                     bind:this={el}
                     bind:value={input}
                     on:input={checkWord}
