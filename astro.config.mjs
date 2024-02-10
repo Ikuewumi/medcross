@@ -9,6 +9,15 @@ export default defineConfig({
   site: "https://medcross.netlify.app",
   publicDir: "./public",
   integrations: [
-    svelte()
+    svelte(),
+    AstroPWA({
+      /* your pwa options */
+      registerType: 'autoUpdate',
+      injectRegister: 'script',
+      workbox: {
+        globPatterns: ['**\/*.{js,css,woff,woff2}']
+      }
+
+    })
   ]
 });
