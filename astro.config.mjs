@@ -15,7 +15,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: 'script',
       workbox: {
-        globPatterns: ['**\/*.{js,css,woff,woff2}']
+        globPatterns: ['**\/*.{js,css,woff,woff2,html}']
       }
 
     })
