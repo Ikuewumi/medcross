@@ -18,12 +18,5 @@ export default defineConfig({
       }
 
     })
-  ],
-  "vite": {
-    resolve: {
-      "alias": {
-        "$fonts": resolve('./public/fonts'),
-      }
-    }
-  }
+  ]
 });

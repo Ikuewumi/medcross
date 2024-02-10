@@ -31,8 +31,17 @@ const crossword = defineCollection({
 })
 
 
+const category = defineCollection({
+    type: 'data',
+    schema: z.object({
+        name: z.string(),
+        description: z.string()
+    })
+})
+
+
 export const collections = {
-    author, crossword
+    author, crossword, category
 }
 
 
