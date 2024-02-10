@@ -14,6 +14,7 @@
 
 ### 2024-02-10
 
+- Added a hero to the home page
 - Added the functioning database to allow for crossword **resumability**
 - Added a progress-like element to the Crossword Page to monitor the progress
 - Removed flamethrower-router because it messes up the styles of the `*.svelte` components (maybe go custom??)
