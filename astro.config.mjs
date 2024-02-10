@@ -16,7 +16,8 @@ export default defineConfig({
       injectRegister: 'script',
       workbox: {
         globPatterns: ['**\/*.{js,css,woff,woff2}']
-      }
+      },
+      selfDestroying: true
 
     })
   ]
