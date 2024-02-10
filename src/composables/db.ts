@@ -1,18 +1,47 @@
 import { openDB, type DBSchema } from "idb";
 import type { Word } from "./engine";
 
+interface DbWord {
+    urlId: string,
+    words: Word[]
+}
 
-interface UserAnswersDb extends DBSchema {
+export interface Completed {
+    key: "completed",
+    value: {
+        id: "completed",
+        crosswords: string[]
+    }
+}
+export interface Bookmarked {
+    key: "bookmarked",
+    value: {
+        id: "bookmarked",
+        crosswords: string[]
+    }
+}
+
+export interface Coins {
+    key: "coins",
+    value: {
+        id: "coins"
+        coinNumber: number
+    }
+        
+}
+
+
+type Settings = Bookmarked | Coins | Completed
+
+
+export interface UserAnswersDb extends DBSchema {
     userAnswers: {
-        value: Word[],
+        value: DbWord,
         key: string,
     };
 
 
-    settings: {
-        key: 'coins' | 'bookmarks' | 'completed',
-        value: number | string[] 
-    }
+    settings: Settings
 }
 
 

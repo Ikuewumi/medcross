@@ -23,6 +23,23 @@ const isProduction = (process.env.NODE_ENV || 'development') === 'production'
     <!-- Service Worker -->
     {isProduction && <script src="/registerSW.js"></script> }
 
+
+
+
+
+    <!-- Database Script -->
+    <script>
+        import { getDb } from "../composables/db";
+        window.getDb = async () => {
+            if (!window.idb) {
+                const db = await getDb()
+                window.idb = db
+            }
+
+            return window.idb
+        }
+    </script>
+
     <title>{ title }</title>
 </head>
 <body>
@@ -35,11 +52,7 @@ const isProduction = (process.env.NODE_ENV || 'development') === 'production'
     <Toast client:load />
 
 
-    <script>
-        import flamethrower from "flamethrower-router" 
-        flamethrower.bind(window)({ "log": false })
-
-    </script>
+    
 
 
 </body>

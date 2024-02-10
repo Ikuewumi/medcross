@@ -4,6 +4,7 @@
     import DirectionButton from "../utilities/DirectionButton.svelte";
     import { createEventDispatcher } from "svelte";
     import {currentWord} from "../../composables/store"
+    import { sleep } from "../../composables/utilities";
 
     export let data:Cross = {
         size: 9,
@@ -23,24 +24,24 @@
 
     let userMatrix = C.generateMatrixFromWords(userAnswers, data.size);
     let direction: Dir = 0;
-    
+  
     const getCurrentWord = (coordinates:Coordinate, data:Cross):Word => {
-
+        
         let currentWord: Word;
-
+        
         const words = C.getWordsInCoordinates(
             C.generateMatrixFromWords(data.words, data.size),
             coordinates
-        ).map(word => {
+            ).map(word => {
             const meaning = data.words.find(word_ => 
                 word_.word === word.word &&
                 C.calcIndexFromCoordinates(word_.start, data.size) === C.calcIndexFromCoordinates(word.start, data.size)
-            ).meaning ?? ''
+            )!.meaning ?? ''
             return { ...word, meaning }
         })
 
 
-        if (!words.length) {
+        if (words.length === 0) {
             currentWord = data.words[0]
         }
         else if (words.length === 1) { 
@@ -48,22 +49,22 @@
             currentWord = words[0]; 
         } 
         else if (words.length === 2) {
-            currentWord = words.find(word => C.getDirection(word) === direction)
+            currentWord = words.find(word => C.getDirection(word) === direction)!
         }
 
 
-        const meaning = data.words.find(word_ => word_.word === currentWord.word).meaning ?? ''
+        const meaning = data.words.find(word_ => word_.word === currentWord.word)!.meaning ?? ''
 
 
         return {
-            ...currentWord, 
+            ...currentWord!, 
             meaning
         }
 
     }
 
     
-    let enabledPaths = [];
+    let enabledPaths: Coordinate[] = [];
     let coords: Coordinate = enabledPaths[0] ?? [data.words[0].start];
     $currentWord = getCurrentWord(coords, data);
     let progress = 0;
@@ -85,10 +86,17 @@
             })
 
 
-            console.log(userAnswers_)
 
 
             evt('add-answer', userAnswers_)
+
+
+            if (userAnswers_.length === data.words.length) {
+                sleep(2000).then(() => {
+                    evt('game-finished');
+
+                })
+            }
         }
     }
 
@@ -154,7 +162,7 @@
         if (el.tagName !== "BUTTON") return;
         if (!("coordinates" in el.dataset)) return;
 
-        const coords_ = el.dataset["coordinates"]
+        const coords_ = el.dataset["coordinates"]!
             .split(",")
             .map((x) => +x)! as Coordinate;
 

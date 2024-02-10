@@ -49,6 +49,11 @@
 
     $: {
         computedQuestions = computeQuestions(data, userAnswers)
+
+        if (computedQuestions.length === 0) {
+            evt('game-finished')
+        }
+
         if (currentIndex > computedQuestions.length - 1) {
             currentIndex = 0
         }
@@ -130,8 +135,8 @@
         </form>
 
         <div class="button-bar">
-            <button on:click={navigate.bind(this, 0)} title="Previous">Prev</button>
-            <button on:click={navigate.bind(this, 1)} title="Next">Next</button>
+            <button on:click={navigate.bind(null, 0)} title="Previous">Prev</button>
+            <button on:click={navigate.bind(null, 1)} title="Next">Next</button>
         </div>
     {/if}
 </section>

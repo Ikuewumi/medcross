@@ -68,10 +68,15 @@ section {
     --_spacer: 0.75rem;
     grid-column: full;
     gap: 0.75rem 0;
+    position: relative;
     padding-bottom: 2rem;
 
 
+
+
+
     figure.image {
+        grid-row: 1 / 2; // Has the same grid-row value as the progress bar to stack them
         grid-column: content;
         background: var(--clr-white);
         height: min(300px, 45vh);

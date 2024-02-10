@@ -5,7 +5,7 @@
 
 
 
-<div role="presentation" class:open>
+<div role="presentation" class:open >
     <div class="modal" role="dialog" aria-modal="true">
         {#if title}
             <h2>{title}</h2>

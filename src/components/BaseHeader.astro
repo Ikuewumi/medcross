@@ -22,9 +22,10 @@
         </button>
 
         <ul>
+            <!-- @TODO -remove the links, as they are just for demo purposes -->
             <li><a aria-current="page" href="/">home</a></li>
-            <li><a href="/">archive</a></li>
-            <li><a href="/">series</a></li>
+            <li><a href="/crossword/raf">archive</a></li>
+            <li><a href="/crossword/raf-2">series</a></li>
             <li><a href="/">about</a></li>
         </ul>
     </nav>
@@ -67,8 +68,6 @@ header strong {
     gap: 0.2rem;
     align-items: center;
     
-    letter-spacing: -1.5px;
-    font-weight: 600;
     
     
 }
@@ -76,6 +75,8 @@ header strong {
 header strong span {
     display: flex;        
     font-size: var(--step-3);
+    font-weight: 600;
+    letter-spacing: -1.5px;
     
     @media (min-width: 768px) {
     }

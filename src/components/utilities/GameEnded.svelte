@@ -1,7 +1,16 @@
 <script>
+    import { createEventDispatcher } from "svelte";
+
     export let wordCount = 0;
     export let coinGain = 10;
     export let open = false;
+
+
+    const evt = createEventDispatcher()
+
+    const emitClose = () => {
+        evt('close-modal')
+    }
 </script>
 
 <div role="presentation" class:open>
@@ -15,7 +24,7 @@
         <p class="coins-gain">+{coinGain} coins</p>
     </article>
 
-    <button>Continue</button>
+    <button on:click={emitClose}>Continue</button>
 </div>
 
 <style lang="scss">
