@@ -1,5 +1,15 @@
 # Changelog
 
+## TODO
+
+- add series to the crossword
+- make the classic crossword work on mobile (most-likely by building a keyboard)
+- add colophon
+- add help to the crossword page
+- make a way for the admin to add a crossword via its JSON
+
+---
+
 ## Unreleased
 
 ### 2024-02-10
