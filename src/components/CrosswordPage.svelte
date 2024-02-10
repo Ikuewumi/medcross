@@ -61,7 +61,6 @@
         gameEndedModal = false;
         confirmModal = false;
         updateUI()
-        console.log('mounted');
     })
 
     const openConfirmModal = () => (confirmModal = true);
