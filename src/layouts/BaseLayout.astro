@@ -4,6 +4,8 @@ import BaseHeader from "../components/BaseHeader.astro";
 import Assets from "../components/Assets.astro";
 import Toast from "../components/utilities/Toast.svelte";
 import "../styles/main.scss"
+import MetaInformation from "../components/MetaInformation.astro";
+import homePageImage from "../images/home-page.jpg"
 
 const { title } = Astro.props.frontmatter || Astro.props 
 
@@ -17,7 +19,13 @@ const isProduction = (process.env.NODE_ENV || 'development') === 'production'
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <slot name="meta">
-        <meta name="description" content="A crossword App">
+
+        <MetaInformation 
+            title={title} 
+            description="Medcross - Crosswords for Medical Students And Professionals" 
+            image={homePageImage.src}
+            content="website" />
+
     </slot>
 
     <!-- Service Worker -->

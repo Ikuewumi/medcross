@@ -218,6 +218,12 @@ h2 {
     font-weight: 600;
 }
 
+
+h3 {
+    font-size: var(--step-2);
+    font-weight: 600;
+}
+
 p {
     font-size: var(--step-1);
     line-height: 1.6;
@@ -403,6 +409,35 @@ strong {
     font-weight: bold;
 }
 
+
+.crossword-tag {
+    --gradient-angle: 0deg;
+    --clr-3: #eff9ff;
+    --clr-4: #82ec82;
+    --clr-5: #5ebc5e;
+    --font-weight: 700;
+    --font-size: 1.2rem;
+    --lh: 1;
+    --height: fit-content;
+    --drop-shadow: drop-shadow(0px 0px 2px #5ebc5e);
+    --bg-img: conic-gradient(
+        from var(--gradient-angle),
+        var(--clr-3),
+        var(--clr-4),
+        var(--clr-5),
+        var(--clr-4),
+        var(--clr-3)
+    );
+
+    height: var(--height);
+    font-weight: var(--font-weight);
+    font-size: var(--font-size);
+    line-height: var(--lh);
+    color: transparent;
+    background-image: var(--bg-img);
+    background-clip: text;
+    filter: var(--drop-shadow);
+}
 
 
 #crossword-page.ongoing #play-btn,

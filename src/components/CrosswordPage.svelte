@@ -179,7 +179,7 @@
 {#if data?.words.length > 1 && data?.size > 1}
 <button class="play" on:click={openConfirmModal} id="play-btn">
     <svg viewBox="0 0 24 24"><use href="#play"></use></svg>
-    <span>Play</span>
+    <span>{progress === 0 ? `Play` : `Continue`}</span>
 </button>
 
 <span id="user-done" title="Progress of The Crossword" style="--progress: {progress}">

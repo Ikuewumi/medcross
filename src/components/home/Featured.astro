@@ -1,0 +1,120 @@
+---
+import FeaturedCrossword from "./FeaturedCrossword.astro";
+import FeaturedCard from "./FeaturedCard.astro"
+---
+
+
+
+<section id="featured" class="grid-setup">
+    <div role="presentation">
+
+        <FeaturedCrossword />
+        
+        <article class="more-crosswords">
+            <h2 class="sr-only">More..</h2>
+            
+            <ul>
+                <li><FeaturedCard title="Random Anatomy Facts" category="anatomy" url="/crossword/raf-2" categoryUrl="/category/anatomy" /> </li>
+                <li><FeaturedCard title="Programming of the Body" category="anatomy" url="/crossword/raf-2" categoryUrl="/category/anatomy" /> </li>
+                <li><FeaturedCard title="This is Physiology" category="anatomy" url="/crossword/raf-2" categoryUrl="/category/anatomy" /> </li>
+            </ul>
+
+
+
+            <a class="to-all crossword-tag" href="/crosswords">To All Croswords...</a>
+    </div>
+
+
+    <svg aria-hidden="true" class="featured-section-logo">
+        <use href="#logo"></use>
+    </svg>
+
+    </article>
+</section>
+
+<style>
+    #featured {
+        grid-column: content;
+        background: var(--clr-grey-900);
+        padding: 1rem 0;
+        border-radius: 0.4rem;
+        box-shadow: var(--shadow-elevation-low);
+        position: relative;
+        isolation: isolate;
+
+        & > div[role=presentation] {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem 1.5rem;
+        }
+        
+        @media (min-width:768px) {
+            & > div[role=presentation] {
+                flex-direction: row;
+            }
+        }
+    }
+
+    svg.featured-section-logo {
+        position: absolute;
+        inset: 2rem 2rem auto auto;
+        width: 50ch;
+        aspect-ratio: 1;
+        z-index: -1;
+        fill: hsl(0 0 0 / 0.02);
+        transform: rotate(5deg);
+    }
+
+    ul {
+        list-style: none;
+    }
+
+
+    article.more-crosswords {
+        flex: 1;
+        display: grid;
+        gap: 1.5rem;
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+
+
+        }
+
+        a.to-all {
+            width: fit-content;
+            --clr-3: #232323;
+            --clr-4: #7b7c7b;
+            --clr-5: #959795;
+            --font-size: var(--step-2);
+            --drop-shadow: none;
+        margin-bottom: 1.25rem;
+        margin-inline-start: auto;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-decoration-color: var(--clr-4);
+        text-decoration: ;
+        }
+
+
+        @media (min-width: 768px) {
+            padding-block: 0.2rem;
+
+
+            ul {
+                flex-direction: column;
+            }
+        }
+
+
+
+    }
+
+    
+
+    article {
+    }
+</style>

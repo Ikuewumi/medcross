@@ -6,11 +6,17 @@
 - make the classic crossword work on mobile (most-likely by building a keyboard)
 - add colophon
 - add help to the crossword page
-- make a way for the admin to add a crossword via its JSON
+- make a way for the admin to add a crossword into the builder via its JSON
 
 ---
 
 ## Unreleased
+
+### 2024-02-11
+
+- Added featured crossword section to home page
+- Fixed the aspect ratio inconsistencies between my hero-image's html and css
+- Added an image to the meta description of the home page
 
 ### 2024-02-10
 
