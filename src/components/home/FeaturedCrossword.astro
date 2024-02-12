@@ -30,6 +30,7 @@ import featuredImage from "../../images/featured-demo.jpg";
         border: 2px solid var(--clr-grey-400);
         border-radius: var(--radius);
         box-shadow: var(--shadow-elevation-low);
+        -webkit-background-clip: text;
 
         &:before {
             content: "";
@@ -87,57 +88,10 @@ import featuredImage from "../../images/featured-demo.jpg";
         font-size: var(--step-3);
     }
 
-    img {
+    & > img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 
-    a.play-featured {
-        --_padding: 0;
-        --_icon-size: 2.5rem;
-        --_icon-clr: var(--clr-grey-800);
-        --_icon-bg: var(--clr-grey-400);
-        --_gap: 0.15rem;
-        --_bg: var(--clr-grey-900);
-        --_clr: var(--clr-grey-400);
-
-        display: flex;
-        align-items: center;
-        justify-items: center;
-        gap: var(--_gap);
-        background-color: var(--_bg);
-        border-radius: var(--radius);
-        padding: var(--_padding);
-        border: var(--_border);
-        width: fit-content;
-        overflow: hidden;
-        color: var(--_clr);
-        text-decoration: none;
-        font-size: var(--step-1);
-        font-weight: 700;
-        text-transform: uppercase;
-        box-shadow: var(--shadow-elevation-low);
-        outline-color: currentColor;
-        outline-offset: 4px;
-        transition: 300ms ease-out box-shadow;
-
-        &:hover {
-            --_bg: var(--clr-grey-400);
-            --_clr: var(--clr-grey-900);
-            --_icon-clr: var(--clr-grey-400);
-            --_icon-bg: var(--clr-white);
-            box-shadow: var(--shadow-elevation-medium);
-        }
-
-        svg {
-            width: var(--_icon-size);
-            background: var(--_icon-bg);
-            color: var(--_icon-clr);
-        }
-
-        span {
-            padding-inline: 0.5rem 1rem;
-        }
-    }
 </style>

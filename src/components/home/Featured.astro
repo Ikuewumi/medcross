@@ -13,7 +13,7 @@ import FeaturedCard from "./FeaturedCard.astro"
         <article class="more-crosswords">
             <h2 class="sr-only">More..</h2>
             
-            <ul>
+            <ul class="more-crosswords-list">
                 <li><FeaturedCard title="Random Anatomy Facts" category="anatomy" url="/crossword/raf-2" categoryUrl="/category/anatomy" /> </li>
                 <li><FeaturedCard title="Programming of the Body" category="anatomy" url="/crossword/raf-2" categoryUrl="/category/anatomy" /> </li>
                 <li><FeaturedCard title="This is Physiology" category="anatomy" url="/crossword/raf-2" categoryUrl="/category/anatomy" /> </li>
@@ -61,7 +61,8 @@ import FeaturedCard from "./FeaturedCard.astro"
         width: 50ch;
         aspect-ratio: 1;
         z-index: -1;
-        fill: hsl(0 0 0 / 0.02);
+        color: #00000005;
+        fill: currentColor;
         transform: rotate(5deg);
     }
 
@@ -75,28 +76,27 @@ import FeaturedCard from "./FeaturedCard.astro"
         display: grid;
         gap: 1.5rem;
 
-        ul {
+        & > ul.more-crosswords-list {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            gap: 0.75rem;
+            gap: 1rem;
 
 
         }
 
-        a.to-all {
+        & > a.to-all.crossword-tag {
             width: fit-content;
             --clr-3: #232323;
             --clr-4: #7b7c7b;
             --clr-5: #959795;
             --font-size: var(--step-2);
             --drop-shadow: none;
-        margin-bottom: 1.25rem;
-        margin-inline-start: auto;
-        text-decoration: underline;
-        text-decoration-thickness: 2px;
-        text-decoration-color: var(--clr-4);
-        text-decoration: ;
+            margin-bottom: 1.25rem;
+            margin-inline-start: auto;
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-decoration-color: var(--clr-4);
         }
 
 
@@ -104,7 +104,7 @@ import FeaturedCard from "./FeaturedCard.astro"
             padding-block: 0.2rem;
 
 
-            ul {
+            & > ul {
                 flex-direction: column;
             }
         }

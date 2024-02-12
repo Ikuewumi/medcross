@@ -412,21 +412,21 @@ strong {
 
 .crossword-tag {
     --gradient-angle: 0deg;
-    --clr-3: #eff9ff;
-    --clr-4: #82ec82;
-    --clr-5: #5ebc5e;
+    --_clr-3: var(--clr-3, #232323);
+    --_clr-4: var(--clr-4, #7b7c7b);
+    --_clr-5: var(--clr-5, #959795);
     --font-weight: 700;
     --font-size: 1.2rem;
     --lh: 1;
     --height: fit-content;
-    --drop-shadow: drop-shadow(0px 0px 2px #5ebc5e);
+    --drop-shadow: none;
     --bg-img: conic-gradient(
         from var(--gradient-angle),
-        var(--clr-3),
-        var(--clr-4),
-        var(--clr-5),
-        var(--clr-4),
-        var(--clr-3)
+        var(--_clr-3),
+        var(--_clr-4),
+        var(--_clr-5),
+        var(--_clr-4),
+        var(--_clr-3)
     );
 
     height: var(--height);
@@ -434,8 +434,10 @@ strong {
     font-size: var(--font-size);
     line-height: var(--lh);
     color: transparent;
+    background-color: var(--clr-3);
     background-image: var(--bg-img);
     background-clip: text;
+    -webkit-background-clip: text;
     filter: var(--drop-shadow);
 }
 
