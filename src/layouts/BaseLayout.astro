@@ -29,14 +29,14 @@ const isProduction = (process.env.NODE_ENV || 'development') === 'production'
     </slot>
 
     <!-- Service Worker -->
-    {isProduction && <script src="/registerSW.js"></script> }
+    {isProduction && <script defer src="/registerSW.js"></script> }
 
 
 
 
 
     <!-- Database Script -->
-    <script>
+    <script defer>
         import { getDb } from "../composables/db";
         window.getDb = async () => {
             if (!window.idb) {
