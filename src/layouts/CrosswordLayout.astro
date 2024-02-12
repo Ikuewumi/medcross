@@ -32,7 +32,7 @@ const { title, description, image, categories, author, size, words, authorImage 
 
     <section class="grid-setup" id="crossword-page">
         <figure class="image valencia">
-            <img src={image} alt={title}  />
+            <img src={image} alt={title} loading="lazy"  />
         </figure>
         
         <ul class="categories">
@@ -45,7 +45,7 @@ const { title, description, image, categories, author, size, words, authorImage 
 
         <article class="author">
             <figure class="author-image">
-                <img src={authorImage} alt={author}>
+                <img src={authorImage} alt={author} loading="lazy">
             </figure>
 
             <p>By <strong>{author}</p>
@@ -133,10 +133,12 @@ section {
 
     figure.author-image {
         --radius: 50%;
+        --border: 1px solid var(--clr-white);
         position: relative;
         width: var(--image-size, 50px);
         border-radius: var(--radius);
-        outline: 1px solid var(--clr-white);
+        outline: var(--border);
+        border: var(--border);
         outline-offset: -5px;
         aspect-ratio: 1;
         overflow: hidden;

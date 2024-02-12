@@ -14,6 +14,7 @@
 
 ### 2024-02-11
 
+- Added lazy loading to all images except the hero of the home page
 - Added featured crossword section to home page
 - Fixed the aspect ratio inconsistencies between my hero-image's html and css
 - Added an image to the meta description of the home page
