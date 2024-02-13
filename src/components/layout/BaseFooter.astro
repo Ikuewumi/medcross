@@ -1,0 +1,264 @@
+---
+const currentYear = new Date().getFullYear()
+---
+
+<footer id="footer" class="crossword-tag grid-setup">
+
+    <div role="presentation">
+    <strong id="footer-navigation" class="sr-only">
+        Footer Navigation
+    </strong>
+
+
+    <nav aria-labelledby="footer-navigation">
+        <div class="logo">
+            <h2 class="sr-only">Logo</h2>
+            <figure>
+
+                <strong>medcross</strong>
+            </figure>
+        </div>
+
+        <div class="explore">
+            <h3>explore</h3>
+            <ul>
+                <li><a href="/">home</a></li>
+                <li><a href="/">archive</a></li>
+                <li><a href="/">series</a></li>
+                <li><a href="/">settings</a></li>
+                <li><a href="/">help</a></li>
+            </ul>
+        </div>
+
+        <div class="developer">
+            <h3>dev</h3>
+            <ul>
+                <li><a href="/">builder</a></li>
+                <li><a href="/">colophon</a></li>
+                <li><a href="/">changelog</a></li>
+ 
+            </ul>
+        </div>
+
+    </nav>
+
+    <hr />
+
+    <div class="copyright">
+        <p>&copy; {currentYear}, <em>iKAY</em></p>
+
+
+        <ul class="social-links">
+            <li>
+                <a style="--clr: hsl(100deg, 0%, 100%)" href="https://github.com/Ikuewumi/medcross" target="_blank" title="GitHub">
+                    <svg viewBox="0 0 24 24">
+                        <title>GitHub</title>
+                        <use href="#github"></use>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    </div>
+
+</footer>
+
+<style lang="scss">
+footer.crossword-tag{
+
+     --clr-3: hsl(340.85deg 4.6% 7.06% / 30%);
+    --clr-4: hsl(111deg 9.54% 27.58% / 30%);
+    --clr-5: hsl(320.08deg 2.86% 9.46% / 30%);
+
+
+    grid-column: content;
+
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+    margin-top: 3.5rem;
+    padding-block: 1.25rem 1rem;
+    padding-inline: 0;
+    background-clip: border-box;
+    box-shadow: -3px -3px 4px -2px hsl(var(--shadow-color) / 0.2);
+    color: var(--clr-grey-900);
+
+    @media (min-width: 768px) {
+        padding-inline: 1rem;
+        padding-block: 2rem 1rem;
+    }
+
+
+    & > div {
+        grid-column: content;
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 1.75rem;
+    margin-bottom: 1.5rem; 
+
+    @media (min-width: 768px) {
+        gap: 2.5rem 1.75rem;
+
+        & > .explore {
+            margin-inline-start: auto;    
+    
+        }
+    }
+
+
+    & > .logo {
+        --icon-size: 40px;
+        margin-top: 0;
+        width: 100%;
+        align-self: start;
+        
+        figure {
+            display: flex;
+            gap: 0.15rem;
+            align-items: start;
+            justify-content: flex-start;
+            
+        }
+
+        svg {
+            width: var(--icon-size);
+            fill: currentColor
+        }
+
+        strong {
+            font-size: var(--step-6);
+            letter-spacing: -2px;
+            line-height: 0.9;
+        }
+    
+        @media (min-width: 768px) {
+            width: fit-content;
+        }
+
+    }
+
+
+
+    @media (min-width: 300px) and (max-width: 768px) {
+        gap: 1.75rem 2.75rem;
+
+
+    }
+
+    & > div {
+        display: grid; 
+        gap: 1.5rem;
+        width: fit-content;
+
+        @media (min-width: 768px) {
+            margin-top: 0.5rem;
+        }
+
+        h3 {
+            letter-spacing: -1.5px;
+            font-size: var(--step-3);
+            text-transform: capitalize;
+            font-weight: 700;
+        }
+
+        ul {
+            display: grid;
+            gap: 0.75rem;
+            line-height: 1;
+            font-weight: 400;
+        }
+        
+
+        li {
+            display: contents;
+        }
+
+        a {
+            color: var(--clr-grey-900);
+            background: hsl(0deg 0% 100% / 0.1);
+            width: fit-content;
+            padding: 0.2rem 0.4rem 0.3rem 0.4rem;
+            font-weight: 500;
+
+
+            &:hover, &:focus {
+                color: var(--clr-grey-400);
+                background-color: hsl(0deg 0% 100% / 0.7);
+        
+            }
+        }
+
+
+        
+        
+    }
+
+
+    
+}
+
+hr {
+    background-color: var(--clr-grey-700);
+    border-color: var(--clr-grey-700);
+    border-width: 1px;
+}
+
+
+.copyright {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    
+    
+    @media (min-width: 768px) {
+        flex-direction: row;
+    }
+    
+    p {
+        font-weight: 600;
+        color: var(--clr-grey-800);
+    }
+}
+
+ul.social-links {
+    --icon-size: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+
+
+    & > li {
+        display: contents;
+    }
+
+    a {
+        display: flex;
+        cursor: pointer;
+        color: var(--clr, var(--clr-grey-400));
+        filter: drop-shadow(1px 2px 4px var(--clr-grey-400));
+        transition: filter 100ms ease-in;
+
+        &:hover, &:focus {
+            filter: none;
+        }
+    }
+
+    svg {
+        width: var(--icon-size);
+        line-height: 1;
+    }
+
+}
+</style>

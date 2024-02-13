@@ -1,0 +1,81 @@
+---
+
+---
+
+
+<section id="about-author" class="crossword-tag grid-setup">
+    <h2>
+        <span>Hello,</span>
+        <svg role="presentation" viewBox="0 0 24 24"><use href="#waving-hand"></use></svg>
+    </h2>
+    <p>My name is Ayobami. I am a beginner fullstack developer, and I love building things for the web. You can checkout my <a href="https://github.com/Ikuewumi" target="_blank">GitHub page here</a>, and if you want to reach out to me, you can send a message to me on my email, <a href="mailto:ayobamsik@gmail.com">here</a></p>
+</section>
+
+
+<style lang="scss">
+    #about-author {
+        --clr-3: hsla(138, 71%, 5%, 0.3);
+        --clr-4: hsla(111, 82%, 15%, 0.3);
+        --clr-5: hsla(126, 93%, 11%, 0.3);
+        --font-weight: 400;
+        --drop-shadow: 2px 2px 0 2px var(--clr-2);
+
+        gap: 0.95rem 0;
+        position: relative;
+        margin-top: 2rem;
+        border-radius: var(--radius);
+        padding-block: 1.5rem 1.25rem;
+        background-clip: border-box;
+        -webkit-background-clip: border-box;
+        box-shadow: var(--shadow-elevation-medium);
+        color: var(--clr-grey-900);
+    }
+
+
+    h2 {
+        --icon-size: 50px;
+        display: flex;
+        flex-direction: row;
+        gap: 0.4rem;
+        align-items: end;
+        font-size: var(--step-5);
+
+    }
+
+
+    svg {
+        cursor: pointer;
+        width: var(--icon-size);
+        padding: 0.5rem;
+        color: hsl(49, 91%, 49%);
+        background: var(--clr-grey-400);
+        outline: 2px solid var(--clr-grey-900);
+        border-radius: 50%;
+        position: absolute;
+        inset: calc(-0.25 * var(--icon-size)) calc(-0.25 * var(--icon-size)) auto auto;
+    }
+    
+
+    a {
+
+        --bg: hsl(0deg 0 100% / 0.15);
+        --clr: var(--clr-grey-900);
+        text-decoration: underline;
+        font-weight: 600;
+        color: var(--clr);
+        background: var(--bg);
+        transition: 100ms ease-out;
+
+        &:hover, &:focus {
+            --bg: hsl(0deg 0 100% / 0.85);
+            --clr: var(--clr-grey-400);
+        }
+    }
+
+
+
+    p {
+        font-size: var(--step-1);
+        line-height: 1.7;
+    }
+</style>

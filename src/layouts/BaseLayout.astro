@@ -1,10 +1,11 @@
 ---
-import SkipLink from "../components/SkipLink.astro";
-import BaseHeader from "../components/BaseHeader.astro";
-import Assets from "../components/Assets.astro";
+import SkipLink from "../components/layout/SkipLink.astro";
+import BaseHeader from "../components/layout/BaseHeader.astro";
+import BaseFooter from "../components/layout/BaseFooter.astro";
+import Assets from "../components/layout/Assets.astro";
 import Toast from "../components/utilities/Toast.svelte";
 import "../styles/main.scss"
-import MetaInformation from "../components/MetaInformation.astro";
+import MetaInformation from "../components/layout/MetaInformation.astro";
 import homePageImage from "../images/home-page.jpg"
 
 const { title } = Astro.props.frontmatter || Astro.props 
@@ -36,7 +37,7 @@ const isProduction = (process.env.NODE_ENV || 'development') === 'production'
 
 
     <!-- Database Script -->
-    <script defer>
+    <script>
         import { getDb } from "../composables/db";
         window.getDb = async () => {
             if (!window.idb) {
@@ -54,10 +55,13 @@ const isProduction = (process.env.NODE_ENV || 'development') === 'production'
     <SkipLink />
     <BaseHeader />
     <main id="main">
-        <slot>
+        <slot />
+        <Toast client:load />
     </main>
+
     <Assets />
-    <Toast client:load />
+
+    <BaseFooter />
 
 
     

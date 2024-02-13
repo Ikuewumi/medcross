@@ -240,8 +240,7 @@ button:disabled {
 }
 
 body {
-    --offset: 1.25rem;
-    padding-bottom: 2rem;
+    --grid-offset: 1.25rem;
     background-color: var(--clr-grey-800);
     background-image: var(--body-bg-image);
     background-size: var(--body-bg-size);
@@ -259,7 +258,7 @@ body, body .grid-setup {
     display: grid;
     gap: 1rem 0;
     grid-template-columns:
-    [full-start left-start] minmax(var(--offset), 1fr) [content-start right-start] minmax(auto, 80ch) [content-end left-end] minmax(var(--offset), 1fr) [full-end right-end];
+    [full-start left-start] minmax(var(--grid-offset), 1fr) [content-start right-start] minmax(auto, 80ch) [content-end left-end] minmax(var(--grid-offset), 1fr) [full-end right-end];
     
 }
 
@@ -449,7 +448,8 @@ strong {
 #crossword-page.ongoing > p, 
 #crossword-page.ongoing > figure,
 #crossword-page.ongoing span#user-done,
-header.ongoing {
+header.ongoing,
+footer.ongoing {
     display: none;
 }
 

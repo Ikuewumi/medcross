@@ -12,6 +12,12 @@
 
 ## Unreleased
 
+### 2024-02-13
+
+- Added footer
+- Added the about the author section
+- Removed defer from the database script
+
 ### 2024-02-11
 
 - Added lazy loading to all images except the hero of the home page

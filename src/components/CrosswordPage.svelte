@@ -21,7 +21,7 @@
     import GameEnded from "./utilities/GameEnded.svelte";
     import { onMount } from "svelte";
 
-    const ids = ["#crossword-page", "header"];
+    const ids = ["#crossword-page", "header", "footer"];
 
     gameOngoing.subscribe((state) => {
         ids.map((id) => {
