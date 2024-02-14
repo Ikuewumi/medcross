@@ -1,135 +1,84 @@
 ---
 import demo from "../../images/css.png";
-import {type CollectionEntry, getEntry} from "astro:content"
-
+import { type CollectionEntry, getEntry } from "astro:content";
 
 export interface Props {
-	data: CollectionEntry<'crossword'> 
-	
+	data: CollectionEntry<"crossword">["data"] & { slug: string };
 }
 
-const {data} = Astro.props as Props;
-const author = (await getEntry('author', data.author.id)).data;
-
+const { data } = Astro.props as Props;
+const author = (await getEntry("author", data.author.id)).data;
 
 ---
 
-
-
 <div class="card">
-	<figure>
-		<img src={data.image} width="160" height="90" alt="Home Page" />
-	</figure>
-	<div class="content">
-		<a class="category" href="/"><span class="crossword-tag">{data.categories[0]}</span></a>
-		<a class="link" href={`/crossword/${data.slug}`}><h2>{data.title}</h2></a>
-		<div class="author">
-			<p>By <strong>{author.name}</strong></p>
-		</div>
-		<p>{data.description}</p>	
-	</div>
+	
+		<a class="category" href="/archive">
+			<span class="crossword-tag">#{data.categories[0]}</span>
+		</a>
+		<a class="link" href={`/crossword/${data.slug}`}>
+			<h2>{data.title}</h2>
+		</a>
+		<p class="author">By <strong>{author.name}</strong></p>
+		<p>{data.description}</p>
+
 </div>
 
-
-
 <style lang="scss">
-.card {
-	
-	
-
-
-	display: grid;
-	background-color: hsl(0deg 0% 100% / 0.8);
-	border: 1px solid var(--clr-grey-800);
-	border-radius: var(--radius);
-	color: var(--clr-grey-400);
-	box-shadow: var(--shadow-elevation-low);
-	
-}
-
-
-
-.card > figure {
-
-	width: 100%;
-	aspect-ratio: 16 / 9;
-	padding: 0.65rem 0.75rem;
-
-	& > img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
+	.card {
+		display: grid;
+		gap: 0.5rem;
+		background-color: hsl(0deg 0% 100% / 0.8);
+		border: 1px solid var(--clr-grey-800);
 		border-radius: var(--radius);
-		border: 1px solid var(--clr-grey-700);
+		padding: 0.55rem 0.85rem 0.75rem 0.85rem;
+		color: var(--clr-grey-400);
+		box-shadow: 0 0 4px -1px hsl(var(--shadow-color) / 0.5);
 	}
 
-}
-
-
-
-
-
-.card > .content {
-
-	padding-inline: 0.75rem;
-	padding-block-end: 1.25rem;
-	display: grid;
-	align-items: start;
-	gap: 0.25rem;
-
-
-	span.crossword-tag {
-		--font-weight: 700;
-		--font-size: var(--step-0);
-	}
-
-
-	a {
+	a.link, a.category {
 		display: flex;
+		width: fit-content;
 
+		&:focus, &:hover {
+			outline-color: transparent;
+			text-decoration: 2px underline var(--underline, var(--clr-grey-400));
+		}
 	}
+
+
+	a.category {
+		--underline: #3dda35;
+		text-decoration: none;
+		span.crossword-tag {
+			--font-size: var(--step-0);
+			--font-weight: 900;
+			--drop-shadow: drop-shadow(0px 0px 1px #00000025);
+		}
+	}
+
 
 	a.link {
-		color: var(--clr-grey-400);
 		text-decoration: none;
-		letter-spacing: -1.5px;
-		margin-top: 0.25rem;
+		color: var(--clr-grey-400);
 
-		&:hover, &:focus {
-			text-decoration: underline;
-			text-decoration-color: #2fd72f;
-			outline: none;
+
+		h2 {
+			letter-spacing: -1px;
+			line-height: 0.9;
+			font-size: 1.85rem;
 		}
 	}
 
-	h3 {
-		line-height: 0.9;
-		
-	}
 
-
-
-	.author {
+	p.author { 
 		margin-top: 0.25rem;
+		font-size: 1rem;
 		color: var(--clr-grey-500);
-		letter-spacing: 0px;
-
-
-		strong {
-			font-style: italic;
-		}
+		line-height: 1.2;
 	}
-
-
 
 	p {
-		line-height: 1.4;
+		line-height: 1.5;
 	}
-
- 
-}
-
-
-
-
 </style>

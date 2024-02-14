@@ -434,11 +434,17 @@ strong {
     font-size: var(--font-size);
     line-height: var(--lh);
     color: transparent;
-    background-color: var(--clr-3);
+    background-color: var(--_clr-3);
     background-image: var(--bg-img);
-    background-clip: var(--_bg-clip);
     -webkit-background-clip: var(--_bg-clip);
+    background-clip: var(--_bg-clip);
     filter: var(--drop-shadow);
+
+
+    @supports not (background-clip: text) {
+        color: var(--fallback-clr, var(--_clr-4));
+        background: var(--fallback-bg, transparent);
+    }
 }
 
 

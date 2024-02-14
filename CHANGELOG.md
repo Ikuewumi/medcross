@@ -2,11 +2,11 @@
 
 ## TODO
 
-- add series to the crossword
-- make the classic crossword work on mobile (most-likely by building a keyboard)
-- add colophon
-- add help to the crossword page
-- make a way for the admin to add a crossword into the builder via its JSON
+- add series to the crossword.
+- make the classic crossword work on mobile (most-likely by building a keyboard).
+- add colophon.
+- add help to the crossword page.
+- make a way for the admin to add a crossword into the builder via its JSON.
 
 ---
 
@@ -14,8 +14,10 @@
 
 ### 2024-02-14
 
-- Started working on the keyboard
-- Added the archive page
+- Added fallback for browsers that don't support the `background-clip` css property.
+- Changed the design of the card on the archive page.
+- Started working on the keyboard.
+- Added the archive page.
 
 ### 2024-02-13
 
