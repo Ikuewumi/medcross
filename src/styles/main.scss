@@ -427,6 +427,7 @@ strong {
         var(--_clr-4),
         var(--_clr-3)
     );
+    --_bg-clip: var(--bg-clip, text);
 
     height: var(--height);
     font-weight: var(--font-weight);
@@ -435,8 +436,8 @@ strong {
     color: transparent;
     background-color: var(--clr-3);
     background-image: var(--bg-img);
-    background-clip: text;
-    -webkit-background-clip: text;
+    background-clip: var(--_bg-clip);
+    -webkit-background-clip: var(--_bg-clip);
     filter: var(--drop-shadow);
 }
 

@@ -1,10 +1,10 @@
 ---
-title: "Random Anatomy Facts"
+title: "Random Anatomy Facts 2"
 author: ayobami
 image: "https://i.ibb.co/hLTdhSt/image.jpg"
 description: "part 2"
 categories: ["anatomy"]
-date: 2024-06-01
+date: 2024-02-11
 size: 9
 words: [
     {"word":"URETER","start":[3,0],"end":[3,5],"meaning":"a tube that carries urine from the kidneys to the bladder"},

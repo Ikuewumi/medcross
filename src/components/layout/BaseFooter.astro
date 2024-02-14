@@ -23,7 +23,7 @@ const currentYear = new Date().getFullYear()
             <h3>explore</h3>
             <ul>
                 <li><a href="/">home</a></li>
-                <li><a href="/">archive</a></li>
+                <li><a href="/archive">archive</a></li>
                 <li><a href="/">series</a></li>
                 <li><a href="/">settings</a></li>
                 <li><a href="/">help</a></li>
@@ -33,7 +33,7 @@ const currentYear = new Date().getFullYear()
         <div class="developer">
             <h3>dev</h3>
             <ul>
-                <li><a href="/">builder</a></li>
+                <li><a href="/builder">builder</a></li>
                 <li><a href="/">colophon</a></li>
                 <li><a href="/">changelog</a></li>
  
@@ -70,6 +70,7 @@ footer.crossword-tag{
      --clr-3: hsl(340.85deg 4.6% 7.06% / 30%);
     --clr-4: hsl(111deg 9.54% 27.58% / 30%);
     --clr-5: hsl(320.08deg 2.86% 9.46% / 30%);
+    --bg-clip: border-box;
 
 
     grid-column: content;
@@ -79,7 +80,7 @@ footer.crossword-tag{
     margin-top: 3.5rem;
     padding-block: 1.25rem 1rem;
     padding-inline: 0;
-    background-clip: border-box;
+    
     box-shadow: -3px -3px 4px -2px hsl(var(--shadow-color) / 0.2);
     color: var(--clr-grey-900);
 

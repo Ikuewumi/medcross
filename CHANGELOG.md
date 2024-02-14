@@ -12,6 +12,11 @@
 
 ## Unreleased
 
+### 2024-02-14
+
+- Started working on the keyboard
+- Added the archive page
+
 ### 2024-02-13
 
 - Added footer

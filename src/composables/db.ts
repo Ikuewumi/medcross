@@ -30,8 +30,20 @@ export interface Coins {
         
 }
 
+export interface CurrentCrossWord {
+    key: "current",
+    value: {
+        id: "current",
+        crossword?: {
+            urlId: string,
+            title:  string
+        }
+    }
+    
+}
 
-type Settings = Bookmarked | Coins | Completed
+
+type Settings = Bookmarked | Coins | Completed | CurrentCrossWord
 
 
 export interface UserAnswersDb extends DBSchema {

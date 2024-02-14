@@ -209,8 +209,7 @@
                 </div>
 
                 <div class="button-bar">
-                    <button title="Close" on:click={closeConfirmModal}>Close</button
-                    >
+                    <button title="Close" on:click={closeConfirmModal}>Close</button>
                     <button title="Start" on:click={startGame}>Start</button>
                 </div>
             </form>
@@ -340,14 +339,14 @@
 
     span#user-done {
         --offset: 0.5rem;
-        --bg: hsla(105, 39%, 39%, 0.552);
+        --bg: hsla(105, 59%, 39%, 0.552);
         --clr: var(--clr-grey-900);
         --width: 60px;
         cursor: pointer;
         grid-column: content;
         grid-row: 1 / 2; // Has the same grid-row value as the figure to stack them
         justify-self: end;
-        background-color: #00000010;
+        background-color: #ffffff30;
         position: relative;
         margin: var(--offset) var(--offset) 0 0;
         width: var(--width);
