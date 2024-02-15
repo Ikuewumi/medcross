@@ -2,7 +2,7 @@
 
 ## TODO
 
-- add series to the crossword.
+- Add `trivia`
 - make the classic crossword work on mobile (most-likely by building a keyboard).
 - add colophon.
 - add help to the crossword page.
@@ -10,11 +10,17 @@
 
 ---
 
-## Unreleased
+## Timeline
+
+### 2024-02-15
+
+- Implemented bookmarking for crosswords
+- Refactor categories to point to a reference
+- Added Series Collection and created the page for each individual series
 
 ### 2024-02-14
 
-- Added fallback for browsers that don't support the `background-clip` css property.
+- Added fallback for browsers that don't support the `background-clip` css property as text.
 - Changed the design of the card on the archive page.
 - Started working on the keyboard.
 - Added the archive page.

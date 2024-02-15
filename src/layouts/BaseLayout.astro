@@ -39,6 +39,7 @@ const isProduction = (process.env.NODE_ENV || 'development') === 'production'
     <!-- Database Script -->
     <script>
         import { getDb } from "../composables/db";
+        import { slashify } from "../composables/utilities";
         window.getDb = async () => {
             if (!window.idb) {
                 const db = await getDb()
@@ -46,6 +47,10 @@ const isProduction = (process.env.NODE_ENV || 'development') === 'production'
             }
 
             return window.idb
+        }
+
+        window.getPathName = () => {
+            return slashify(window.location.pathname);
         }
     </script>
 

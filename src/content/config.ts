@@ -1,6 +1,5 @@
 import { z, defineCollection, reference } from 'astro:content';
 
-
 const author = defineCollection({
     type: 'data',
     schema: z.object({
@@ -9,6 +8,13 @@ const author = defineCollection({
     })
 })
 
+const category = defineCollection({
+    type: 'data',
+    schema: z.object({
+        name: z.string(),
+        description: z.string()
+    })
+})
 
 
 const crossword = defineCollection({
@@ -18,7 +24,7 @@ const crossword = defineCollection({
         author: reference('author'),
         image: z.string().url(),
         description: z.string().optional(),
-        categories: z.array(z.string()),
+        categories: reference('category'),
         date: z.date(),
         size: z.number(),
         words: z.array(z.object({
@@ -31,17 +37,22 @@ const crossword = defineCollection({
 })
 
 
-const category = defineCollection({
-    type: 'data',
+const series = defineCollection({
+    type: "content",
     schema: z.object({
-        name: z.string(),
-        description: z.string()
+        title: z.string(),
+        author: reference('author'),
+        description: z.string().optional(),
+        category: reference('category'),
+        date: z.date(),
+        crosswords: z.array(reference('crossword'))
     })
 })
 
 
+
 export const collections = {
-    author, crossword, category
+    author, crossword, category, series
 }
 
 

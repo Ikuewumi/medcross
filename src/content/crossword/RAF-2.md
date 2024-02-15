@@ -1,9 +1,9 @@
 ---
-title: "Random Anatomy Facts 2"
+title: "Random Anatomy 2"
 author: ayobami
 image: "https://i.ibb.co/hLTdhSt/image.jpg"
 description: "part 2"
-categories: ["anatomy"]
+categories: anatomy
 date: 2024-02-11
 size: 9
 words: [

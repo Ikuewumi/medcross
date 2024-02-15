@@ -9,9 +9,13 @@ export async function getStaticPaths() {
     params: { slug: entry.slug }, props: { entry },
   }));
 }
+
+
 // 2. For your template, you can get the entry directly from the prop
 const { entry } = Astro.props;
-const author = await getEntry(entry.data.author)
+const category = (await getEntry('category', entry.data.categories.id));
+const author = (await getEntry('author', entry.data.author.id))
+
 ---
 
 <CrosswordLayout 
@@ -20,7 +24,8 @@ const author = await getEntry(entry.data.author)
   image={entry.data.image}
   author={author.data.name}
   authorImage={author.data.image}
-  categories={entry.data.categories}
+  categories={category.data.name}
   date={entry.data.date}
   size={entry.data.size}
   words={entry.data.words as Word[]}  />
+

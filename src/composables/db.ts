@@ -17,7 +17,10 @@ export interface Bookmarked {
     key: "bookmarked",
     value: {
         id: "bookmarked",
-        crosswords: string[]
+        crosswords: {
+            title: string,
+            urlId: string,
+        }[]
     }
 }
 

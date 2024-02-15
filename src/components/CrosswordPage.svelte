@@ -17,9 +17,10 @@
     import GermanMode from "../components/german/GermanMode.svelte";
     import CrosswordClassic from "./crossword/CrosswordClassic.svelte";
     import { enterMsg } from "../composables/toast";
-    import { sleep } from "../composables/utilities";
+    import { sleep, slashify } from "../composables/utilities";
     import GameEnded from "./utilities/GameEnded.svelte";
     import { onMount } from "svelte";
+    import type { Bookmarked, Completed } from "../composables/db";
 
     const ids = ["#crossword-page", "header", "footer"];
 
@@ -42,17 +43,34 @@
     let userAnswers: Word[] = [];
     let gameEndedModal = false;
     let confirmModal = false;
+    let bookmarked:boolean;
+    let hasCompleted:boolean;
     const modes = ["trivia", "classic"] as const;
     type GameMode = (typeof modes)[number];
     let selectedMode: GameMode = "trivia";
 
     const updateUI = async () => {
-        const urlId = window.location.pathname;
+        const urlId = window.getPathName();
         const db = await window.getDb()
         const ans = await db.get('userAnswers', urlId)
         if (ans?.urlId && Array.isArray(ans?.words)) {
-            userAnswers = ans.words
+            userAnswers = ans.words    
         }
+        // Bookmarking Logic
+        const bookmarks = ((await db.get('settings', 'bookmarked')) ?? {
+            id: "bookmarked",
+            crosswords: []
+        }) as any as Bookmarked["value"];
+
+        bookmarked = !!(bookmarks.crosswords.find(c => c.urlId === urlId));
+
+        // Completed logic;
+        const completed = ((await db.get('settings', 'completed')) ?? {
+            id: "completed",
+            crosswords: []
+        }) as any as Completed["value"]
+
+        hasCompleted = completed.crosswords.includes(urlId);
 
     }
 
@@ -98,7 +116,7 @@
     const changeUserAnswers = (e: CustomEvent<Word[]>) => {
         userAnswers = e.detail;
         if (userAnswers.length) {
-            const urlId = window.location.pathname;
+            const urlId = window.getPathName();
 
             window
                 .getDb()
@@ -112,7 +130,7 @@
                     enterMsg(
                         e?.message || "Something went wrong",
                         "failure",
-                        10000,
+                        4000,
                     );
                 });
         }
@@ -143,7 +161,7 @@
     const finishGame = async () => {
         try {
             gameEndedModal = true;
-            const urlId = window.location.pathname;
+            const urlId = window.getPathName();
             const db = await window.getDb();
             const ans = await db.get("settings", "completed");
             const completedAnswers = (ans?.id === "completed" && Array.isArray(ans?.crosswords)) ? ans : {
@@ -174,13 +192,73 @@
         gameEndedModal = false;
     };
 
+
+    const toggleBookmark = async () => {
+        const urlId = window.getPathName();
+        const db = await window.getDb();
+        const titleEl = document.querySelector('#crossword-title')! as HTMLElement;
+        const title = titleEl.innerText!;
+        const bookmarks = (await db.get('settings', 'bookmarked')) || {
+            id: "bookmarked",
+            crosswords: []
+        } as any as Bookmarked["value"];
+
+        if (bookmarks.id !== "bookmarked") return;
+        
+        if (bookmarked) {
+            await db.put("settings", {
+                id: "bookmarked",
+                crosswords: bookmarks.crosswords.filter(c => c.urlId !== urlId)
+            })
+        }
+        else {
+            await db.put("settings", {
+                id: "bookmarked",
+                crosswords: [...bookmarks.crosswords, {
+                    urlId, title
+                }]
+            })
+        }
+
+        updateUI();
+    }
+
 </script>
 
 {#if data?.words.length > 1 && data?.size > 1}
+
+<div class="button-bar-info">
+    <button title="bookmarked" on:click={toggleBookmark}>
+        {#if bookmarked}
+        <svg viewBox="0 0 24 24">
+            <use href="#bookmark-filled"></use>
+        </svg>
+        <span>Remove Bookmark</span>
+        {:else}
+        <svg viewBox="0 0 24 24">
+            <use href="#bookmark-outline"></use>
+        </svg>
+        <span>Bookmark</span>
+ 
+        {/if}
+    </button>
+
+    {#if hasCompleted}
+    <button title="Checked">
+        <svg viewBox="0 0 24 24"><use href="#done-all"></use></svg>
+        <span>Completed</span>
+    </button>
+    {/if}
+</div>
+
+
 <button class="play" on:click={openConfirmModal} id="play-btn">
     <svg viewBox="0 0 24 24"><use href="#play"></use></svg>
     <span>{progress === 0 ? `Play` : `Continue`}</span>
 </button>
+
+
+
 
 <span id="user-done" title="Progress of The Crossword" style="--progress: {progress}">
     <span class="sr-only">{progress}% done</span>
@@ -250,6 +328,38 @@
 {/if}
 
 <style lang="scss">
+    .button-bar-info {
+        grid-column: content;
+        grid-row: 5 / 6;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+
+
+
+
+        & > button {
+            --icon-size: 30px;
+            --padding: 0.25rem 0.5rem;
+            --gap: 0.25rem;
+
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-elevation-low);
+
+
+            svg {
+                width: var(--icon-size);
+                aspect-ratio: 1;
+                filter: drop-shadow(1px 1px 2px var(--clr-grey-700));
+            }
+
+
+            
+        }
+    }
+
+
     button.play {
         --_padding: 0;
         --_icon-size: 3.75rem;

@@ -1,10 +1,10 @@
 ---
 
-title: "Random Anatomy Facts"
+title: "Random Anatomy"
 author: ayobami
 image: "https://i.ibb.co/hLTdhSt/image.jpg"
 description: "start of a series of crosswords about the anatomy of the human body"
-categories: ["anatomy"]
+categories: anatomy
 date: 2024-02-10
 size: 10
 

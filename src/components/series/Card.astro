@@ -1,0 +1,87 @@
+---
+export interface Props {
+	title: string
+	slug: string
+}
+
+
+const {title, slug} = Astro.props
+---
+
+<div class="series-crossword-card">
+	<a href={`/crossword/${slug}/`}><h2>{title}</h2></a>	
+</div>
+
+
+<style lang="scss"> 
+
+.series-crossword-card {
+	--marker-width: 25px;
+	--padding: 1.5rem 1.25rem;
+	--card-bg: var(--clr-white);
+	--card-clr: var(--clr-grey-400);
+	--counter-bg: var(--clr-grey-400);
+	--counter-clr: var(--clr-grey-900);
+	display: flex;	
+	gap: 0.45rem;
+	background: var(--card-bg);
+	cursor: pointer;
+	color: var(--card-clr);
+	padding: var(--padding);
+	border-radius: var(--radius);
+	counter-increment: series-crossword-item;
+	box-shadow: var(--shadow-elevation-low);
+
+	&, &::before {
+		transition: 200ms background ease-out;
+	}
+
+	&::before {
+		content: counter(series-crossword-item);
+		display: flex;
+		align-self: start;
+		flex-shrink: 0;
+		flex-grow: 0;
+		place-items: center;
+		place-content: center;
+		background: var(--counter-bg);
+		color: var(--counter-clr);
+		width: var(--marker-width);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		font-size: calc(var(--marker-width) * 0.5);
+		line-height: 0.9;
+		box-shadow: var(--shadow-elevation-inverse-medium);
+	}
+
+
+	&:hover, &:focus-within {
+		--card-bg: #272727bf;
+		--card-clr: var(--clr-grey-900);
+		--counter-bg: var(--clr-grey-900);
+		--counter-clr: var(--clr-grey-400);
+	}
+
+	a {
+		display: flex;	
+		text-decoration: none;
+		color: currentColor;
+
+
+		&:hover {
+			text-decoration: underline 2px var(--clr-grey-900);
+		}
+	}
+
+	h2 {
+		line-height: 1;
+		letter-spacing: -1px;
+		font-size: var(--step-2);
+	}
+
+
+}
+
+
+
+</style>
