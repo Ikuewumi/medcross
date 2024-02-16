@@ -2,7 +2,7 @@
 import SeriesCard from "../../components/crossword/SeriesCard.astro";
 import type { Word } from "../../composables/engine";
 import CrosswordLayout from "../../layouts/CrosswordLayout.astro";
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
   const blogEntries = await getCollection('crossword');
@@ -17,7 +17,7 @@ const { entry } = Astro.props;
 const category = (await getEntry('category', entry.data.categories.id));
 const author = (await getEntry('author', entry.data.author.id));
 const series = await getCollection('series', ({ data }) => {
-  return data.crosswords.findIndex(c => c.slug === entry.slug) !== -1
+  return data.crosswords.findIndex((c:CollectionEntry<"series">["data"]["crosswords"]) => c.slug === entry.slug) !== -1
 })
 
 
@@ -35,7 +35,7 @@ if (series.length > 1) throw Error(`the item ${entry.id} is included in more tha
     date={entry.data.date}
     size={entry.data.size}
     words={entry.data.words as Word[]}>
-    {series.length && <SeriesCard currentSlug={entry.slug} series={series[0]} />}
+    {series.length > 0 ? <SeriesCard currentSlug={entry.slug} series={series[0]} /> : ""}
   </CrosswordLayout>
 
     

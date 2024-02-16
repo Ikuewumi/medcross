@@ -2,7 +2,6 @@
     import {
         CrossWord as C,
         type Cross,
-        type CrossFull,
         type Word,
     } from "../composables/engine";
     import { decodeString } from "../composables/text";
@@ -17,7 +16,7 @@
     import GermanMode from "../components/german/GermanMode.svelte";
     import CrosswordClassic from "./crossword/CrosswordClassic.svelte";
     import { enterMsg } from "../composables/toast";
-    import { sleep, slashify } from "../composables/utilities";
+    import { sleep } from "../composables/utilities";
     import GameEnded from "./utilities/GameEnded.svelte";
     import { onMount } from "svelte";
     import type { Bookmarked, Completed } from "../composables/db";
@@ -93,13 +92,6 @@
 
     $: {
         data = JSON.parse(decodeString(enc));
-    }
-
-    const calcColor = (progress: number) => {
-        let clr = `var(--clr-grey-400)`;
-        if (progress > 0 && progress < 100) {clr = `hsl(47, 80%, 35%)` }
-
-        return clr
     }
 
     const startGame = () => {

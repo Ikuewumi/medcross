@@ -93,7 +93,7 @@
 
 
             if (userAnswers_.length === data.words.length) {
-                sleep(2000).then(() => {
+                sleep(0).then(() => {
                     evt('game-finished');
 
                 })
@@ -326,7 +326,7 @@
 
 
         &.keyboard-open {
-            margin-bottom: 175px;
+            margin-bottom: 200px;
         }
 
     }
