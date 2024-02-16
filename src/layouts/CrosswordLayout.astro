@@ -58,6 +58,9 @@ const { title, description, image, categories, author, size, words, authorImage 
         <CrosswordPage enc={
             encodeString(JSON.stringify( { size, words }))
         } client:only  />
+
+
+        <slot></slot>
     </section>
 
 
@@ -69,7 +72,7 @@ section {
     grid-column: full;
     gap: 0.75rem 0;
     position: relative;
-    padding-bottom: 2rem;
+    padding-bottom: 0rem;
 
 
 

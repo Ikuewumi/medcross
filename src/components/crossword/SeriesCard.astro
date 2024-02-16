@@ -1,0 +1,125 @@
+---
+import { getEntry, type CollectionEntry } from 'astro:content';
+
+interface Props {
+	series: CollectionEntry<"series">
+	currentSlug: CollectionEntry<"crossword">["slug"]
+}
+
+
+const { series, currentSlug } = Astro.props;
+const currentIndex = series.data.crosswords.findIndex(c => c.slug === currentSlug);
+if (currentIndex === -1) throw Error(`could not find the crossword in the series, ${series.id}`);
+const previous = series.data.crosswords[currentIndex-1];
+const next = series.data.crosswords[currentIndex+1];
+
+
+let prevItem: CollectionEntry<"series"> = null!;
+let nextItem: CollectionEntry<"series"> = null!;
+
+
+if (previous) {
+
+	prevItem = await getEntry("crossword", previous.slug)! as any as CollectionEntry<"series">;
+	console.log(prevItem)
+}
+
+if (next) {
+
+	nextItem = await getEntry("crossword", next.slug)! as any as CollectionEntry<"series">;
+	console.log(nextItem)
+}
+
+
+---
+
+
+<section class="crossword-series">
+	<h2 id="series-navigation" class="sr-only">Series Navigation</h2>
+	<p>This Crossword is <strong>{currentIndex+1} out of {series.data.crosswords.length}</strong> crosswords of the <a href={`/series/${series.slug}`}>Random Anatomy</a> series</p>
+
+
+	<nav aria-labelledby="series-navigation">
+		<ul>
+			{prevItem && (<li><a href={`/crossword/${prevItem.slug}`} class="previous">Previous: {prevItem.data.title}</a></li>)}
+			{nextItem && (<li><a href={`/crossword/${nextItem.slug}`} class="next">Next: {nextItem.data.title}</a></li>)}
+		</ul>
+	</nav>
+</section>
+
+
+
+<style lang="scss">
+.crossword-series {
+	display: grid;
+	gap: 0.75rem;
+	grid-column: content;
+	border-radius: var(--radius);
+	background-color: var(--clr-grey-900);
+	padding: 1.5rem 1.5rem 1.95rem 1.5rem;
+	margin-top: 2.5rem;
+	box-shadow: var(--shadow-elevation-low);
+		
+	h2+p, ul {
+		font-size: var(--step-1);
+	}
+
+	strong {
+		font-weight: 700;
+	}
+
+	p a{
+		color: var(--clr-grey-400);
+		font-weight: 700;
+		text-decoration: 2px underline #82ec82;
+
+		&:hover, &:focus {
+			color: var(--clr-grey-300);
+			text-decoration-thickness: 4px;
+		}
+	}
+
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		justify-content: space-between;
+		list-style: none;
+
+		li {
+			display: contents;
+		}
+
+		a {
+			display: flex;
+			place-content: center;
+			padding: 0.75rem 1rem;
+			border: 1px solid hsl(var(--shadow-color) / 0.2);
+			border-radius: var(--radius);
+			text-align: center;
+			text-decoration: none;
+			font-weight: 600;
+			color: var(--clr-grey-400);
+			font-size: var(--step-1);
+			transition: box-shadow 200ms ease-out;
+			
+			&:hover, &:focus {
+				box-shadow: var(--shadow-elevation-medium);
+			}
+
+			&.previous {
+				margin-inline-end: auto;
+			}
+
+			&.next {
+				margin-inline-start: auto;	
+			}
+
+		}
+	}
+
+
+}
+
+
+</style>

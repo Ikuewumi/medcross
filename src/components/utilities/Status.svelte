@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from "svelte";
 
 	export let bookmarked = false;
-	export let hasCompleted = true;
+	export let hasCompleted = false;
 
 	const evt = createEventDispatcher();
 

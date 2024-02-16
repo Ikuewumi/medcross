@@ -3,7 +3,6 @@
 ## TODO
 
 - Add `trivia`
-- make the classic crossword work on mobile (most-likely by building a keyboard).
 - add colophon.
 - add help to the crossword page.
 - make a way for the admin to add a crossword into the builder via its JSON.
@@ -14,6 +13,7 @@
 
 ### 2024-02-16
 
+- Added Series Widget to Crosswords In A Series
 - Finished Working on keyboard..Yay!!🎉🎉🎉🎉
 - Extracted the Bookmark and Completed Buttons to their own `Status` component.
 - Added easter-egg to console
