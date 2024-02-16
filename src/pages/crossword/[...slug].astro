@@ -23,8 +23,6 @@ const series = await getCollection('series', ({ data }) => {
 
 if (series.length > 1) throw Error(`the item ${entry.id} is included in more than one series`)
 
-console.log(entry, series)
-
 ---
 <Fragment>
   <CrosswordLayout 

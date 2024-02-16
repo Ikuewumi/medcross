@@ -11,8 +11,7 @@ const handleKey = (e: MouseEvent) => {
     if (button.tagName.toUpperCase() !== "BUTTON") return
     if (specialKeys.includes(button.title)) {
         switch(button.title) {
-            case "Close Keyboard":
-                console.log('closing keyboard')
+            case "Close Keyboard": 
                 evt("close-keyboard");
                 break;
             case "Backspace": 

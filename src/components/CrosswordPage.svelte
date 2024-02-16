@@ -145,13 +145,12 @@
         const coin = $coinCount - costs.revealWord;
         if (coin < 0)
             return (
-                enterMsg(`coins are not sufficient`, `failure`),
-                console.log(coin)
+                enterMsg(`coins are not sufficient`, `failure`) 
             );
 
         $coinCount = coin;
         await sleep(0);
-        console.log($coinCount);
+        
         enterMsg(
             `${$currentWord.word} has been revealed for ${costs.revealWord} coins`,
             `success`,

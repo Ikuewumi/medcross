@@ -21,13 +21,13 @@ let nextItem: CollectionEntry<"series"> = null!;
 if (previous) {
 
 	prevItem = await getEntry("crossword", previous.slug)! as any as CollectionEntry<"series">;
-	console.log(prevItem)
+	
 }
 
 if (next) {
 
 	nextItem = await getEntry("crossword", next.slug)! as any as CollectionEntry<"series">;
-	console.log(nextItem)
+	
 }
 
 
