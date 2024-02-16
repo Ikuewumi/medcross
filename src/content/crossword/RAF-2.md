@@ -1,7 +1,7 @@
 ---
 title: "Random Anatomy 2"
 author: ayobami
-image: "https://i.ibb.co/hLTdhSt/image.jpg"
+image: "https://i.ibb.co/VvGHy01/image-4.jpg"
 description: "part 2"
 categories: anatomy
 date: 2024-02-11
