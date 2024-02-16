@@ -19,6 +19,9 @@ const handleKey = (e: MouseEvent) => {
                 evt("delete-letter");
                 break;
         }
+
+
+        return;
     }
 
 
