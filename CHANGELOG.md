@@ -14,6 +14,8 @@
 
 ### 2024-02-16
 
+- Finished Working on keyboard..Yay!!🎉🎉🎉🎉
+- Extracted the Bookmark and Completed Buttons to their own `Status` component.
 - Added easter-egg to console
 
 ### 2024-02-15

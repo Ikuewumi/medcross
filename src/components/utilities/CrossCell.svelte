@@ -32,6 +32,7 @@
     disabled={disabled}
     tabindex="-1"
     title="Letter at {coordinates}"
+    data-focus={isFocused}
 >
     <slot></slot>
 </button>
@@ -50,7 +51,7 @@
         box-shadow: var(--shadow-elevation-low);
 
 
-        &:focus {
+        &:focus, &[data-focus=true] {
             outline: 2px dotted var(--clr-grey-900);
             outline-offset: -6px;
         }
@@ -66,7 +67,7 @@
         }
 
         &.builder{
-            &:focus {
+            &:focus,&[data-focus=true] {
                 --_bg: hsla(56, 94%, 49%, 0.863);
             }
 

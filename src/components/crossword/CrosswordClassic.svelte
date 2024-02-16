@@ -5,6 +5,7 @@
     import { createEventDispatcher } from "svelte";
     import {currentWord} from "../../composables/store"
     import { sleep } from "../../composables/utilities";
+    import Keyboard from "./Keyboard.svelte";
 
     export let data:Cross = {
         size: 9,
@@ -63,7 +64,7 @@
 
     }
 
-    
+    let keyboardOpen = false;
     let enabledPaths: Coordinate[] = [];
     let coords: Coordinate = enabledPaths[0] ?? [data.words[0].start];
     $currentWord = getCurrentWord(coords, data);
@@ -226,14 +227,20 @@
 
 
 
-        <article class="clue" style="--percent: {progress}%">
+        <article class="clue" style="--percent: {progress}%" class:keyboard-open={keyboardOpen}>
             <p>{$currentWord.meaning}</p>
         </article>
     {/if}
 
 
+    <button id="keyboard-open" title="Open Keyboard" on:click={_ => (keyboardOpen=true)}>
+        <svg viewBox="0 0 24 24">
+            <use href="#keyboard-outline"></use>
+        </svg>
+    </button>
 
-    <DirectionButton dir={direction} />
+
+    <Keyboard open={keyboardOpen} on:enter-key={(e)=> enterKey(e.detail)} on:delete-letter={_=>enterKey(' ')} on:close-keyboard={_ => (keyboardOpen=false)} />
 </section>
 
 
@@ -251,6 +258,32 @@
             background: var(--clr-white);
             border-radius: var(--radius);
             box-shadow: var(--shadow-elevation-low);
+        }
+    }
+
+
+    #keyboard-open {
+        --icon-size: 40px;
+        --padding: 0.2rem 0.75rem;
+        position: fixed;
+        inset: auto 0 10vh auto;
+        border: 0.5px solid hsl(var(--shadow-color) / 0.2);
+        border-radius: 0;
+        border-top-left-radius: var(--radius);
+        border-bottom-left-radius: var(--radius);
+
+        transition: 100ms ease-in;
+        z-index: 4;
+
+        &:hover {
+            background: var(--clr-grey-400);
+            color: var(--clr-grey-900);
+            box-shadow: var(--shadow-elevation-medium);
+        }
+
+        svg {
+            width: var(--icon-size);
+            aspect-ratio: 1;
         }
     }
 
@@ -289,6 +322,11 @@
             transform-origin: top left;
             transition: 400ms ease-out transform;
 
+        }
+
+
+        &.keyboard-open {
+            margin-bottom: 175px;
         }
 
     }

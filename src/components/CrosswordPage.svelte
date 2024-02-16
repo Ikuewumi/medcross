@@ -21,6 +21,7 @@
     import GameEnded from "./utilities/GameEnded.svelte";
     import { onMount } from "svelte";
     import type { Bookmarked, Completed } from "../composables/db";
+    import Status from "./utilities/Status.svelte";
 
     const ids = ["#crossword-page", "header", "footer"];
 
@@ -228,29 +229,8 @@
 {#if data?.words.length > 1 && data?.size > 1}
 
 <div class="button-bar-info">
-    <button title="bookmarked" on:click={toggleBookmark}>
-        {#if bookmarked}
-        <svg viewBox="0 0 24 24">
-            <use href="#bookmark-filled"></use>
-        </svg>
-        <span>Remove Bookmark</span>
-        {:else}
-        <svg viewBox="0 0 24 24">
-            <use href="#bookmark-outline"></use>
-        </svg>
-        <span>Bookmark</span>
- 
-        {/if}
-    </button>
-
-    {#if hasCompleted}
-    <button title="Checked">
-        <svg viewBox="0 0 24 24"><use href="#done-all"></use></svg>
-        <span>Completed</span>
-    </button>
-    {/if}
-</div>
-
+   <Status bookmarked={bookmarked} hasCompleted={hasCompleted} on:toggle-bookmark={toggleBookmark} />
+ </div>
 
 <button class="play" on:click={openConfirmModal} id="play-btn">
     <svg viewBox="0 0 24 24"><use href="#play"></use></svg>
@@ -330,33 +310,7 @@
 <style lang="scss">
     .button-bar-info {
         grid-column: content;
-        grid-row: 5 / 6;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        margin-bottom: 0.5rem;
-
-
-
-
-        & > button {
-            --icon-size: 30px;
-            --padding: 0.25rem 0.5rem;
-            --gap: 0.25rem;
-
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-elevation-low);
-
-
-            svg {
-                width: var(--icon-size);
-                aspect-ratio: 1;
-                filter: drop-shadow(1px 1px 2px var(--clr-grey-700));
-            }
-
-
-            
-        }
+        grid-row: 5 / 6;       
     }
 
 
