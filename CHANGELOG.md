@@ -12,6 +12,10 @@
 
 ## Timeline
 
+### 2024-02-16
+
+- Added easter-egg to console
+
 ### 2024-02-15
 
 - Implemented bookmarking for crosswords
