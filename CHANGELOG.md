@@ -13,6 +13,7 @@
 
 ### 2024-02-18
 
+- Added `netlify.toml` file to root to specify redirects
 - Added ArchiveLayout, aand refactored the archive for multople kinds of data
 
 ### 2024-02-16
