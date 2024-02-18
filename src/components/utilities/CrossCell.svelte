@@ -69,9 +69,12 @@
         &.builder{
             &:focus,&[data-focus=true] {
                 --_bg: hsla(56, 94%, 49%, 0.863);
+                outline: 2px dotted var(--clr-grey-900);
+                outline-offset: -6px;
+
             }
 
-            &.empty:focus {
+            &.empty:focus, &:empty[data-focus=true] {
                 --_bg: var(--clr-grey-400);
                 outline-color: var(--clr-white);
             }

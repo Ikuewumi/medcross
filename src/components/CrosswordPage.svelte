@@ -265,7 +265,7 @@
 </Modal>
 
     {#if $gameOngoing}
-        <GameBar on:close-game={endGame} on:reveal-word={revealWord}>
+        <GameBar inert={gameEndedModal} on:close-game={endGame} on:reveal-word={revealWord}>
             {#if selectedMode === "trivia"}
                 <GermanMode
                     data={{

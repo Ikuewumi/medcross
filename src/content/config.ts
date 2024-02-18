@@ -50,9 +50,16 @@ const series = defineCollection({
 })
 
 
+const featured = defineCollection({
+    type: "content",
+    schema: z.object({
+        featured: z.array(reference("crossword")).min(4)
+    })
+})
+
 
 export const collections = {
-    author, crossword, category, series
+    author, crossword, category, series, featured
 }
 
 

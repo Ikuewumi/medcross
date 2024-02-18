@@ -29,7 +29,7 @@
 
 <style lang="scss">
     div[role=presentation] {
-        --bg: #1b1b1b80;
+        --bg: #080808d6;
         position: fixed;
         inset: 0;
         width: 100%;

@@ -32,6 +32,7 @@ if (series.length > 1) throw Error(`the item ${entry.id} is included in more tha
     author={author.data.name}
     authorImage={author.data.image}
     category={category.data.name}
+    categoryLink={`/category/${category.id}`}
     date={entry.data.date}
     size={entry.data.size}
     words={entry.data.words as Word[]}>

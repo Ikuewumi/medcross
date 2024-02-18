@@ -8,13 +8,14 @@ import "../styles/filters.scss";
 
 interface Prop extends CrossFull {
     authorImage: string
+    categoryLink: string
 }
 
 export interface Props extends Prop {
     frontmatter?: Prop
 }
 
-const { title, description, image, category, author, size, words, authorImage  } = Astro.props?.frontmatter || Astro.props
+const { title, description, image, category, author, size, words, authorImage, categoryLink } = Astro.props?.frontmatter || Astro.props
 
 
 
@@ -37,7 +38,7 @@ const { title, description, image, category, author, size, words, authorImage  }
         
         <ul class="categories">
             
-            <li>#{category}</li>
+            <li><a href={categoryLink}>#{category}</a></li>
             
         </ul>
         
@@ -107,6 +108,12 @@ section {
 
         list-style: none;
         font-size: var(--step-0);
+
+
+        a{
+            color: var(--clr-grey-400);
+            text-decoration: none;
+        }
 
 
         li {

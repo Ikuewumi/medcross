@@ -1,0 +1,85 @@
+---
+import {getCollection, getEntry, type CollectionEntry} from "astro:content";
+import ArchiveLayout from "../../layouts/ArchiveLayout.astro";
+
+
+export async function getStaticPaths() {
+    const categories = await getCollection('category');
+
+    return categories.map(entry => ({
+        params: { slug: entry.id }, props: { entry },
+    })); 
+}
+
+
+interface Props {
+    entry: CollectionEntry<"category">
+}
+
+
+const { entry } = Astro.props
+
+const crosswords = await getCollection('crossword', ({ data }) => {
+    return (data.category.id === entry.id)
+})
+
+const allData = await Promise.all(crosswords.map(async (d) => {
+	const category = await getEntry("category", d.data.category.id);
+	const author = await getEntry("author", d.data.author.id);
+
+	return {
+		author: author.data.name,
+		category: category.data.name,
+		description: d.data.description || "",
+		title: d.data.title,
+		link: `/crossword/${d.slug}`,
+		categoryLink: `/category/${category.id}`
+		
+	}
+}))
+
+
+const metadata = {
+    title: `#${entry.data.name}`,
+    description: `A list of all the ${entry.data.name} crosswords`,
+    image: ``
+}
+
+
+---
+
+
+
+<ArchiveLayout metadata={metadata} allData={allData}>
+
+    <blockquote slot="more">
+        <p>{ entry.data.description }</p>
+    </blockquote>
+
+</ArchiveLayout>
+
+
+
+<style lang="scss">
+blockquote {
+	background-color: hsl(0deg 0% 100% / 0.8);	
+        margin-top: 0.25rem;
+	box-shadow: var(--shadow-elevation-low);
+
+
+	a {
+		color: var(--clr-grey-400);
+		text-decoration-line: underline;
+		text-decoration-thickness: 2px;
+		text-decoration-color: #3dda35;
+
+		&:hover, &:focus-visible {
+			text-decoration-thickness: 1.5px;
+			font-weight: 700;
+		}
+	}
+}
+
+
+
+</style>

@@ -1,0 +1,20 @@
+---
+import MetaInformation from "../components/layout/MetaInformation.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+
+const metadata = {
+	title: "About The User",
+	description: "Find your bookmarks, and settings here!"
+}
+---
+
+
+<BaseLayout title={metadata.title}>
+	<Fragment slot="meta">
+		<MetaInformation title={metadata.title} description={metadata.title} />
+	</Fragment>
+
+	<h1>👋 Hi!</h1>
+
+</BaseLayout>

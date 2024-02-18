@@ -1,6 +1,26 @@
 ---
 import FeaturedCrossword from "./FeaturedCrossword.astro";
 import FeaturedCard from "./FeaturedCard.astro"
+import { getEntry } from "astro:content";
+
+const featured = await getEntry('featured', 'featured');
+const featuredData = await Promise.all(featured.data.featured.map(async(d) => {
+    const crossword = await getEntry('crossword', d.slug)
+    const category = await getEntry('category', crossword.data.category.id);
+
+
+    return {
+        image: crossword.data.image,
+        category: category.data.name,
+        categorySlug: category.id,
+        title: crossword.data.title,
+        slug: crossword.slug
+    }
+}));
+
+
+
+
 ---
 
 
@@ -8,15 +28,32 @@ import FeaturedCard from "./FeaturedCard.astro"
 <section id="featured" class="grid-setup">
     <div role="presentation">
 
-        <FeaturedCrossword />
+        <FeaturedCrossword 
+            title={featuredData[0].title}
+            link={`/crossword/${featuredData[0].slug}`}
+            category={featuredData[0].category}
+            categoryLink={`/category/${featuredData[0].categorySlug}`}
+            image={featuredData[0].image}
+         
+        />
         
         <article class="more-crosswords">
             <h2 class="sr-only">More..</h2>
             
             <ul class="more-crosswords-list">
-                <li><FeaturedCard title="Random Anatomy Facts" category="anatomy" url="/crossword/raf-2" categoryUrl="/category/anatomy" /> </li>
-                <li><FeaturedCard title="Programming of the Body" category="anatomy" url="/crossword/raf-2" categoryUrl="/category/anatomy" /> </li>
-                <li><FeaturedCard title="This is Physiology" category="anatomy" url="/crossword/raf-2" categoryUrl="/category/anatomy" /> </li>
+                { featuredData.slice(1).map(data => {
+                        return ( 
+                            <li>
+                                <FeaturedCard 
+                                    title={data.title} 
+                                    category={data.category} 
+                                    url={`/crossword/${data.slug}`}  
+                                    categoryUrl={`/category/${data.categorySlug}`} 
+                                />
+                            </li>
+                        )
+                }) }
+
             </ul>
 
 
@@ -32,7 +69,7 @@ import FeaturedCard from "./FeaturedCard.astro"
     </article>
 </section>
 
-<style>
+<style lang="scss">
     #featured {
         grid-column: content;
         background: var(--clr-grey-900);

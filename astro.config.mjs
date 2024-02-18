@@ -1,6 +1,4 @@
 import { defineConfig } from 'astro/config';
-import {resolve} from "path"
-
 import svelte from "@astrojs/svelte";
 import AstroPWA from "@vite-pwa/astro";
 
@@ -10,7 +8,7 @@ export default defineConfig({
   redirects: {
     "/archive": "/archive/crossword"
   },
-  publicDir: "./public",
+  publicDir: "./www",
   integrations: [
     svelte(),
     AstroPWA({

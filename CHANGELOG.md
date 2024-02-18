@@ -13,6 +13,11 @@
 
 ### 2024-02-18
 
+- Changed public directory to `./www`
+- Added page for each category
+- Added keyboard to builder page
+- Made home page's featured section work with real data
+- Added featured content collection 
 - Added `netlify.toml` file to root to specify redirects
 - Added ArchiveLayout, aand refactored the archive for multople kinds of data
 

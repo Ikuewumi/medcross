@@ -70,12 +70,16 @@ const { metadata, allData } = Astro.props
 
 
     </ul>
+
+
+
+    <slot></slot>
     </section>
    
 
     <script slot="script">
         /**@type {HTMLElement} */    
-        const el = document.querySelector('h1#archive-heading + blockquote');
+        const el = document.querySelector('h1#archive-heading + *');
         
         /**@type {HTMLElement} */
         const header = document.querySelector('h1#archive-heading')

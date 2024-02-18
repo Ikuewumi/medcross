@@ -1,6 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
     import { coinCount, costs } from "../../composables/store";
+    export let inert = false;
 
 
     const evt = createEventDispatcher()
@@ -19,7 +20,7 @@
 </script>
 
 <div id="game-bar" class="grid-setup">
-    <div class="header grid-setup">
+    <div class="header grid-setup" inert={inert}>
         <div role="presentation">
             <button title="Close" on:click={closeGame}>
                 <svg viewBox="0 0 24 24"><use href="#close"></use></svg>
