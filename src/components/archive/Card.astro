@@ -3,38 +3,45 @@ import demo from "../../images/css.png";
 import { type CollectionEntry, getEntry } from "astro:content";
 
 export interface Props {
-	data: CollectionEntry<"crossword">["data"] & { slug: string };
+	category: string,
+	categoryLink: string,
+	title: string,
+	author: string,
+	description: string,
+	link: string,
 }
 
-const { data } = Astro.props as Props;
-const author = (await getEntry("author", data.author.id)).data;
-const category = (await getEntry("category", data.categories.id)).data;
+const { title, author, description, category, categoryLink, link } = Astro.props as Props;
+
 
 ---
 
 <div class="card">
 	
-		<a class="category" href="/archive">
-			<span class="crossword-tag">#{category.name}</span>
+		<a class="category" href={categoryLink}>
+			<span class="crossword-tag">#{category}</span>
 		</a>
-		<a class="link" href={`/crossword/${data.slug}`}>
-			<h2>{data.title}</h2>
+		<a class="link" href={link}>
+			<h2>{title}</h2>
 		</a>
-		<p class="author">By <strong>{author.name}</strong></p>
-		<p>{data.description}</p>
+		<p class="author">By <strong>{author}</strong></p>
+		<p>{description}</p>
 
 </div>
 
 <style lang="scss">
 	.card {
-		display: grid;
+		display: flex;
+		flex-direction: column;
 		gap: 0.5rem;
+		align-items: start;
+		//height: 100%;
 		background-color: hsl(0deg 0% 100% / 0.8);
 		border: 1px solid var(--clr-grey-800);
 		border-radius: var(--radius);
 		padding: 0.55rem 0.85rem 0.75rem 0.85rem;
 		color: var(--clr-grey-400);
-		box-shadow: 0 0 4px -1px hsl(var(--shadow-color) / 0.5);
+		box-shadow: 0 0 4px -1px hsl(var(--shadow-color) / 0.5);		
 	}
 
 	a.link, a.category {

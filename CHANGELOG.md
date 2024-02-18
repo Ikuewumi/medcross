@@ -11,6 +11,10 @@
 
 ## Timeline
 
+### 2024-02-18
+
+- Added ArchiveLayout, aand refactored the archive for multople kinds of data
+
 ### 2024-02-16
 
 - Added Series Widget to Crosswords In A Series

@@ -1,0 +1,176 @@
+---
+import Card from '../components/archive/Card.astro'
+import MetaInformation from '../components/layout/MetaInformation.astro'
+import BaseLayout from './BaseLayout.astro'
+interface Props {
+    metadata: {
+        title: string,
+        description: string,
+        image?: string
+    }
+
+    allData: {
+        category: string,
+        categoryLink: string,
+        author: string,
+        description: string,
+        title: string,
+        link: string,
+        [key: string]: any
+    }[]
+}
+
+
+const { metadata, allData } = Astro.props
+
+
+---
+
+
+<BaseLayout title={metadata.title}>
+    <Fragment slot="meta">
+        <MetaInformation
+            title={metadata.title}
+            description={metadata.description}
+            image={metadata.image}
+            content="website"
+        />
+    </Fragment>
+
+
+
+    <section id="archive-page">
+    <h1 id="archive-heading">{metadata.title}</h1>
+
+    
+    <slot name="more"></slot>
+    
+
+
+
+
+
+
+
+
+    <ul>
+
+
+        {allData.map(d => { 
+            return (
+                <Card title={d.title} 
+                    description={d.description} 
+                    link={d.link} 
+                    categoryLink={d.categoryLink} 
+                    category={d.category}
+                    author={d.author}
+                />
+            )
+        })}
+
+
+    </ul>
+    </section>
+   
+
+    <script slot="script">
+        /**@type {HTMLElement} */    
+        const el = document.querySelector('h1#archive-heading + blockquote');
+        
+        /**@type {HTMLElement} */
+        const header = document.querySelector('h1#archive-heading')
+
+
+        const options = {
+            root: null,
+            threshold: 0,
+            rootMargin: "-40px"
+        }
+
+        if (window?.IntersectionObserver) {
+            header.classList.add('sticky')
+            
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+                        header.classList.remove('stick')
+                    }
+
+                    else {
+                        header.classList.add('stick')
+
+                    }
+                })
+            }, options)
+
+
+            observer.observe(el)
+
+        }
+
+               
+
+        
+
+
+
+    </script>
+
+</BaseLayout>
+
+
+
+
+<style lang="scss">
+section#archive-page {
+    display: grid;
+    gap: 0.75rem;
+
+    h1 {
+        &.sticky {
+            
+            
+
+        }
+
+        &.stick.sticky {
+            position: sticky;
+            top: 0;
+            width: fit-content;
+            background-color: var(--clr-grey-900);
+            border-bottom-left-radius: var(--radius);
+            border-bottom-right-radius: var(--radius);
+            padding: 1rem 0.95rem;
+            font-size: var(--step-3);
+            box-shadow: 0 4px 8px -2px hsl(var(--shadow-color) / 0.6);
+            z-index: 6;
+
+        }
+            
+       
+    }
+
+    h1 + * {
+        margin-top: 0.75rem;
+    }
+
+
+    ul {
+        display: grid;
+        gap: 1.5rem 0.5rem;
+        list-style: none;
+        margin-top: 1rem;
+
+
+
+
+        li {
+            display: contents;
+        }
+    }
+
+}
+
+
+</style>

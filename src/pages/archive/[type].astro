@@ -1,0 +1,95 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import ArchiveLayout from "../../layouts/ArchiveLayout.astro";
+
+type Routes = "crossword" | "series"
+
+export async function getStaticPaths() {
+	return [
+		{params: {type: "crossword"}},
+		{params: {type: "series"}}
+	]
+}
+
+const type = Astro.params.type as Routes;
+
+const metadata = {
+	title: "",
+	description: "",
+	image: ""
+}
+
+
+const a = await getCollection(type);
+
+const allData = await Promise.all(a.map(async (d) => {
+	const category = await getEntry("category", d.data.category.id);
+	const author = await getEntry("author", d.data.author.id);
+
+	return {
+		author: author.data.name,
+		category: category.data.name,
+		description: d.data.description || "",
+		title: d.data.title,
+		link: `/${type}/${d.slug}`,
+		categoryLink: `/category/${category.id}`
+		
+	}
+}))
+
+
+
+
+switch(type) {
+	case "series":
+		metadata.title = "All Series";
+		metadata.description = "A list of all the series";
+		break;
+	case "crossword":
+	default:
+		metadata.title = "All Crosswords";
+		metadata.description = "Find All Crosswords Here";
+		break;
+}
+
+
+
+
+---
+
+
+
+<ArchiveLayout metadata={metadata} allData={allData}>
+
+	<blockquote slot="more">
+		{type === 'series' ? 
+		<p>This is a page containing all series. For all crosswords, check <a href="/archive/crossword">here</a></p>:
+		<p>This is a page containing all crosswords. For all series, check <a href="/archive/series">here</a></p>
+		}
+		
+	</blockquote>
+
+</ArchiveLayout>
+
+
+
+<style lang="scss">
+blockquote {
+	background-color: hsl(0deg 0% 100% / 0.8);	
+	box-shadow: var(--shadow-elevation-low);
+
+
+	a {
+		color: var(--clr-grey-400);
+		text-decoration-line: underline;
+		text-decoration-thickness: 2px;
+		text-decoration-color: #3dda35;
+
+		&:hover, &:focus-visible {
+			text-decoration-thickness: 1.5px;
+			font-weight: 700;
+		}
+	}
+}
+
+</style>

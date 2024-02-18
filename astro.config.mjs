@@ -7,6 +7,9 @@ import AstroPWA from "@vite-pwa/astro";
 // https://astro.build/config
 export default defineConfig({
   site: "https://medcross.netlify.app",
+  redirects: {
+    "/archive": "/archive/crossword"
+  },
   publicDir: "./public",
   integrations: [
     svelte(),

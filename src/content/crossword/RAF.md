@@ -4,7 +4,7 @@ title: "Random Anatomy"
 author: ayobami
 image: "https://i.ibb.co/VvGHy01/image-4.jpg"
 description: "start of a series of crosswords about the anatomy of the human body"
-categories: anatomy
+category: anatomy
 date: 2024-02-10
 size: 10
 

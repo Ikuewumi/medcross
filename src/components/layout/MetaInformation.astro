@@ -2,15 +2,19 @@
 
 interface Props {
     description: string,
-    image: string,
+    image?: string,
     title: string,
-    content: 'article' | 'website',
+    content?: 'article' | 'website',
 }
 
 const {description, image, title, content } = Astro.props as Props
 const url = process.env.ORIGIN ?? 'https://medcross.netlify.app';
 
-const img = image.startsWith('/') ? `${url}${image}` : `${image}` 
+let img: string = "";
+
+if (image) {
+    img = image?.startsWith('/') ? `${url}${image}` : `${image}`
+}
 
 
 ---
@@ -20,4 +24,4 @@ const img = image.startsWith('/') ? `${url}${image}` : `${image}`
 <meta property="og:title" content={title}>
 <meta property="og:content" content={content || 'website'}>
 <meta property="og:url" content={`${url}${Astro.url.pathname}`}>
-<meta property="og:image" content={`${img}`}>
+{img ? (<meta property="og:image" content={`${img}`}>) : "" }

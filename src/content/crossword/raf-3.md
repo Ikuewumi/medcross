@@ -3,7 +3,7 @@ title: "Random Anatomy 3"
 author: ayobami
 image: "https://i.ibb.co/hHVSnrV/image.jpg"
 description: "part 3!"
-categories: anatomy
+category: anatomy
 date: 2024-02-13
 
 size: 10

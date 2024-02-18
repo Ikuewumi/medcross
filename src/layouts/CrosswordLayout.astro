@@ -14,7 +14,7 @@ export interface Props extends Prop {
     frontmatter?: Prop
 }
 
-const { title, description, image, categories, author, size, words, authorImage  } = Astro.props?.frontmatter || Astro.props
+const { title, description, image, category, author, size, words, authorImage  } = Astro.props?.frontmatter || Astro.props
 
 
 
@@ -37,7 +37,7 @@ const { title, description, image, categories, author, size, words, authorImage 
         
         <ul class="categories">
             
-            <li>#{categories}</li>
+            <li>#{category}</li>
             
         </ul>
         

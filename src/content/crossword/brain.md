@@ -4,7 +4,7 @@ title: "Brain Anatomy"
 author: ayobami
 image: "https://i.ibb.co/YpPvCfH/image-5.jpg"
 description: "know your brain with this puzzle!"
-categories: anatomy
+category: anatomy
 date: 2024-02-17
 
 

@@ -27,8 +27,8 @@ export interface CrossFull extends Cross {
     description: string,
     image: string,
     author: string,
-    categories: string,
-    date?: any
+    category: string,
+    date?: Date
 } 
 
 

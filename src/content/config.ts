@@ -24,7 +24,7 @@ const crossword = defineCollection({
         author: reference('author'),
         image: z.string().url(),
         description: z.string().optional(),
-        categories: reference('category'),
+        category: reference('category'),
         date: z.date(),
         size: z.number(),
         words: z.array(z.object({
