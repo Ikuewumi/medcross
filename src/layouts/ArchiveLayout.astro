@@ -58,13 +58,13 @@ const { metadata, allData } = Astro.props
 
         {allData.map(d => { 
             return (
-                <Card title={d.title} 
+                <li><Card title={d.title} 
                     description={d.description} 
                     link={d.link} 
                     categoryLink={d.categoryLink} 
                     category={d.category}
                     author={d.author}
-                />
+                /></li>
             )
         })}
 
