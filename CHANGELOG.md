@@ -13,6 +13,8 @@
 
 ### 2024-02-19
 
+- Added `Google Analytics` and `partytown` to help performance by executing the analytics off the main thread
+- Installed Firebase
 - Made the app a PWA
 - Readded the fonts to the public directory
 
