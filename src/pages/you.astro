@@ -12,9 +12,45 @@ const metadata = {
 
 <BaseLayout title={metadata.title}>
 	<Fragment slot="meta">
+		<meta name="robots" content="noindex, nofollow" />
 		<MetaInformation title={metadata.title} description={metadata.title} />
 	</Fragment>
 
-	<h1>👋 Hi!</h1>
+	<h1 class="sr-only">👋 Hi!</h1>
+
+	<figure>
+		<img src="https://i.ibb.co/Hd8cvVW/image.png" alt="work in progress">
+		<figcaption>Working On It...</figcaption>
+
+	</figure>
+
+	 
 
 </BaseLayout>
+
+
+<style lang="scss">
+figure {
+	width: min(30rem, 100%);
+	aspect-ratio: 16 / 10;
+	margin-inline: auto;
+
+
+	img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+		background: var(--clr-white);
+		box-shadow: 0 0 8px -3px hsl(var(--shadow-color) / 0.3);
+	}
+
+
+
+	figcaption {
+		text-align: center;
+		margin-top: 0.25rem;
+	}
+}
+
+
+</style>

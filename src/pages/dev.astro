@@ -1,21 +1,63 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Keyboard from "../components/crossword/Keyboard.svelte";
 ---
 
 
 <BaseLayout title="Dev Page | Page to Experminaent and Play with new things">
 
+    <Fragment slot="meta">
+        <meta name="robots" content="noindex, nofollow" />
+    </Fragment>
 
-    <h1>Working On Keyboard...</h1>
+
+    <h1>Designing In The Browser, Favicon For PWA...</h1>
     
-        <Keyboard client:only />
+    <div class="favicon">
+        <svg viewBox="0 0 24 24" class="inner"><use href="#logo"></use></svg> 
+        <svg viewBox="0 0 24 24" class="outer"><use href="#logo"></use></svg>
+    </div>
+
+
+
+
 </BaseLayout>
 
 <style lang="scss">
-.keyboard {
-
+h1 {
+    font-size: var(--step-3);
+    line-height: 1.2;
+    text-decoration: underline 2px solid currentColor;
 }
+
+.favicon {
+    --w: min(200px, 90%);
+    display: grid;
+    width: var(--w);
+    aspect-ratio: 1;
+    margin-inline: auto;
+    filter: drop-shadow(2px 2px 4px black);
+
+
+
+    &, & svg {
+        width: var(--w);
+        aspect-ratio: 1;
+    }
+
+    & svg {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+
+
+    .inner {
+        fill: var(--clr-white);
+        transform: scale(1.2);
+    }
+    
+}
+
+
 
 </style>
 

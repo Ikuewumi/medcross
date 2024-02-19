@@ -16,9 +16,28 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: 'script',
       workbox: {
-        globPatterns: ['**\/*.{js,css,woff,woff2}']
+        globPatterns: ['**/*.{woff,woff2}']
       },
-      selfDestroying: true
+      selfDestroying: true,
+      manifest: {
+        name: 'medcross',
+        short_name: 'medcross',
+        description: 'Crosswords for Medical Students and Professionals',
+        theme_color: '#ecedef',
+        icons: [
+          {
+            src: 'android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
+      },
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png']
 
     })
   ]

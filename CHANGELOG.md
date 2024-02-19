@@ -11,6 +11,11 @@
 
 ## Timeline
 
+### 2024-02-19
+
+- Made the app a PWA
+- Readded the fonts to the public directory
+
 ### 2024-02-18
 
 - Changed public directory to `./www`

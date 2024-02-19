@@ -24,17 +24,17 @@ const currentYear = new Date().getFullYear()
             <ul>
                 <li><a href="/">home</a></li>
                 <li><a href="/archive">archive</a></li>
-                <li><a href="/">series</a></li>
-                <li><a href="/">settings</a></li>
-                <li><a href="/">help</a></li>
+                <li><a href="/you">you</a></li>
+
             </ul>
         </div>
 
         <div class="developer">
-            <h3>dev</h3>
+            <h3>develop</h3>
             <ul>
+                <li><a href="/dev/">dev</a></li>
                 <li><a href="/builder">builder</a></li> 
-                <li><a href="/">changelog</a></li>
+                <li><a href="https://github.com/Ikuewumi/medcross/blob/main/CHANGELOG.md" target="_blank">changelog(↗)</a></li>
             </ul>
         </div>
 
@@ -134,7 +134,7 @@ nav {
         }
 
         strong {
-            font-size: var(--step-6);
+            font-size: var(--step-4);
             letter-spacing: -2px;
             line-height: 0.9;
         }
@@ -164,8 +164,9 @@ nav {
 
         h3 {
             letter-spacing: -1.5px;
-            font-size: var(--step-3);
+            font-size: var(--step-2);
             text-transform: capitalize;
+            text-decoration: underline 3px solid currentColor;
             font-weight: 700;
         }
 
@@ -187,6 +188,7 @@ nav {
             width: fit-content;
             padding: 0.2rem 0.4rem 0.3rem 0.4rem;
             font-weight: 500;
+            font-size: var(--step-1);
 
 
             &:hover, &:focus {
