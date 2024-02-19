@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import svelte from "@astrojs/svelte";
+import partytown from "@astrojs/partytown";
 import AstroPWA from "@vite-pwa/astro";
 
 // https://astro.build/config
@@ -11,6 +12,7 @@ export default defineConfig({
   publicDir: "./www",
   integrations: [
     svelte(),
+    partytown({ config: { forward: ['dataLayer.push'] } }),
     AstroPWA({
       /* your pwa options */
       registerType: 'autoUpdate',

@@ -7,6 +7,7 @@ import Toast from "../components/utilities/Toast.svelte";
 import "../styles/main.scss"
 import MetaInformation from "../components/layout/MetaInformation.astro";
 import homePageImage from "../images/home-page.jpg"
+import Analytics from "../components/Analytics.astro";
 
 const { title } = Astro.props.frontmatter || Astro.props 
 
@@ -38,6 +39,12 @@ const isProduction = (process.env.NODE_ENV || 'development') === 'production'
 
     <!-- Service Worker -->
     {isProduction && <script defer src="/registerSW.js"></script> }
+
+
+    
+    <Analytics measurementId="G-LP8LGJ178X" /> 
+    
+    
 
 
 

@@ -17,9 +17,11 @@
   },
   "description": "",
   "dependencies": {
+    "@astrojs/partytown": "^2.0.4",
     "@astrojs/svelte": "^5.0.3",
     "@vite-pwa/astro": "^0.2.0",
     "astro": "^4.2.4",
+    "firebase": "^10.8.0",
     "flamethrower-router": "^0.0.0-meme.12",
     "idb": "^8.0.0",
     "nanostores": "^0.9.5",
