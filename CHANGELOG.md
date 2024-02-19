@@ -13,6 +13,8 @@
 
 ### 2024-02-19
 
+- Added `Bookmarks` component to the Tabs
+- Added Tabs For You Page
 - Added `Google Analytics` and `partytown` to help performance by executing the analytics off the main thread
 - Installed Firebase
 - Made the app a PWA

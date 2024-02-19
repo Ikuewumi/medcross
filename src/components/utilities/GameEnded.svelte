@@ -41,6 +41,7 @@
         justify-content: center;
         align-items: center;
         justify-content: center;
+        backdrop-filter: blur(7px);
         
         & > * {
             width: min(100% - 3rem, 30rem);

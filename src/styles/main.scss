@@ -250,7 +250,6 @@ body {
     line-height: 1.5;
     font-weight: 500;
 
-
 }
 
 body, body .grid-setup {
@@ -265,6 +264,7 @@ body, body .grid-setup {
 
 .grid-setup > * {
     grid-column: content;
+
 }
 
 main {

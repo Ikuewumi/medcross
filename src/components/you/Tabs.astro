@@ -1,0 +1,229 @@
+---
+interface Props {
+
+}
+
+
+
+---
+
+
+
+	<div id="settings-tabs-container">
+		<ul aria-labelledby="settings-header" >
+			<li>
+				<a id="tab-1" href="#settings-tab-bookmarked">
+					<svg viewBox="0 0 24 24">
+						<use href="#bookmark-filled"
+						></use>
+					</svg>
+					<span>Bookmarked</span>
+				</a>
+			</li>
+			<li>
+				<a id="tab-2" href="#settings-tab-preferences">
+					<svg viewBox="0 0 24 24">
+						<use href="#settings"></use>
+					</svg>
+					<span>Preferences</span>
+				</a>
+			</li>
+		</ul>
+
+		<div class="tabpanels">
+			<div id="settings-tab-bookmarked" aria-labelledby="tab-1">
+				<slot name="bookmarks"></slot>	
+			</div>
+			<div id="settings-tab-preferences" aria-labelledby="tab-2">
+
+				<slot name="preferences"></slot>
+		
+			</div>
+		</div>
+
+
+
+
+		<Fragment slot="script">
+		<script>
+			
+			const container=document.querySelector('#settings-tabs-container')! as HTMLElement;
+			const list=container.querySelector('ul[aria-labelledby=settings-header]')! as HTMLUListElement;
+			const links=list.querySelectorAll('a')! as NodeListOf<HTMLAnchorElement>;
+			const panels=container.querySelectorAll('.tabpanels > div')! as NodeListOf<HTMLDivElement>;
+
+			list.setAttribute('role', 'tablist')
+			list.querySelectorAll('li').forEach(item => {
+				item.setAttribute('role', 'presentation');
+			})
+
+			
+
+			links.forEach((link, i) => {
+				link.setAttribute('role', 'tab')
+				if (i===0) {
+					link.setAttribute('aria-selected', 'true')
+					link.setAttribute('tabindex', '0');
+					panels[i].removeAttribute('hidden')
+				}
+
+				else {
+					panels[i].setAttribute('hidden', 'true');
+					link.setAttribute('tabindex', '-1');
+					link.setAttribute('aria-selected', 'false');
+				}
+			})
+
+
+			const switchTab = (clickedLink: HTMLAnchorElement) => {
+				const panelId = clickedLink.getAttribute('href')! as string;
+				const panel = container.querySelector(panelId)! as HTMLAnchorElement;
+
+
+				panels.forEach((panel_, i) => {
+					links[i].setAttribute('aria-selected', 'false');
+					links[i].setAttribute('tabindex', '-1')
+					panel_.setAttribute('hidden', 'true')
+				})
+				panel.removeAttribute('hidden')
+				clickedLink.setAttribute('aria-selected', 'true');
+				clickedLink.setAttribute('tabindex', '0');
+				clickedLink.focus()
+			}
+
+
+
+
+			list.addEventListener('click', e => {
+				const target = e.target! as any as HTMLElement;
+				const clickedLink = target.closest('a') as HTMLAnchorElement;
+
+				if (!clickedLink) return;
+
+				e.preventDefault();
+				switchTab(clickedLink)
+
+			})
+
+
+			list.addEventListener('keydown', e => {
+				const keys = ["ArrowLeft", "ArrowRight"];
+				const link = e.target! as any as HTMLAnchorElement
+				
+
+				if (!keys.includes(e.key)) return;
+				if (!Array.from(links).includes(link)) return;
+				
+				switch(e.key) {
+					case "ArrowLeft":
+						const prev = link.parentElement!.previousElementSibling
+						if (prev) { switchTab(prev.querySelector('a')! as HTMLAnchorElement); } 
+						else { switchTab(links[links.length-1]); }
+						break;
+					
+					case "ArrowRight":
+						const next = link.parentElement!.nextElementSibling
+						if (next) { switchTab(next.querySelector('a')! as HTMLAnchorElement); } 
+						else { switchTab(links[0]); }
+						break;
+					
+				}
+
+
+			})
+
+
+		</script>	
+		</Fragment>
+	</div>
+
+
+
+
+	
+
+
+
+
+
+<style lang="scss">
+	#settings-tabs-container {
+		grid-column: full;
+		margin-top: 1rem;
+
+		@media (min-width: 768px) {
+			grid-column: content;
+		}
+	}
+	
+
+
+	ul {
+		display: flex;
+		gap: 0;
+		width: calc(100% - 1rem);
+		overflow-x: auto;
+		list-style: none;
+		margin-inline-start: 1.5rem;
+
+		@media (min-width: 768px) {
+			margin-inline-start: 0.5rem;
+
+			a {
+				--icon-size: 30px;
+			}
+		}
+
+		li {
+			display: contents;
+		}
+
+		a {
+			--icon-size: 20px;
+			display: flex;
+			gap: 0.2rem;
+			align-items: center;
+			background: var(--clr-white);
+			border: 1px solid hsl(var(--shadow-color) / 0.3);
+			border-bottom: 0px;
+			padding: 0.6rem 0.75rem;
+			font-size: var(--step-1);
+			
+			font-weight: 700;
+			text-decoration: none;
+			letter-spacing: -0.5px;
+			color: var(--clr-grey-400);
+
+			&:focus {
+				outline: 2px solid currentColor;
+				outline-offset: -4px;
+			}
+
+			&[aria-selected=true] {
+				background: var(--clr-grey-400);
+				color: var(--clr-white);
+			}
+
+			svg {
+				width: var(--icon-size);
+				aspect-ratio: 1;
+			}
+		}
+	}
+
+	.tabpanels {
+		width: 100%;
+		background-color: var(--clr-white);
+		border-bottom-left-radius: var(--radius);
+		border-bottom-right-radius: var(--radius);
+		border: 1px solid hsl(var(--shadow-color) / 0.3);
+
+
+		& > div {
+			width: 100%;
+		}
+	}
+
+
+
+</style>

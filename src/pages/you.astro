@@ -1,7 +1,8 @@
 ---
 import MetaInformation from "../components/layout/MetaInformation.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-
+import Bookmarks from "../components/you/Bookmarks.svelte";
+import Tabs from "../components/you/Tabs.astro";
 
 const metadata = {
 	title: "About The User",
@@ -16,17 +17,75 @@ const metadata = {
 		<MetaInformation title={metadata.title} description={metadata.title} />
 	</Fragment>
 
-	<h1 class="sr-only">👋 Hi!</h1>
+	<h1 id="settings-header">
+		<span role="presentation">Settings</span>
+	</h1>
 
-	<figure>
+	<strong class="coins-count">
+		<span class="coin-number" role="presentation">
+			<svg role="presentation" viewBox="0 0 24 24"><use href="#coins"></use></svg>
+			<span>300 coins</span>
+		</span>
+	</strong>
+
+
+	<Tabs>
+		<div class="loading-settings" slot="bookmarks">
+			<strong class="bookmarks-loading-screen">Loading Bookmarks...</strong>
+			<Bookmarks client:only />
+		</div>
+		<div class="loading-settings" slot="preferences">
+		<figure class="loading">
+			<img src="https://i.ibb.co/Hd8cvVW/image.png" alt="work in progress">
+			<figcaption>Working On It...</figcaption>
+
+		</figure>
+
+
+		</div>
+	</Tabs>
+
+
+
+	<!-- <figure>
 		<img src="https://i.ibb.co/Hd8cvVW/image.png" alt="work in progress">
 		<figcaption>Working On It...</figcaption>
 
-	</figure>
+	</figure> -->
 
 	 
 
 </BaseLayout>
+
+
+
+<style lang="scss">
+	h1 {
+		--icon-size: 30px;
+		display: flex;
+		align-items: baseline;
+		gap: 0.4rem;
+
+		svg {
+			color: var(--clr-grey-300);
+			width: var(--icon-size);
+			aspect-ratio: 1;
+			animation: move 10s cubic-bezier(0, 0, 0, 1.77) infinite forwards;
+
+
+			@keyframes move {
+				0% {
+					transform: rotate(0deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+
+
+		}
+	}
+</style>
 
 
 <style lang="scss">
@@ -52,5 +111,44 @@ figure {
 	}
 }
 
+.coins-count {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	font-size: var(--step-1);
+	font-weight: 400;
+	margin-top: 0.5rem;
+}
+
+
+.coin-number {
+	--icon-size: 30px;
+	display: inline-flex;
+	gap: 0.25rem;
+	background: var(--clr-white);
+	width: fit-content;
+	padding: 0.25rem 0.5rem;
+	border-radius: var(--radius);
+	font-weight: 700;
+	font-size: var(--step-1);
+	box-shadow: var(--shadow-elevation-low);
+
+
+	& > svg {
+		width: var(--icon-size);
+		aspect-ratio: 1;
+	}
+}
+
+.loading-settings {
+	display: flex;
+	& > strong {
+		margin: 50px auto;
+	}
+
+	& > .loading {
+		padding-block: 2rem;
+	}
+}
 
 </style>
