@@ -10,7 +10,7 @@ date: 2024-02-20
 size: 12
 
 words: [
-    {"word":"PIA","start":[0,3],"end":[2,3],"meaning":"second layer of the meninges"},
+    {"word":"PIA","start":[0,3],"end":[2,3],"meaning":"innermost layer of the meninges"},
     {"word":"VAGUS","start":[0,6],"end":[4,6],"meaning":"cranial nerve X"},
     {"word":"DECIDUA","start":[1,0],"end":[1,6],"meaning":"the modified endometrium during pregnancy"},
     {"word":"DIASTOLE","start":[1,0],"end":[8,0],"meaning":"part of cardiac cycle while the heart fills with blood"},
