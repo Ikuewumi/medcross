@@ -44,7 +44,7 @@
 
         <section>
             <h3>Navigation</h3>
-            {#if (mode === "classic")} 
+            {#if mode.toLowerCase() === "classic"} 
             <ul>
             
 

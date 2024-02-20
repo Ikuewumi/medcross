@@ -13,9 +13,10 @@
 
 
     const updateUI = async () => {
-        document.querySelector('strong.bookmarks-loading-screen')?.removeAttribute('hidden');
         
+        document.querySelector('strong.bookmarks-loading-screen')?.setAttribute('hidden', 'true');
         const db = await window.getDb();
+        
         bookmarked = ((await db.get('settings', 'bookmarked')) ?? {
             id: "bookmarked",
             crosswords: []
@@ -32,7 +33,7 @@
 
 
 
-        document.querySelector('strong.bookmarks-loading-screen')?.setAttribute('hidden', 'true');
+       
 
 
     }
@@ -40,8 +41,10 @@
 
 
 
-<div>
-
+<div class="wrapper">
+    {#await updateUI()}
+        <strong class="loading">Loading Bookmarks...</strong>
+    {:then}
     {#if bookmarked?.crosswords?.length}
         <ul>
         {#each bookmarked.crosswords as bookmark, i (i)}
@@ -54,8 +57,17 @@
         
         {/each}
         </ul>
-    {/if}
 
+
+
+    {:else}
+
+        <strong class="loading">No Bookmarks Present...</strong>
+    {/if}
+    <!-- promise was fulfilled -->
+    {/await}
+
+    
 
 
 
@@ -105,5 +117,17 @@ ul {
             }
         }
     }
+}
+
+.wrapper {
+    display: grid;
+    width: 100%;
+    height: 100%;
+}
+
+
+strong.loading {
+    margin-block: 50px;
+    text-align: center;
 }
 </style>
