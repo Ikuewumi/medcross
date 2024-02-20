@@ -7,7 +7,9 @@ interface Props {
 
 ---
 
+<Fragment>
 
+	<div id="settings-tabs-loader" role="presentation"></div>
 
 	<div id="settings-tabs-container" class="sr-only">
 		<ul aria-labelledby="settings-header" >
@@ -51,6 +53,7 @@ interface Props {
 			const list=container.querySelector('ul[aria-labelledby=settings-header]')! as HTMLUListElement;
 			const links=list.querySelectorAll('a')! as NodeListOf<HTMLAnchorElement>;
 			const panels=container.querySelectorAll('.tabpanels > div')! as NodeListOf<HTMLDivElement>;
+			const loadingScreen=document.querySelector('#settings-tabs-loader')! as HTMLElement;
 
 			container.classList.add('sr-only');
 
@@ -78,6 +81,8 @@ interface Props {
 
 
 			container.classList.remove('sr-only');
+			loadingScreen.setAttribute('hidden', 'true');
+		
 
 
 			const switchTab = (clickedLink: HTMLAnchorElement) => {
@@ -145,14 +150,14 @@ interface Props {
 
 
 
-	
+</Fragment>	
 
 
 
 
 
 <style lang="scss">
-	#settings-tabs-container {
+	#settings-tabs-container, #settings-tabs-loader {
 		grid-column: full;
 		margin-top: 1rem;
 
@@ -160,7 +165,12 @@ interface Props {
 			grid-column: content;
 		}
 	}
-	
+
+
+	#settings-tabs-loader {
+		height: 140px;
+		background: var(--clr-white);
+	}
 
 
 	ul {
