@@ -1,7 +1,7 @@
 ---
 title: "Basic Biochemistry"
 author: ayobami
-image: "https://i.ibb.co/mHsN7m4/image.png"
+image: "https://i.ibb.co/ScKfT36/image-10.jpg"
 description: "sharpen your biochemistry knowledge here"
 category: biochemistry
 date: 2024-02-19
