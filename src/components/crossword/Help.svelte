@@ -26,9 +26,9 @@
         <section>            
             <figure>
                 {#if mode === "classic"}
-                    <img src={crossword.src} alt="Classic Crossword" />
+                    <img src={crossword.src} alt="Classic Crossword" loading="lazy" />
                 {:else}
-                    <img src={trivia.src} alt="Trivia" />
+                    <img src={trivia.src} alt="Trivia" loading="lazy"/>
                 {/if}
             </figure>
 
