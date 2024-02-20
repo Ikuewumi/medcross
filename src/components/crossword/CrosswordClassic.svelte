@@ -94,6 +94,7 @@
 
             if (userAnswers_.length === data.words.length) {
                 sleep(0).then(() => {
+                    keyboardOpen = false;
                     evt('game-finished');
 
                 })
@@ -181,15 +182,6 @@
         if (isOneLetter && !isCtrl) {
             enterKey(e.key)
         }
-
-        if (isArrowKey && !isCtrl) {
-            switch(e.key) {
-                case 'Backspace':
-                default:
-                    enterKey('')
-                    break;
-            }
-        }
     }
 
 
@@ -203,7 +195,7 @@
 
 <section id="C-page">
     {#if data.words.length && $currentWord}
-        <figure class="figure">
+        <figure class="figure" class:keyboard-open={keyboardOpen}>
             <!-- svelte-ignore a11y-no-static-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div
@@ -227,20 +219,28 @@
 
 
 
-        <article class="clue" style="--percent: {progress}%" class:keyboard-open={keyboardOpen}>
+        <div class="keyboard-wrapper" class:keyboard-open={keyboardOpen}>
+
+        
+
+        <article class="clue" style="--percent: {progress}%" >
             <p>{$currentWord.meaning}</p>
         </article>
+
+         <Keyboard open={keyboardOpen} on:enter-key={(e)=> enterKey(e.detail)} on:delete-letter={_ => evt('request-help')} on:close-keyboard={_ => (keyboardOpen=false)} />
+
+        </div>
     {/if}
 
 
-    <button id="keyboard-open" title="Open Keyboard" on:click={_ => (keyboardOpen=true)}>
+    <button id="keyboard-open" title="Open Keyboard" class:keyboard-open={keyboardOpen} on:click={_ => (keyboardOpen=true)}>
         <svg viewBox="0 0 24 24">
             <use href="#keyboard-outline"></use>
         </svg>
     </button>
 
 
-    <Keyboard open={keyboardOpen} on:enter-key={(e)=> enterKey(e.detail)} on:delete-letter={_=>enterKey(' ')} on:close-keyboard={_ => (keyboardOpen=false)} />
+  
 </section>
 
 
@@ -273,7 +273,7 @@
         border-bottom-left-radius: var(--radius);
 
         transition: 100ms ease-in;
-        z-index: 4;
+        z-index: 6;
 
         &:hover {
             background: var(--clr-grey-400);
@@ -285,6 +285,37 @@
             width: var(--icon-size);
             aspect-ratio: 1;
         }
+
+
+        &.keyboard-open {
+            z-index: 4;
+            display: none;
+        }
+    }
+
+
+    #C-page >.keyboard-wrapper {
+        display: grid;
+        width: min(100% - 3rem, 50rem);
+        margin-inline: auto;
+        gap: 0;
+        --keyboard-width: 100%;
+        position: fixed;
+        inset: auto 0 0 0;
+        background: transparent;
+
+        &.keyboard-open {
+            width: 100%;
+
+
+            @media (min-width: 768px) {
+                width: min(100% - 3rem, 50rem)
+            }
+            z-index: 7;
+            & > article.clue {
+                margin-bottom: -0.25rem;
+            }
+        }
     }
 
 
@@ -295,20 +326,38 @@
         width: inherit;
         overflow-x: auto;
         overscroll-behavior-inline: contain;
+        margin-bottom: 70px;
+
+        &.keyboard-open {
+            margin-bottom: 250px;
+        }
+
     }
 
 
-    figure.figure+article.clue {
+
+
+
+    article.clue {
         --percent: 20%;
         position: relative;
         overflow-x: hidden;
         margin-inline: auto;
-        padding: 1.5rem 1rem;
+        padding: 0.75rem 0.25rem;
+        border-radius: var(--radius);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
         border: 2px solid rgba(16, 194, 16, 0.788);
+        background: var(--clr-white);
         width: min(100%, 100vw - 3rem);
         font-size: var(--step-1);
         text-align: center;
         isolation: isolate;
+
+
+        @media (min-width: 768px) {
+            padding: 1.5rem 1rem;
+        }
 
 
 
@@ -325,9 +374,6 @@
         }
 
 
-        &.keyboard-open {
-            margin-bottom: 200px;
-        }
 
     }
 

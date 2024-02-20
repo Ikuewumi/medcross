@@ -100,7 +100,8 @@ ul {
 
 
             h2 {
-                letter-spacing: -1.5px;
+                letter-spacing: -0.75px;
+                font-size: var(--step-2);
             }
         }
     }

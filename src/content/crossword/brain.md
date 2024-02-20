@@ -12,7 +12,7 @@ size: 12
 words: [
     {"word":"GLOBOSE","start":[0,1],"end":[6,1],"meaning":"The second most medial deep cerebellar nucleus"},
     {"word":"SULCUS","start":[0,6],"end":[0,11],"meaning":"A fissure in the cerebrum"},
-    {"word":"SCN","start":[0,6],"end":[2,6],"meaning":"controls the human circadian rhythms"},
+    {"word":"SCN","start":[0,6],"end":[2,6],"meaning":"controls the human circadian rhythms (acronym)"},
     {"word":"CUNEATE","start":[0,9],"end":[6,9],"meaning":"the fasciculus for the upper part of the body"},
     {"word":"STRIATUM","start":[0,11],"end":[7,11],"meaning":"describes the caudate and putamen put together"},
     {"word":"DOPAMINE","start":[2,0],"end":[2,7],"meaning":"the neurotransmitter that stimulates or inhibits the globus pallidus"},

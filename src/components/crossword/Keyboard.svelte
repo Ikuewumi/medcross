@@ -6,7 +6,7 @@ export let open= true;
 const evt = createEventDispatcher();
 
 const handleKey = (e: MouseEvent) => {
-    const specialKeys= ["Close Keyboard", "Delete"]
+    const specialKeys= ["Close Keyboard", "Help!"]
     const button = e.target! as HTMLButtonElement;
     if (button.tagName.toUpperCase() !== "BUTTON") return
     if (specialKeys.includes(button.title)) {
@@ -14,7 +14,7 @@ const handleKey = (e: MouseEvent) => {
             case "Close Keyboard": 
                 evt("close-keyboard");
                 break;
-            case "Backspace": 
+            case "Help!": 
                 evt("delete-letter");
                 break;
         }
@@ -32,7 +32,7 @@ const handleKey = (e: MouseEvent) => {
 </script>
 
 
-<div id="keyboard-widget" aria-hidden={!open} inert={!open} data-open={open} on:click={handleKey}>
+<div id="keyboard-widget" hidden={!open} inert={!open} data-open={open} on:click={handleKey}>
     <div class="row">
         <button>Q</button>
         <button>W</button>
@@ -67,8 +67,8 @@ const handleKey = (e: MouseEvent) => {
         <button>B</button>
         <button>N</button>
         <button>M</button>
-        <button class="strech" title="Delete">
-            <svg viewBox="0 0 24 24"><use href="#backspace"></use></svg>
+        <button class="strech" title="Help!">
+            <svg viewBox="0 0 24 24"><use href="#help"></use></svg>
         </button>
     </div>
 </div>
@@ -117,15 +117,14 @@ const handleKey = (e: MouseEvent) => {
         transform-origin: bottom;
         transition: transform 200ms ease-out;
 
-        // For The Positioning
-        --keyboard-width: 100vw;
-        z-index: 9;
         position: fixed;
-        inset: auto 0 0 0;
+        visibility: hidden;
+
 
         &[data-open=true] {
             --scale: 1;
-        
+            position: static;
+            visibility: visible;
         }
 
         &,

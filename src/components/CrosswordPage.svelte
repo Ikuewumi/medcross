@@ -21,6 +21,7 @@
     import { onMount } from "svelte";
     import type { Bookmarked, Completed } from "../composables/db";
     import Status from "./utilities/Status.svelte";
+    import Help from "./crossword/Help.svelte";
 
     const ids = ["#crossword-page", "header", "footer"];
 
@@ -43,6 +44,7 @@
     let userAnswers: Word[] = [];
     let gameEndedModal = false;
     let confirmModal = false;
+    let helpModal = false;
     let bookmarked:boolean;
     let hasCompleted:boolean;
     const modes = ["trivia", "classic"] as const;
@@ -100,6 +102,7 @@
             userAnswers = [];
         }
         $gameOngoing = true;
+        helpModal = true;
     };
 
     const endGame = () => {
@@ -215,6 +218,12 @@
         updateUI();
     }
 
+
+
+    const showHelp= () => {
+        helpModal = true;
+    }
+
 </script>
 
 {#if data?.words.length > 1 && data?.size > 1}
@@ -264,8 +273,12 @@
             </form>
 </Modal>
 
+
+<Help open={helpModal} mode={selectedMode} on:close-help={(_)=>helpModal=false}></Help>
+
+
     {#if $gameOngoing}
-        <GameBar inert={gameEndedModal} on:close-game={endGame} on:reveal-word={revealWord}>
+        <GameBar inert={gameEndedModal || helpModal} on:close-game={endGame} on:reveal-word={revealWord}>
             {#if selectedMode === "trivia"}
                 <GermanMode
                     data={{
@@ -275,6 +288,7 @@
                     {userAnswers}
                     on:add-answer={changeUserAnswers}
                     on:game-finished={finishGame}
+                    on:request-help={showHelp}
                 />
             {:else if selectedMode === "classic"}
                 <CrosswordClassic
@@ -285,6 +299,7 @@
                     {userAnswers}
                     on:add-answer={changeUserAnswers}
                     on:game-finished={finishGame}
+                    on:request-help={showHelp}
                 />
             {/if}
 

@@ -11,6 +11,11 @@
 
 ## Timeline
 
+### 2024-02-20
+
+- Added `Help` component to the crossword page
+- Made sure the clue of a classic crossword is always visible.
+
 ### 2024-02-19
 
 - Added `Bookmarks` component to the Tabs

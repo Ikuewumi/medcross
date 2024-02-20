@@ -9,7 +9,7 @@ interface Props {
 
 
 
-	<div id="settings-tabs-container">
+	<div id="settings-tabs-container" class="sr-only">
 		<ul aria-labelledby="settings-header" >
 			<li>
 				<a id="tab-1" href="#settings-tab-bookmarked">
@@ -52,6 +52,8 @@ interface Props {
 			const links=list.querySelectorAll('a')! as NodeListOf<HTMLAnchorElement>;
 			const panels=container.querySelectorAll('.tabpanels > div')! as NodeListOf<HTMLDivElement>;
 
+			container.classList.add('sr-only');
+
 			list.setAttribute('role', 'tablist')
 			list.querySelectorAll('li').forEach(item => {
 				item.setAttribute('role', 'presentation');
@@ -73,6 +75,9 @@ interface Props {
 					link.setAttribute('aria-selected', 'false');
 				}
 			})
+
+
+			container.classList.remove('sr-only');
 
 
 			const switchTab = (clickedLink: HTMLAnchorElement) => {
@@ -161,13 +166,15 @@ interface Props {
 	ul {
 		display: flex;
 		gap: 0;
-		width: calc(100% - 1rem);
+		width: calc(100% - 1.45rem);
 		overflow-x: auto;
 		list-style: none;
-		margin-inline-start: 1.5rem;
+		margin-inline-start: 1.45rem;
 
 		@media (min-width: 768px) {
-			margin-inline-start: 0.5rem;
+			margin-inline-start: 0rem;
+			width: calc(100% - 1rem);
+			margin-inline-start: 0rem;
 
 			a {
 				--icon-size: 30px;

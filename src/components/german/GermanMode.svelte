@@ -139,6 +139,12 @@
             <button on:click={navigate.bind(null, 1)} title="Next">Next</button>
         </div>
     {/if}
+
+
+    <button title="Help" on:click={_=> evt('request-help')}>
+        <svg viewBox="0 0 24 24"><use href="#help"></use></svg>
+        <span class="sr-only">Help</span>
+    </button>
 </section>
 
 <style lang="scss">
@@ -224,7 +230,8 @@
 
         input {
             border-radius: var(--radius);
-            letter-spacing: 0.5px;
+            letter-spacing: 2.5px;
+            font-weight: 700;
 
             &[data-error=true],
             &[data-error=true]:focus, 
@@ -265,6 +272,25 @@
         button[title^=Next] {
             margin-inline-start: auto;
         }
+    }
+
+
+    button[title="Help"] {
+        --icon-size: 50px;
+        --padding: 0rem;
+        --bg: transparent;
+        position: fixed;
+        inset: auto 2vh 4vh auto;
+        box-shadow: none;
+
+
+        svg {
+            width: var(--icon-size);
+            aspect-ratio: 1;
+        
+            
+        }
+
     }
 
 
