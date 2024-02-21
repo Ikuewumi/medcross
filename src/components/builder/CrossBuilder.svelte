@@ -210,18 +210,20 @@
         id="keyboard-open"
         title="Open Keyboard"
         on:click={(_) => (keyboardOpen = true)}
+        class:keyboard-open={keyboardOpen}
     >
         <svg viewBox="0 0 24 24">
             <use href="#keyboard-outline"></use>
         </svg>
     </button>
 
+    <div class="keyboard-wrapper" class:keyboard-open={keyboardOpen}>
     <Keyboard
         open={keyboardOpen}
         on:enter-key={(e) => enterWord(e.detail)}
         on:delete-letter={(_) => enterWord(" ")}
         on:close-keyboard={(_) => (keyboardOpen = false)}
-    />
+    /></div>
 
     <div class="button-bar">
         <button title="Edit Size" on:click={openInfoModal}>
@@ -421,6 +423,30 @@
         svg {
             width: var(--icon-size);
             aspect-ratio: 1;
+        }
+
+
+        &.keyboard-open {
+            visibility: hidden;
+        }
+    }
+
+    .keyboard-wrapper {
+        display: flex;
+        place-items: center;
+        place-content: center;
+        background-color: hsl(0deg 0% 100% / 0.2);
+        position: fixed;
+        inset: auto 0 0 0;
+        visibility: hidden;
+        padding-top: 2rem;
+        backdrop-filter: blur(7px);
+
+
+
+
+        &.keyboard-open {
+            visibility: visible;
         }
     }
 </style>

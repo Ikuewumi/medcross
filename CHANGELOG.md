@@ -11,10 +11,15 @@
 
 ## Timeline
 
+### 2024-02-21
+
+- Patched keyboard design for builder page by making it fixed to the bottom of the page
+- Patched bug that allowed user with custom-keyboard to type in disabled paths
+
 ### 2024-02-20
 
 - Added `Help` component to the crossword page
-- Made sure the clue of a classic crossword is always visible.
+- Made sure the clue of a classic crossword is always visible. 
 
 ### 2024-02-19
 

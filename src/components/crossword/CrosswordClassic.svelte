@@ -125,6 +125,13 @@
 
     const enterKey =(key:string) => {
         if (!coords) return;
+        const coordsAllowed = 
+            enabledPaths.map(e => C.calcIndexFromCoordinates(e, data.size))
+                .includes(C.calcIndexFromCoordinates(coords, data.size))
+
+        if (!coordsAllowed) return;
+
+
         userMatrix[coords[0]][coords[1]] = key.toUpperCase().trim().slice(0, 1);
         // Trick to make Svelte rerender the matrix component
         userMatrix = userMatrix;
@@ -142,7 +149,7 @@
             enabledPaths.map(e => C.calcIndexFromCoordinates(e, data.size))
                 .includes(C.calcIndexFromCoordinates(newCoords, data.size))
 
-        if (newCoords && newCoordsAllowed) {
+        if (newCoords && newCoordsAllowed && newCoordsValid) {
             coords = newCoords
         }
 

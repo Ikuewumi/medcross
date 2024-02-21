@@ -31,7 +31,7 @@ const handleKey = (e: MouseEvent) => {
 
 </script>
 
-
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div id="keyboard-widget" hidden={!open} inert={!open} data-open={open} on:click={handleKey}>
     <div class="row">
         <button>Q</button>
