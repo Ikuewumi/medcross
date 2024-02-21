@@ -440,6 +440,7 @@
         inset: auto 0 0 0;
         visibility: hidden;
         padding-top: 2rem;
+        z-index: 8;
         backdrop-filter: blur(7px);
 
 
