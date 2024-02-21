@@ -1,7 +1,7 @@
 ---
 featured:
 - raf-5
-- raf-4
+- raf-6
 - basic-biochemistry
 - brain
 
