@@ -46,14 +46,16 @@ interface Props {
 
 
 
-		<Fragment slot="script">
-		<script>
+		<script slot="script">
+
+
+
 			
-			const container=document.querySelector('#settings-tabs-container')! as HTMLElement;
-			const list=container.querySelector('ul[aria-labelledby=settings-header]')! as HTMLUListElement;
-			const links=list.querySelectorAll('a')! as NodeListOf<HTMLAnchorElement>;
-			const panels=container.querySelectorAll('.tabpanels > div')! as NodeListOf<HTMLDivElement>;
-			const loadingScreen=document.querySelector('#settings-tabs-loader')! as HTMLElement;
+			const container=document.querySelector('#settings-tabs-container');
+			const list=container.querySelector('ul[aria-labelledby=settings-header]');
+			const links=list.querySelectorAll('a');
+			const panels=container.querySelectorAll('.tabpanels > div');
+			const loadingScreen=document.querySelector('#settings-tabs-loader');
 
 			container.classList.add('sr-only');
 
@@ -85,9 +87,9 @@ interface Props {
 		
 
 
-			const switchTab = (clickedLink: HTMLAnchorElement) => {
-				const panelId = clickedLink.getAttribute('href')! as string;
-				const panel = container.querySelector(panelId)! as HTMLAnchorElement;
+			const switchTab = (clickedLink) => {
+				const panelId = clickedLink.getAttribute('href');
+				const panel = container.querySelector(panelId);
 
 
 				panels.forEach((panel_, i) => {
@@ -105,8 +107,8 @@ interface Props {
 
 
 			list.addEventListener('click', e => {
-				const target = e.target! as any as HTMLElement;
-				const clickedLink = target.closest('a') as HTMLAnchorElement;
+				const target = e.target;
+				const clickedLink = target.closest('a');
 
 				if (!clickedLink) return;
 
@@ -118,22 +120,21 @@ interface Props {
 
 			list.addEventListener('keydown', e => {
 				const keys = ["ArrowLeft", "ArrowRight"];
-				const link = e.target! as any as HTMLAnchorElement
-				
+				const link = e.target				
 
 				if (!keys.includes(e.key)) return;
 				if (!Array.from(links).includes(link)) return;
 				
 				switch(e.key) {
 					case "ArrowLeft":
-						const prev = link.parentElement!.previousElementSibling
-						if (prev) { switchTab(prev.querySelector('a')! as HTMLAnchorElement); } 
+						const prev = link.parentElement.previousElementSibling
+						if (prev) { switchTab(prev.querySelector('a')); } 
 						else { switchTab(links[links.length-1]); }
 						break;
 					
 					case "ArrowRight":
-						const next = link.parentElement!.nextElementSibling
-						if (next) { switchTab(next.querySelector('a')! as HTMLAnchorElement); } 
+						const next = link.parentElement.nextElementSibling
+						if (next) { switchTab(next.querySelector('a')); } 
 						else { switchTab(links[0]); }
 						break;
 					
@@ -144,7 +145,7 @@ interface Props {
 
 
 		</script>	
-		</Fragment>
+		
 	</div>
 
 

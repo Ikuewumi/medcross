@@ -80,7 +80,7 @@
 		width: 100%;
 		overflow-x: auto;
 		list-style: none;
-		margin-inline-start: 1rem;
+		margin-inline-start: 2rem;
 
 		li {
 			display: contents;

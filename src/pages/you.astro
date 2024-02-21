@@ -3,6 +3,7 @@ import MetaInformation from "../components/layout/MetaInformation.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Bookmarks from "../components/you/Bookmarks.svelte";
 import Tabs from "../components/you/Tabs.astro";
+import Coins from "../components/you/Coins.svelte";
 
 const metadata = {
 	title: "About The User",
@@ -22,9 +23,9 @@ const metadata = {
 	</h1>
 
 	<strong class="coins-count">
-		<span class="coin-number" role="presentation">
+		<span class="coin-number" id="coin-number" role="presentation">
 			<svg role="presentation" viewBox="0 0 24 24"><use href="#coins"></use></svg>
-			<span>300 coins</span>
+			<span>*** coins</span>
 		</span>
 	</strong>
 
@@ -51,6 +52,10 @@ const metadata = {
 		<figcaption>Working On It...</figcaption>
 
 	</figure> -->
+
+
+
+	<Coins client:only />
 
 	 
 
@@ -84,10 +89,7 @@ const metadata = {
 
 		}
 	}
-</style>
 
-
-<style lang="scss">
 figure {
 	
 	
@@ -124,7 +126,8 @@ figure {
 
 .coin-number {
 	--icon-size: 30px;
-	display: inline-flex;
+	display: flex;
+	align-items: center;
 	gap: 0.25rem;
 	background: var(--clr-white);
 	width: fit-content;

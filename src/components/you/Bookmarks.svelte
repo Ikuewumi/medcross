@@ -82,9 +82,9 @@
 ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.25rem;
+    gap: 1rem 1.25rem;
     list-style: none;
-    padding: 1rem 1.25rem;
+    padding: 1rem 1.25rem 1.75rem 1.25rem;
 
 
     li {

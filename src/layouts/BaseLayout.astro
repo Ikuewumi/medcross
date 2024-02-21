@@ -16,7 +16,7 @@ const isProduction = (process.env.NODE_ENV || 'development') === 'production'
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,6 +54,7 @@ const isProduction = (process.env.NODE_ENV || 'development') === 'production'
     <script>
         import { getDb } from "../composables/db";
         import { slashify } from "../composables/utilities";
+        import { isFirstTime } from "../composables/coins";
         window.getDb = async () => {
             if (!window.idb) {
                 const db = await getDb()
@@ -66,6 +67,10 @@ const isProduction = (process.env.NODE_ENV || 'development') === 'production'
         window.getPathName = () => {
             return slashify(window.location.pathname);
         }
+
+
+        // Work on coins
+        isFirstTime();
     </script>
 
     <script>

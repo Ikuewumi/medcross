@@ -1,10 +1,16 @@
 <script lang="ts">
-    import { createEventDispatcher } from "svelte";
-    import { coinCount, costs } from "../../composables/store";
+    import { createEventDispatcher, onMount } from "svelte";
+    import { Coins, Costs } from "../../composables/coins";
+    import { coinCount } from "../../composables/store";
     export let inert = false;
 
 
     const evt = createEventDispatcher()
+
+
+    onMount(() => {
+        Coins.sync();
+    })
 
     const closeGame = () => {
         evt('close-game')
@@ -28,7 +34,8 @@
             </button>
             
             
-            <button title="Coins" disabled={$coinCount<costs.revealWord} on:click={emitReveal}>
+            <button title="Coins" disabled={$coinCount < Costs.checkWord} on:click={emitReveal}>
+
                 <svg viewBox="0 0 24 24"><use href="#coins"></use></svg>
                 <span>{$coinCount}</span>
             </button>

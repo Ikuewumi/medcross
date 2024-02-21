@@ -12,6 +12,7 @@
         currentWord,
         gameOngoing,
     } from "../composables/store";
+    import {Coins} from "../composables/coins";
     import GameBar from "./utilities/GameBar.svelte";
     import GermanMode from "../components/german/GermanMode.svelte";
     import CrosswordClassic from "./crossword/CrosswordClassic.svelte";
@@ -133,28 +134,16 @@
     };
 
     const revealWord = async () => {
-        if (userAnswers.length === data.words.length)
-            return enterMsg(`game completed`, `failure`);
-        if ($coinCount < costs.revealWord)
-            return enterMsg(`coins are not sufficient`, `failure`);
-        const coin = $coinCount - costs.revealWord;
-        if (coin < 0)
-            return (
-                enterMsg(`coins are not sufficient`, `failure`) 
-            );
+        const isAnswered = userAnswers.findIndex(w => w.word === $currentWord.word);
+        if (isAnswered !== -1) return;
 
-        $coinCount = coin;
-        await sleep(0);
+        await Coins.checkWord($currentWord.word);
         
-        enterMsg(
-            `${$currentWord.word} has been revealed for ${costs.revealWord} coins`,
-            `success`,
-            4000,
-        );
     };
 
     const finishGame = async () => {
         try {
+            await Coins.getReward(userAnswers.length)
             gameEndedModal = true;
             const urlId = window.getPathName();
             const db = await window.getDb();
@@ -304,7 +293,7 @@
             {/if}
 
             <GameEnded
-                coinGain={4}
+                coinGain={Coins.reward(data.words.length)}
                 wordCount={data.words.length}
                 open={gameEndedModal}
                 on:close-modal={closeEndGameModal}

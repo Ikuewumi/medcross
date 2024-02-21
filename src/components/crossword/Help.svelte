@@ -71,7 +71,7 @@
         <section>
             <h3>General</h3>
             <ul>
-
+                <li>Click on the <em>Coin Number</em> button to reveal a word for 5 coins</li>
                 <li>Click on the <em>End Game</em> button to leave the game</li>
                 <li>Your progress is <em>stored</em> on your device, so you can <em>resume</em> in the future</li>
                 <li>Have Fun!</li>
