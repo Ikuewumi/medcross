@@ -11,6 +11,10 @@
 
 ## Timeline
 
+### 2024-02-23
+
+- Changed default mode to classic
+
 ### 2024-02-21
 
 - Patched keyboard design for builder page by making it fixed to the bottom of the page

@@ -50,7 +50,7 @@
     let hasCompleted:boolean;
     const modes = ["trivia", "classic"] as const;
     type GameMode = (typeof modes)[number];
-    let selectedMode: GameMode = "trivia";
+    let selectedMode: GameMode = "classic";
 
     const updateUI = async () => {
         const urlId = window.getPathName();
