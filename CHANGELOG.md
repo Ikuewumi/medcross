@@ -11,6 +11,10 @@
 
 ## Timeline
 
+### 2024-02-25
+
+- Patched the series card to show series name
+
 ### 2024-02-23
 
 - Changed default mode to classic
