@@ -27,7 +27,7 @@ words: [
 	{"word":"ILIUM","start":[10,8],"end":[10,12],"meaning":"fan-shaped superior portion of the innominate bone"},
 	{"word":"ALA","start":[12,6],"end":[12,8],"meaning":"anatomical term for wing"},
 	{"word":"DHAP","start":[12,11],"end":[12,14],"meaning":"acronym for one of the products of third reaction of glycolysis"},
-	{"word":"HDL","start":[12,12],"end":[14,12],"meaning":"smallest class of lipoprotein (acronym)"},
+	{"word":"HDL","start":[12,12],"end":[14,12],"meaning":"class of lipoprotein with smallest size(acronym)"},
 	{"word":"HEMOPHILIA","start":[14,5],"end":[14,14],"meaning":"bleeding disorder in which blood fails to clot appropriately"}
 ]
 ---
