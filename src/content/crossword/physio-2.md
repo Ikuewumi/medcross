@@ -1,7 +1,7 @@
 ---
 title: "Physiology 2"
 author: ayobami
-image: "https://i.ibb.co/hHVSnrV/image.jpg"
+image: "https://i.ibb.co/0GmwMp1/image-1.jpg"
 description: "part 2"
 category: physiology
 date: 2024-02-25
