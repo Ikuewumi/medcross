@@ -23,7 +23,7 @@ words: [
 	{"word":"CANCER","start":[8,6],"end":[8,11],"meaning":"uncontrollable division of cells"},
 	{"word":"CITRATE","start":[8,6],"end":[14,6],"meaning":"compound formed from the condensation of Oxaloacetate and Acetyl-CoA"},
 	{"word":"IGE","start":[9,0],"end":[9,2],"meaning":"immunoglobulin involved mainly in allergic reactions"},
-	{"word":"GERD","start":[9,1],"end":[12,1],"meaning":"disease where gastric acid refluxes into the esophagus"},
+	{"word":"GERD","start":[9,1],"end":[12,1],"meaning":"acronym for disease where gastric acid refluxes into the esophagus"},
 	{"word":"ILIUM","start":[10,8],"end":[10,12],"meaning":"fan-shaped superior portion of the innominate bone"},
 	{"word":"ALA","start":[12,6],"end":[12,8],"meaning":"anatomical term for wing"},
 	{"word":"DHAP","start":[12,11],"end":[12,14],"meaning":"acronym for one of the products of third reaction of glycolysis"},
