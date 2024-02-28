@@ -22,7 +22,7 @@ words: [
 {"word":"MYOCYTE","start":[6,4],"end":[12,4],"meaning":"muscle cell"},
 {"word":"TONSIL","start":[6,6],"end":[11,6],"meaning":"lymphoid organs located in the mouth"},
 {"word":"CORI","start":[6,8],"end":[9,8],"meaning":"glycogen storage disease caused by a deficiency of the glycogen debranching enzyme"},
-{"word":"MRI","start":[8,0],"end":[8,2],"meaning":"acronym for procedure used in"}
+{"word":"MRI","start":[8,0],"end":[8,2],"meaning":"acronym for procedure used in"},
 {"word":"MITOSIS","start":[8,0],"end":[14,0],"meaning":"process of cell division for most somatic cells"},
 {"word":"ECG","start":[10,10],"end":[12,10],"meaning":"procedure for studying heart function"},
 {"word":"PCT","start":[11,2],"end":[11,4],"meaning":"part of the nephron containing Na-Glu co-transporter (acronym)"},
