@@ -1,6 +1,4 @@
 --- 
-
-  
 title: "Physiology 3" 
 author: ayobami 
 image: "https://i.ibb.co/0GmwMp1/image-1.jpg" 
