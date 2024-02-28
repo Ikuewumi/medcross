@@ -1,14 +1,15 @@
 --- 
 
   
- title: "Physiology 3" 
- author: ayobami 
- image: "https://i.ibb.co/0GmwMp1/image-1.jpg" 
- description: "part 3" 
- category: physiology
- date: 2024-02-28
+title: "Physiology 3" 
+author: ayobami 
+image: "https://i.ibb.co/0GmwMp1/image-1.jpg" 
+description: "part 3" 
+category: physiology
+date: 2024-02-28
 
 size: 15
+
 words: [ 
 {"word":"BRONCHIECTASIS","start":[0,0],"end":[0,13],"meaning":"abnormal dilation of the airway leading to breathing problems"},
 {"word":"BOHR","start":[0,0],"end":[3,0],"meaning":"describing the effect that the change in CO2 concentration has on the Oxy-Hb dissociation curve"},
