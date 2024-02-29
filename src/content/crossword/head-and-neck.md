@@ -1,10 +1,10 @@
 --- 
- title: "Head and Neck" 
- author: ayobami 
- image: "https://i.ibb.co/XWwys4z/image-2.jpg" 
- description: "anatomy puzzle with a strong focus on the head and neck" 
- category: anatomy
- date: 2024-02-29
+title: "Head and Neck" 
+author: ayobami 
+image: "https://i.ibb.co/XWwys4z/image-2.jpg" 
+description: "anatomy puzzle with a strong focus on the head and neck" 
+category: anatomy
+date: 2024-02-29
 
 size: 15
 words: [
