@@ -8,10 +8,10 @@ date: 2024-02-29
 
 size: 15
 words: [
-{"word":"PIRIFORMIS","start":[0,0],"end":[0,9],"meaning":"muscle that divides the iliac fossa into sciatic notches"},
+{"word":"PIRIFORMIS","start":[0,0],"end":[0,9],"meaning":"muscle that passes through the greater sciatic foramen to attach to the greater trochanter"},
 {"word":"PLATYSMA","start":[0,0],"end":[7,0],"meaning":"most superficial muscle of the neck anteriorly"},
 {"word":"RISORIUS","start":[0,2],"end":[7,2],"meaning":"smiling muscle"},
-{"word":"GLABELLLA","start":[1,11],"end":[9,11],"meaning":"part of the frontal bone between the eyes"},
+{"word":"GLABELLA","start":[1,11],"end":[8,11],"meaning":"part of the frontal bone between the eyes"},
 {"word":"SPHENOID","start":[2,2],"end":[2,9],"meaning":"butterfly-shaped bone in the skull"},
 {"word":"DENTATE","start":[2,9],"end":[8,9],"meaning":"least medial of the deep cerebellar nuclei"},
 {"word":"SEGMENT","start":[2,13],"end":[8,13],"meaning":"portion of the eye posterior to the lens; the posterior ____"},
