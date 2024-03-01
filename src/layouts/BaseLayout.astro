@@ -47,7 +47,13 @@ const isProduction = (process.env.NODE_ENV || 'development') === 'production'
     
 
 
+    <script>
+        import flamethrower from "flamethrower-router";
 
+        const router = flamethrower({log: false, prefetch: "visible"})
+        
+        
+    </script>
 
 
     <!-- Database Script -->

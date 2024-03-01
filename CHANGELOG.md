@@ -11,6 +11,10 @@
 
 ## Timeline
 
+### 2024-03-02
+
+- Readded flamethrower router
+
 ### 2024-02-25
 
 - Patched the series card to show series name
