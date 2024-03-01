@@ -13,6 +13,7 @@
 
 ### 2024-03-02
 
+- Changed the archive route to archive/crossword removing the need for redirects
 - Readded flamethrower router
 
 ### 2024-02-25

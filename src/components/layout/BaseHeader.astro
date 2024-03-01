@@ -27,7 +27,7 @@ const path = slashify(Astro.url.pathname);
 
         <ul>
             <li><a aria-current={path==="/" ? 'page' : 'false'} href="/">home</a></li>
-            <li><a aria-current={path==="/archive/crossword/" ? 'page' : 'false'} href="/archive">archive</a></li>
+            <li><a aria-current={path==="/archive/crossword/" ? 'page' : 'false'} href="/archive/crossword/">archive</a></li>
             <li><a aria-current={path==="/you/" ? 'page' : 'false'} href="/you">you</a></li>
         </ul>
     </nav>
