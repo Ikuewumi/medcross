@@ -1,8 +1,8 @@
 --- 
-title: "Cell Physiology"
+title: "Cell"
 author: ayobami
 image: "https://i.ibb.co/VvnJdnK/image-3.jpg"
-description: "How much do you really know the cell? Find out here"
+description: "How much do you really know the cell? Find out in this mostly cellular puzzle"
 category: anatomy
 date: 2024-02-29
 size: 15
