@@ -4,7 +4,7 @@ author: ayobami
 image: "https://i.ibb.co/VvnJdnK/image-3.jpg"
 description: "How much do you really know the cell? Find out in this mostly cellular puzzle"
 category: anatomy
-date: 2024-02-29
+date: 2024-03-04
 size: 15
 words: [
    {"word":"CACHEXIA","start":[0,0],"end":[0,7],"meaning":"total body wasting syndrome"},
