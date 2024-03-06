@@ -1,6 +1,6 @@
 --- 
 
-title: "Tensile Tisue"
+title: "Tensile Tissue"
 author: ayobami
 image: "https://i.ibb.co/v44p0yj/image-4.jpg"
 description: "Review more cell facts, and more"
