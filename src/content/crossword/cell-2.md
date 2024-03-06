@@ -2,7 +2,7 @@
 
 title: "Tensile Tisue"
 author: ayobami
-image: "https://i.ibb.co/VvnJdnK/image-3.jpg"
+image: "https://i.ibb.co/v44p0yj/image-4.jpg"
 description: "Review more cell facts, and more"
 category: anatomy
 date: 2024-03-06
