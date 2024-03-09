@@ -22,6 +22,6 @@ words: [
 	{"word":"MHC","start":[8,6],"end":[10,6],"meaning":"acronym for antigen-presenting cell surface proteins"},
 	{"word":"ECTODERM","start":[10,5],"end":[10,12],"meaning":"germ layer that gives rise to the carotid body"},
 	{"word":"INFLAMMATION","start":[12,1],"end":[12,12],"meaning":"immune response characterized by heat, pain, redness and swelling"},
-	{"word":"DYSPLASIA","start":[14,6],"end":[14,14],"meaning":"increased development of abnormally shaped and sized cells"}
+	{"word":"DYSPLASIA","start":[14,6],"end":[14,14],"meaning":"increased development of cells with abnormal shapes and sizes"}
 ]
 ---
