@@ -15,7 +15,7 @@ words: [
 	{"word":"ONCOGENESIS","start":[2,0],"end":[2,10],"meaning":"describing the formation of cancer"},
 	{"word":"COAGULATION","start":[2,2],"end":[12,2],"meaning":"formation of a blood clot"},
 	{"word":"GLOBULIN","start":[2,4],"end":[9,4],"meaning":"member of the family of plasma proteins containing antibodies"},
-	{"word":"OPSONIZE","start":[4,4],"end":[4,11],"meaning":"the act of tagging a substance for phagocytosis"},
+	{"word":"OPSONIZE","start":[4,4],"end":[4,11],"meaning":"to tag an antigen for phagocytosis"},
 	{"word":"UBIQUITIN","start":[6,4],"end":[6,12],"meaning":"a protein that marks organelles in a cell for destruction"},
 	{"word":"GASTRULA","start":[7,14],"end":[14,14],"meaning":"the embryo at the end of week 3"},
 	{"word":"IMMUNITY","start":[8,4],"end":[8,11],"meaning":"state of being resistant to a pathogen"},
